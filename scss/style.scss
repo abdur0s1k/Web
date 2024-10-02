@@ -1,0 +1,14 @@
+@import "base/variables";
+@import "base/mixins";
+@import "libs/reset";
+@import url("https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css");
+@import "fonts";
+@import "global";
+@import "blocks/header";
+@import "blocks/intro";
+@import "blocks/products";
+@import "blocks/design";
+@import "blocks/article";
+@import "blocks/footer";
+@import "media";

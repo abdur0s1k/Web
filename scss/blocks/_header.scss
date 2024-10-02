@@ -1,0 +1,123 @@
+.header {
+  padding: 50px 0;
+
+  .menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &__list {
+      display: flex;
+
+      &-item + .menu__list-item {
+        padding-left: 30px;
+      }
+    }
+
+    &__list-link {
+      padding-bottom: 5px;
+      border-bottom: 1px solid transparent;
+      font-weight: 700;
+      font-size: 15px;
+      color: $menu;
+      transition: border-bottom 0.3s;
+
+      &:hover {
+        border-bottom: 1px solid $menu;
+      }
+
+      @extend %rubik-500;
+    }
+
+    &__list-link--active {
+      border-bottom: 1px solid $menu;
+    }
+  }
+
+  .user-panel {
+    display: flex;
+
+    &__link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &__link-img {
+      width: 16px;
+      height: 16px;
+      fill: $menu;
+    }
+
+    &__link--search {
+      margin-right: 20px;
+      background-color: #edf1f4;
+    }
+
+    &__link--heart {
+      border-radius: 50px 0 0 50px;
+    }
+
+    &__link--basket {
+      margin-right: 20px;
+      border-radius: 0 50px 50px 0;
+    }
+
+    &__link--menu {
+      background-color: #a3bbc8;
+
+      svg {
+        width: 20px;
+        height: 20px;
+        fill: #fff;
+      }
+    }
+
+    &__link--search,
+    &__link--menu {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+    }
+
+    &__link--search,
+    &__link--heart,
+    &__link--basket,
+    &__link--menu {
+      transition: all 0.3s;
+
+      &:hover {
+        background-color: $menu;
+
+        svg {
+          fill: #fff;
+        }
+      }
+    }
+
+    &__link--heart,
+    &__link--basket {
+      position: relative;
+      width: 90px;
+      height: 50px;
+      background-color: #fcd7b6;
+
+      span {
+        position: absolute;
+        left: 48px;
+        top: 12px;
+        width: 16px;
+        border-radius: 50%;
+        font-size: 10px;
+        line-height: 16px;
+        text-align: center;
+        color: $menu;
+        background-color: #fff;
+      }
+
+      .user-panel__link-img {
+        transform: translateY(2px);
+      }
+    }
+  }
+}

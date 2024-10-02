@@ -1,0 +1,126 @@
+.article {
+  padding: 100px 0 80px;
+
+  &__title-inner {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 50px;
+  }
+
+  &__title {
+    margin: 0 0 0 30px;
+  }
+
+  &__title-link {
+    font-size: 16px;
+    line-height: 1.2;
+    color: #262626;
+
+    @extend %dmsans-700;
+  }
+
+  &__title-mark {
+    width: 12px;
+    height: 7px;
+  }
+
+  .article-items {
+    display: flex;
+  }
+
+  .article-item {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-radius: 5px;
+    background-color: #fff;
+
+    &:not(:last-child) {
+      margin-right: 30px;
+    }
+
+    &__photo {
+      width: 100%;
+      height: 100%;
+      max-height: 250px;
+    }
+
+    &__photo-inner {
+      position: relative;
+    }
+
+    &__label {
+      position: absolute;
+      left: 8%;
+      bottom: 0;
+      padding: 10px 35px;
+      border-radius: 25px;
+      font-size: 14px;
+      text-transform: uppercase;
+      color: #fff;
+      background-color: $price;
+      transform: translateY(50%);
+      transition: all 0.3s;
+      cursor: pointer;
+
+      &:hover {
+        color: $price;
+        background-color: #fff;
+      }
+
+      @extend %poppins-700;
+    }
+
+    &__content {
+      display: flex;
+      flex-direction: column;
+      padding: 30px 30px 25px;
+      height: 100%;
+      background-color: #fff;
+    }
+
+    &__descr {
+      margin-bottom: 15px;
+      font-size: 18px;
+      line-height: 1.3;
+      color: #262626;
+      cursor: pointer;
+
+      @extend %dmsans-500;
+    }
+
+    &__bottom {
+      display: flex;
+      margin-top: auto;
+      padding-top: 20px;
+      border-top: 1px solid #e0e0e0;
+    }
+
+    &__bottom-date {
+      padding: 0 30px 0 20px;
+    }
+
+    &__bottom-date,
+    &__bottom-user {
+      font-size: 12px;
+      text-transform: uppercase;
+      color: #222933;
+      cursor: pointer;
+
+      @extend %rubik-400;
+    }
+  }
+}
+
+.partners {
+  margin-top: -172px;
+  padding: 270px 0 90px;
+  background-color: #fef7f0;
+
+  .slick-track {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

@@ -1,0 +1,64 @@
+html,
+body {
+  height: 100%;
+}
+
+main {
+  flex-grow: 1;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  font-style: normal;
+  font-size: 14px;
+  line-height: 1;
+  color: $default;
+  background-color: #fff;
+
+  @extend %rubik-500;
+}
+
+.container {
+  margin: 0 auto;
+  padding: 0 15px;
+  max-width: 1800px;
+}
+
+.container__small {
+  margin: 0 auto;
+  padding: 0 15px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.sr-only {
+  position: absolute;
+  margin: -1px;
+  padding: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  border: 0;
+  white-space: nowrap;
+  clip: rect(0, 0, 0, 0);
+}
+
+.btn {
+  padding: 12px;
+  border: none;
+  color: #fff;
+  background-color: #a3bbc8;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.title {
+  margin-bottom: 30px;
+  font-size: 36px;
+  line-height: 1;
+  text-align: center;
+  color: $title;
+
+  @extend %dmsans-700;
+}
