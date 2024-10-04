@@ -1,9 +1,0 @@
-@mixin text-clamp {
-  display: box;
-  overflow: hidden;
-  box-orient: vertical;
-  -webkit-line-clamp: 2;
-}
-
-/* @include text-clamp;
- -webkit-line-clamp: ; */
