@@ -607,6 +607,7 @@ body {
 .products__card-item:not(:last-child) {
   margin-right: 15px;
 }
+.products__card-bkn,
 .products__card-link,
 .products__card-btn {
   display: -webkit-box;
@@ -631,17 +632,24 @@ body {
   transition: all 0.3s;
   cursor: pointer;
 }
+.products__card-bkn svg,
 .products__card-link svg,
 .products__card-btn svg {
   width: 20px;
   height: 20px;
   fill: #a3bbc8;
 }
+.products__card-bkn:hover,
 .products__card-link:hover,
 .products__card-btn:hover {
   background-color: #a3bbc8;
 }
-.products__card-link:hover svg,
+.products__card-bkn:hover svg{
+  fill:#62c400;
+}
+.products__card-link:hover svg{
+  fill: #000;
+}
 .products__card-btn:hover svg {
   fill: #d56161;
 }
