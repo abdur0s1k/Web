@@ -368,6 +368,7 @@ body {
   align-items: center;
   height: 820px;
   background-color: #202020;
+  border-radius: 20px;
 }
 .intro .intro-top__slider-inner {
   display: -webkit-box;
@@ -416,28 +417,33 @@ body {
   width: 200px;
   font-size: 15px;
   line-height: 12px;
-  -moz-text-align-last: left;
-  text-align-last: left;
-  -webkit-transition: all 0.3s;
-  -o-transition: all 0.3s;
-  transition: all 0.3s;
+  text-align: center; /* Выравнивание текста по центру */
+  background: transparent; /* Прозрачный фон */
+  color: #cf0; /* Зелёный текст */
+  border: 2px solid #cf0; /* Зелёная обводка */
+  border-radius: 30px;
+  box-shadow: none; /* Убрана тень */
+  transition: all 0.3s ease;
 }
+
 .intro .intro-top__slider-btn svg {
   position: absolute;
   right: 10%;
   top: 50%;
-  fill: #fff;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
+  fill: #cf0; /* Зелёная иконка */
   transform: translateY(-50%);
+  transition: fill 0.3s ease;
 }
+
 .intro .intro-top__slider-btn:hover {
-  color: #a3bbc8;
-  background-color: #fff;
+  color: #fff; /* Белый текст при наведении */
+  background-color: #cf0; /* Зелёный фон при наведении */
 }
+
 .intro .intro-top__slider-btn:hover svg {
-  fill: #a3bbc8;
+  fill: #fff; /* Иконка белая при наведении */
 }
+
 .intro .intro-top__slider-bg {
   position: relative;
   z-index: 1;
@@ -497,6 +503,7 @@ body {
 }
 .intro .intro-bottom {
   background-color: #202020;
+  border-radius: 20px;
 }
 .intro .intro-bottom__items {
   display: -webkit-box;
@@ -564,31 +571,29 @@ body {
   margin-right: 30px;
 }
 .products__menu-btn {
-  background: linear-gradient(135deg, #6e8efb, #a777e3); 
+  background-color: #2a2a2a; /* Темный фон для неактивных кнопок */
   border: none;
-  border-radius: 20px; 
-  padding: 12px 24px; 
+  border-radius: 20px;
+  padding: 12px 24px;
   font-size: 16px;
   font-weight: bold;
-  color: #fff; 
-  letter-spacing: 1px; 
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  color: #cfcfcf; /* Светло-серый текст для неактивных кнопок */
+  letter-spacing: 1px;
+  transition: all 0.2s ease-in-out;
   cursor: pointer;
-  transition: all 0.2s ease-in-out; 
 }
 
 .products__menu-btn:hover {
-  background: linear-gradient(135deg, #a777e3, #6e8efb); 
-  transform: scale(1.1); 
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25); 
-  transition: all 1s ease-in-out; 
+ background-color: #90aaff;  /* Фон кнопки при наведении */
+  color: #fff;  /* Текст белый при наведении */
 }
 
-.products__menu-btn:active {
-  transform: scale(0.98); 
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: all 0.1s ease-in-out; 
+.products__menu-btn.active {
+   
+   background-color: #436fff;
+  color: #fff;
 }
+
 .products__cards {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -699,15 +704,14 @@ body {
 .products__card-bkn:hover svg{
   fill:#62c400;
 }
+
 .products__card-link:hover svg{
   fill: #000;
 }
 .products__card-btn:hover svg {
   fill: #d56161;
 }
-.mixitup-control-active {
-  color: #191919;
-}
+
 
 .like-modal {
   display: none;
@@ -845,7 +849,7 @@ body {
   position: absolute;
   left: -70%;
   bottom: -25px;
-  height: 450px;
+  height: 400px;
   max-width: 250px;
   -o-object-fit: cover;
   object-fit: cover;
@@ -866,30 +870,31 @@ body {
   margin-right: 30px;
 }
 .design__menu-btn {
-  background: linear-gradient(135deg, #6e8efb, #a777e3); 
+  background-color: #2a2a2a; /* Темный фон для неактивных кнопок */
   border: none;
-  border-radius: 20px; 
-  padding: 12px 24px; 
+  border-radius: 20px;
+  padding: 12px 24px;
   font-size: 16px;
   font-weight: bold;
-  color: #fff; 
-  letter-spacing: 1px; 
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  color: #cfcfcf; /* Светло-серый текст для неактивных кнопок */
+  letter-spacing: 1px;
+  transition: all 0.2s ease-in-out;
   cursor: pointer;
-  transition: all 0.2s ease-in-out; 
 }
 
 .design__menu-btn:hover {
-  background: linear-gradient(135deg, #a777e3, #6e8efb); 
-  transform: scale(1.1); 
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25); 
-  transition: all 1s ease-in-out; 
+  background-color: #90aaff;  /* Фон кнопки при наведении */
+  color: #fff;  /* Текст белый при наведении */
+}
+
+.design__menu-btn.active {
+   /* Фон для активной кнопки */
+   background-color: #436fff;
+  color: #fff;
 }
 
 .design__menu-btn:active {
-  transform: scale(0.98); 
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: all 0.1s ease-in-out; 
+  transform: scale(0.98); /* Легкое уменьшение при клике */
 }
 
 
@@ -1245,5 +1250,95 @@ body {
   position: absolute;
   left: -18px;
 }
+/* Стиль для модального окна корзины */
+.basket-modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  overflow: auto;
+  padding-top: 60px;
+}
 
+.basket-modal-content {
+  background-color: #fff;
+  margin: 5% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 500px;
+}
+
+.close-btn {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Стили для списка товаров в корзине */
+#basketItemsList {
+  list-style-type: none;
+  padding: 0;
+}
+
+#basketItemsList li {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+#basketItemsList li:last-child {
+  border-bottom: none;
+}
+
+.basket-total {
+  margin-top: 20px;
+}
+
+.basket-total span {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+#clearBasketButton {
+  background-color: #f00;
+  color: rgb(255, 255, 255);
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+#clearBasketButton:hover {
+  background-color: #d00;
+}
+
+.remove-btn {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.remove-btn:hover {
+  background-color: darkred;
+}
+
+/* Добавлен класс для зеленого цвета иконки, когда товар в корзине */
+.basket-added svg {
+  fill: #62c400;
+}
 /*# sourceMappingURL=style.min.css.map */

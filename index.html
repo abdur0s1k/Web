@@ -54,12 +54,29 @@
                     </ul>
                 </div>
               </div>
-              <a class="user-panel__link user-panel__link--basket" href="#">
+              <a class="user-panel__link user-panel__link--basket" href="#" id="basketButton">
                 <svg class="user-panel__link-img">
                   <use xlink:href="images/sprite.svg#basket"></use>
                 </svg>
-                <span>0</span>
+                <span id="basketCount">0</span>
               </a>
+              
+              <!-- Модальное окно корзины -->
+              <div id="basketModal" class="basket-modal">
+                <div class="basket-modal-content">
+                  <span class="close-btn" id="closeBasketModal">&times;</span>
+                  <h2>Ваша Корзина</h2>
+                  <ul id="basketItemsList">
+
+                  </ul>
+                  <div class="basket-total">
+                    <strong>Сумма: $<span id="basketTotal">0.00</span></strong>
+                  </div>
+                  <button id="clearBasketButton">Очистить</button>
+                </div>
+              </div>
+              
+              
               <a class="user-panel__link user-panel__link--menu" onclick="openNav()">
                 <svg class="user-panel__link-img">
                   <use xlink:href="images/sprite.svg#menu"></use>
@@ -92,10 +109,7 @@
                       text
                     </p>
                     <button class="intro-top__slider-btn btn" type="button">
-                      Перейти
-                      <svg width="22" height="9">
-                        <use xlink:href="images/sprite.svg#arrow-right"></use>
-                      </svg>
+                      УЗНАТЬ БОЛЬШЕ
                     </button>
 
                   </div>
@@ -118,10 +132,7 @@
                       text
                     </p>
                     <button class="intro-top__slider-btn btn" type="button">
-                      Перейти
-                      <svg width="22" height="9">
-                        <use xlink:href="images/sprite.svg#arrow-right"></use>
-                      </svg>
+                      УЗНАТЬ БОЛЬШЕ
                     </button>
                   </div>
                   <div class="intro-top__slider-bg">
@@ -143,10 +154,7 @@
                       text
                     </p>
                     <button class="intro-top__slider-btn btn" type="button">
-                      Перейти
-                      <svg width="22" height="9">
-                        <use xlink:href="images/sprite.svg#arrow-right"></use>
-                      </svg>
+                      УЗНАТЬ БОЛЬШЕ
                     </button>
                   </div>
                   <div class="intro-top__slider-bg">
@@ -211,15 +219,15 @@
               <button class="products__menu-btn" type="button" data-filter="all">Всё</button>
             </li>
             <li class="products__menu-item">
-              <button class="products__menu-btn" type="button" data-filter=".furnitures">
+              <button class="products__menu-btn" type="button" data-filter=".PC">
                 ПК
               </button>
             </li>
             <li class="products__menu-item">
-              <button class="products__menu-btn" type="button" data-filter=".chairs">Мониторы</button>
+              <button class="products__menu-btn" type="button" data-filter=".monitors">Мониторы</button>
             </li>
             <li class="products__menu-item">
-              <button class="products__menu-btn" type="button" data-filter=".lighting">
+              <button class="products__menu-btn" type="button" data-filter=".devices">
                 Девайсы
               </button>
             </li>
@@ -228,12 +236,13 @@
             </li>
           </ul>
           <ul class="products__cards">
+
             <!-- Первый товар -->
-            <li class="mix furnitures" id="product-1">
+            <li class="mix PC" id="product-1">
               <article class="products__card">
                 <img class="products__card-img" src="../images/content/product-1.png" alt="photo of furniture" />
-                <h4 class="products__card-title">Wooden radio</h4>
-                <span class="products__card-price"><span>$</span>29.00</span>
+                <h4 class="products__card-title">HYPERPC ONE</h4>
+                <span class="products__card-price"><span>$</span>919.99</span>
                 <ul class="products__card-nav">
                   <li class="products__card-item">
                     <a class="products__card-link" href="#">
@@ -243,7 +252,7 @@
                     </a>
                   </li>
                   <li class="products__card-item">
-                    <button class="products__card-bkn" type="button">
+                    <button class="products__card-bkn" type="button" data-product-id="product-1" onclick="toggleBasketProduct('product-1', 'Wooden radio', 29.00, this)">
                       <svg class="products__card-pic">
                         <use xlink:href="images/sprite.svg#basket"></use>
                       </svg>
@@ -261,11 +270,11 @@
             </li>
           
             <!-- Второй товар -->
-            <li class="mix furnitures" id="product-2">
+            <li class="mix PC" id="product-2">
               <article class="products__card">
                 <img class="products__card-img" src="../images/content/product-2.png" alt="photo of furniture" />
-                <h4 class="products__card-title">Wooden chair</h4>
-                <span class="products__card-price"><span>$</span>29.00</span>
+                <h4 class="products__card-title">HYPERPC FURY</h4>
+                <span class="products__card-price"><span>$</span>1249.99</span>
                 <ul class="products__card-nav">
                   <li class="products__card-item">
                     <a class="products__card-link" href="#">
@@ -275,7 +284,7 @@
                     </a>
                   </li>
                   <li class="products__card-item">
-                    <button class="products__card-bkn" type="button">
+                    <button class="products__card-bkn" type="button" data-product-id="product-2" onclick="toggleBasketProduct('product-2', 'Wooden chair', 39.00, this)">
                       <svg class="products__card-pic">
                         <use xlink:href="images/sprite.svg#basket"></use>
                       </svg>
@@ -293,11 +302,11 @@
             </li>
           
             <!-- Третий товар -->
-            <li class="mix chairs" id="product-3">
+            <li class="mix monitors" id="product-3">
               <article class="products__card">
                 <img class="products__card-img" src="../images/content/product-3.png" alt="photo of furniture" />
-                <h4 class="products__card-title">White chair</h4>
-                <span class="products__card-price"><span>$</span>29.00</span>
+                <h4 class="products__card-title">LG UltraGear 27GP750-B </h4>
+                <span class="products__card-price"><span>$</span>329.99</span>
                 <ul class="products__card-nav">
                   <li class="products__card-item">
                     <a class="products__card-link" href="#">
@@ -307,7 +316,7 @@
                     </a>
                   </li>
                   <li class="products__card-item">
-                    <button class="products__card-bkn" type="button">
+                    <button class="products__card-bkn" type="button" data-product-id="product-3" onclick="toggleBasketProduct('product-3', 'White chair', 25.00, this)">
                       <svg class="products__card-pic">
                         <use xlink:href="images/sprite.svg#basket"></use>
                       </svg>
@@ -325,11 +334,11 @@
             </li>
           
             <!-- Четвертый товар -->
-            <li class="mix chairs" id="product-4">
+            <li class="mix monitors" id="product-4">
               <article class="products__card">
                 <img class="products__card-img" src="../images/content/product-4.png" alt="photo of furniture" />
-                <h4 class="products__card-title">Retro table</h4>
-                <span class="products__card-price"><span>$</span>29.00</span>
+                <h4 class="products__card-title">ASUS TUF VG27AQ1A</h4>
+                <span class="products__card-price"><span>$</span>299.00</span>
                 <ul class="products__card-nav">
                   <li class="products__card-item">
                     <a class="products__card-link" href="#">
@@ -339,7 +348,7 @@
                     </a>
                   </li>
                   <li class="products__card-item">
-                    <button class="products__card-bkn" type="button">
+                    <button class="products__card-bkn" type="button" data-product-id="product-4" onclick="toggleBasketProduct('product-4', 'Retro table', 45.00, this)">
                       <svg class="products__card-pic">
                         <use xlink:href="images/sprite.svg#basket"></use>
                       </svg>
@@ -357,11 +366,11 @@
             </li>
           
             <!-- Пятый товар -->
-            <li class="mix lighting" id="product-5">
+            <li class="mix devices" id="product-5">
               <article class="products__card">
                 <img class="products__card-img" src="../images/content/product-5.png" alt="photo of furniture" />
-                <h4 class="products__card-title">Wooden radio</h4>
-                <span class="products__card-price"><span>$</span>29.00</span>
+                <h4 class="products__card-title">Logitech G305</h4>
+                <span class="products__card-price"><span>$</span>69.99</span>
                 <ul class="products__card-nav">
                   <li class="products__card-item">
                     <a class="products__card-link" href="#">
@@ -371,14 +380,14 @@
                     </a>
                   </li>
                   <li class="products__card-item">
-                    <button class="products__card-bkn" type="button">
+                    <button class="products__card-bkn" type="button" data-product-id="product-5" onclick="toggleBasketProduct('product-5', 'Wooden lamp', 55.00, this)">
                       <svg class="products__card-pic">
                         <use xlink:href="images/sprite.svg#basket"></use>
                       </svg>
                     </button>
                   </li>
                   <li class="products__card-item">
-                    <button class="products__card-btn" type="button" onclick="toggleLikeProduct('product-5', 'Wooden radio', this)">
+                    <button class="products__card-btn" type="button" onclick="toggleLikeProduct('product-5', 'Wooden lamp', this)">
                       <svg class="products__card-pic heart-icon">
                         <use xlink:href="images/sprite.svg#heart"></use>
                       </svg>
@@ -389,11 +398,11 @@
             </li>
           
             <!-- Шестой товар -->
-            <li class="mix lighting" id="product-6">
+            <li class="mix devices" id="product-6">
               <article class="products__card">
                 <img class="products__card-img" src="../images/content/product-6.png" alt="photo of furniture" />
-                <h4 class="products__card-title">Wooden chair</h4>
-                <span class="products__card-price"><span>$</span>29.00</span>
+                <h4 class="products__card-title">Razer Viper V2 Pro</h4>
+                <span class="products__card-price"><span>$</span>129.99</span>
                 <ul class="products__card-nav">
                   <li class="products__card-item">
                     <a class="products__card-link" href="#">
@@ -403,7 +412,7 @@
                     </a>
                   </li>
                   <li class="products__card-item">
-                    <button class="products__card-bkn" type="button">
+                    <button class="products__card-bkn" type="button" data-product-id="product-6" onclick="toggleBasketProduct('product-6', 'Wooden chair', 29.00, this)">
                       <svg class="products__card-pic">
                         <use xlink:href="images/sprite.svg#basket"></use>
                       </svg>
@@ -421,11 +430,11 @@
             </li>
           
             <!-- Седьмой товар -->
-            <li class="mix decor" id="product-7">
+            <li class="mix PC" id="product-7">
               <article class="products__card">
                 <img class="products__card-img" src="../images/content/product-7.png" alt="photo of furniture" />
-                <h4 class="products__card-title">White chair</h4>
-                <span class="products__card-price"><span>$</span>29.00</span>
+                <h4 class="products__card-title">HYPERPC WARRIOR</h4>
+                <span class="products__card-price"><span>$</span>1699,99</span>
                 <ul class="products__card-nav">
                   <li class="products__card-item">
                     <a class="products__card-link" href="#">
@@ -435,14 +444,14 @@
                     </a>
                   </li>
                   <li class="products__card-item">
-                    <button class="products__card-bkn" type="button">
+                    <button class="products__card-bkn" type="button" data-product-id="product-7" onclick="toggleBasketProduct('product-7', 'Metal chair', 49.00, this)">
                       <svg class="products__card-pic">
                         <use xlink:href="images/sprite.svg#basket"></use>
                       </svg>
                     </button>
                   </li>
                   <li class="products__card-item">
-                    <button class="products__card-btn" type="button" onclick="toggleLikeProduct('product-7', 'White chair', this)">
+                    <button class="products__card-btn" type="button" onclick="toggleLikeProduct('product-7', 'Metal chair', this)">
                       <svg class="products__card-pic heart-icon">
                         <use xlink:href="images/sprite.svg#heart"></use>
                       </svg>
@@ -453,11 +462,11 @@
             </li>
           
             <!-- Восьмой товар -->
-            <li class="mix decor" id="product-8">
+            <li class="mix PC" id="product-8">
               <article class="products__card">
                 <img class="products__card-img" src="../images/content/product-8.png" alt="photo of furniture" />
-                <h4 class="products__card-title">Retro table</h4>
-                <span class="products__card-price"><span>$</span>29.00</span>
+                <h4 class="products__card-title">HYPERPC CHAMPION</h4>
+                <span class="products__card-price"><span>$</span>2179.99</span>
                 <ul class="products__card-nav">
                   <li class="products__card-item">
                     <a class="products__card-link" href="#">
@@ -467,14 +476,14 @@
                     </a>
                   </li>
                   <li class="products__card-item">
-                    <button class="products__card-bkn" type="button">
+                    <button class="products__card-bkn" type="button" data-product-id="product-8" onclick="toggleBasketProduct('product-8', 'Vintage lamp', 39.00, this)">
                       <svg class="products__card-pic">
                         <use xlink:href="images/sprite.svg#basket"></use>
                       </svg>
                     </button>
                   </li>
                   <li class="products__card-item">
-                    <button class="products__card-btn" type="button" onclick="toggleLikeProduct('product-8', 'Retro table', this)">
+                    <button class="products__card-btn" type="button" onclick="toggleLikeProduct('product-8', 'Vintage lamp', this)">
                       <svg class="products__card-pic heart-icon">
                         <use xlink:href="images/sprite.svg#heart"></use>
                       </svg>
@@ -483,10 +492,8 @@
                 </ul>
               </article>
             </li>
-          </ul>
-          
+          </ul>          
         </div>
-
         <div class="decor">
           <div class="container">
             <div class="decor__inner">
@@ -831,13 +838,16 @@
       var containerEl2 = document.querySelector('[data-ref="design"]');
 
       var config = {
-        controls: {
-          scope: 'local',
-        },
-      };
+    controls: {
+      scope: 'local',  // Локальная фильтрация внутри этой секции
+    },
+    load: {
+      filter: 'all'  // По умолчанию показывать все элементы
+    }
+  };;
 
       var mixer1 = mixitup(containerEl1, config);
-      var mixer1 = mixitup(containerEl2, config);
+      var mixer2 = mixitup(containerEl2, config);
     </script>
     <script src="js/index.js"></script>
   </body>
