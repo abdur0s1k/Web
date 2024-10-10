@@ -54,15 +54,128 @@ document.addEventListener('DOMContentLoaded', function() {
   buttons[0].classList.add('active');
 });
 
-function openNav() {
-    document.getElementById("mySidebar").style.width = "250px";
-    document.getElementById("main").style.marginLeft = "250px";
+// Получаем элементы
+const profileButton = document.getElementById('profile-button'); // Кнопка меню
+const loginPanel = document.getElementById('login-panel'); // Панель входа
+const signupButton = document.getElementById('button-signup'); // Кнопка регистрации в панели входа
+const registrationModal = document.getElementById('registration-modal'); // Модальное окно для регистрации
+const closeRegistrationModalButton = document.getElementById('close-registration-modal'); // Кнопка закрытия модального окна
+
+// Крестик для бокового меню
+const closePanelButton = document.getElementById('close-panel');
+
+// Инициализация: скрываем панель входа и модальное окно
+loginPanel.classList.add('hidden');
+registrationModal.classList.add('hidden');
+
+// Обработчик для кнопки меню (выдвигает панель входа)
+profileButton.addEventListener('click', function () {
+  // Переключаем видимость панели входа
+  if (loginPanel.classList.contains('hidden')) {
+    loginPanel.classList.remove('hidden');
+    loginPanel.classList.add('show');
+  } else {
+    loginPanel.classList.add('hidden');
+    loginPanel.classList.remove('show');
+  }
+});
+
+// Обработчик для кнопки закрытия бокового меню
+closePanelButton.addEventListener('click', function () {
+  loginPanel.classList.add('hidden'); // Скрываем боковое меню
+  loginPanel.classList.remove('show'); // Убираем класс show
+});
+
+// Обработчик для кнопки регистрации, открывающей модальное окно
+signupButton.addEventListener('click', function () {
+  registrationModal.classList.remove('hidden'); // Показываем модальное окно
+  loginPanel.classList.add('hidden'); // Прячем панель входа, если она открыта
+});
+
+// Обработчик для кнопки "Закрыть" модального окна регистрации
+closeRegistrationModalButton.addEventListener('click', function () {
+  registrationModal.classList.add('hidden'); // Скрываем модальное окно
+  loginPanel.classList.remove('hidden'); // Показываем панель входа
+});
+// Функция для проверки правильности ввода электронной почты
+function validateEmail(email) {
+  const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+  return emailPattern.test(email);
 }
 
-function closeNav() {
-    document.getElementById("mySidebar").style.width = "0";
-    document.getElementById("main").style.marginLeft = "0";
+// Функция для проверки правильности пароля (минимум 6 символов)
+function validatePassword(password) {
+  return password.length >= 6;
 }
+
+// Функция для очистки сообщений об ошибке
+function clearErrorMessages() {
+  document.getElementById("error-message").textContent = '';
+  document.getElementById("error-message-registration").textContent = '';
+}
+
+// Логика проверки формы входа
+document.getElementById("button-login").addEventListener("click", function(event) {
+  event.preventDefault();
+  
+  // Получаем значения из полей ввода
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
+  
+  // Очистка сообщений об ошибке
+  clearErrorMessages();
+
+  // Проверка на правильность ввода
+  if (!validateEmail(email)) {
+    document.getElementById("error-message").textContent = "Неверный формат электронной почты.";
+    return;
+  }
+
+  if (!validatePassword(password)) {
+    document.getElementById("error-message").textContent = "Пароль должен содержать минимум 6 символов.";
+    return;
+  }
+
+  // Если все в порядке, логика для отправки данных на сервер (например, API)
+  // Пример:
+  // loginUser(email, password);
+  console.log("Логин успешен");
+});
+
+// Логика проверки формы регистрации
+document.getElementById("button-submit-registration").addEventListener("click", function(event) {
+  event.preventDefault();
+
+  // Получаем значения из полей ввода
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email-registration").value.trim();
+  const password = document.getElementById("password-registration").value.trim();
+
+  // Очистка сообщений об ошибке
+  clearErrorMessages();
+
+  // Проверка на правильность ввода
+  if (name.length === 0) {
+    document.getElementById("error-message-registration").textContent = "Имя не может быть пустым.";
+    return;
+  }
+
+  if (!validateEmail(email)) {
+    document.getElementById("error-message-registration").textContent = "Неверный формат электронной почты.";
+    return;
+  }
+
+  if (!validatePassword(password)) {
+    document.getElementById("error-message-registration").textContent = "Пароль должен содержать минимум 6 символов.";
+    return;
+  }
+
+  // Если все в порядке, логика для отправки данных на сервер (например, API)
+  // Пример:
+  // registerUser(name, email, password);
+  console.log("Регистрация успешна");
+});
+
 
 let likeCount = 0; // Количество лайкнутых товаров
 let likedProducts = {}; // Объект для хранения лайкнутых товаров
