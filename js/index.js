@@ -68,7 +68,9 @@ let likeCount = 0; // Количество лайкнутых товаров
 let likedProducts = {}; // Объект для хранения лайкнутых товаров
 
 // Функция для добавления/удаления товара из лайкнутых
-function toggleLikeProduct(productId, productName, buttonElement) {
+function toggleLikeProduct(buttonElement) {
+  const productId = buttonElement.getAttribute('data-product-id');
+  const productName = buttonElement.closest('.products__card').querySelector('.products__card-title').textContent;
   const heartIcon = buttonElement.querySelector('.heart-icon');
 
   // Если товар уже лайкнут, удаляем его из списка
@@ -126,7 +128,10 @@ let basket = {}; // Объект для хранения товаров в ко�
 let basketTotal = 0; // Общая стоимость товаров в корзине
 
 // Функция для добавления/удаления товара в корзину
-function toggleBasketProduct(productId, productName, productPrice, buttonElement) {
+function toggleBasketProduct(buttonElement) {
+  const productId = buttonElement.getAttribute('data-product-id');
+  const productName = buttonElement.getAttribute('data-product-name');
+  const productPrice = parseFloat(buttonElement.getAttribute('data-product-price'));
   const basketIcon = buttonElement.querySelector('svg'); // Иконка корзины в кнопке
   const productTotalElement = document.getElementById('basketTotal');
   const basketItemCount = document.getElementById('basketCount');
@@ -172,6 +177,7 @@ function updateBasketList() {
     basketItemsList.appendChild(listItem);
   }
 }
+
 
 // Функция для удаления товара из корзины
 function removeFromBasket(productId) {
