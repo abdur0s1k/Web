@@ -1639,6 +1639,22 @@ input[type="checkbox"] {
   white-space: nowrap; /* Не позволяет тексту переноситься на следующую строку */
 }
 
+#payButton{
+  background-color: #00fc19;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px; /* Закругленные углы */
+  transition: background-color 0.3s ease;
+  width: auto; /* Убираем автоматическое растягивание */
+  white-space: nowrap; /* Не позволяет тексту переноситься на следующую строку */
+}
+
+#payButton:hover {
+  background-color: #009c10;
+}
+
 #clearBasketButton:hover {
   background-color: #d00;
 }
