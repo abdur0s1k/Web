@@ -25,13 +25,13 @@ const slides = document.querySelectorAll('.intro-top__slider');
 slides.forEach((slide, index) => {
   switch(index) {
     case 0:
-      slide.style.backgroundImage = "url('../images/content/recom.jpg')";
+      slide.style.backgroundImage = "url('images/content/recom.jpg')";
       break;
     case 1:
-      slide.style.backgroundImage = "url('../images/content/recom-2.jpg')";
+      slide.style.backgroundImage = "url('images/content/recom-2.jpg')";
       break;
     case 2:
-      slide.style.backgroundImage = "url('../images/content/recom-3.jpg')";
+      slide.style.backgroundImage = "url('images/content/recom-3.jpg')";
       break;
     default:
       slide.style.backgroundColor = "#ccc";
