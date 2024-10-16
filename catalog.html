@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="icon" type="image/png" href="images/icon.png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JoyStick</title>
+    <link rel="stylesheet" href="css/catalog.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <div class="header__wrapper">
+          <nav class="menu">
+            <a class="logo" href="index.html">
+              <img class="logo__img" width="146" height="39" src="images/logo-2.png" alt="logo" />
+            </a>
+            <ul class="menu__list">
+              <li class="menu__list-item">
+                <a class="menu__list-link " href="index.html">Главная +</a>
+              </li>
+              <li class="menu__list-item">
+                <a class="menu__list-link menu__list-link--active" href="catalog.html">Игроовые ПК</a>
+              </li>
+              <li class="menu__list-item">
+                <a class="menu__list-link" href="#">Конфигуратор</a>
+              </li>
+              <li class="menu__list-item">
+                <a class="menu__list-link" href="#">Другие продукты</a>
+              </li>
+              <li class="menu__list-item">
+                <a class="menu__list-link" href="#">#</a>
+              </li>
+              <li class="menu__list-item">
+                <a class="menu__list-link" href="#">Услуги</a>
+              </li>
+            </ul>
+            <div class="user-panel">
+              <a class="user-panel__link user-panel__link--search" href="#">
+                <svg class="user-panel__link-img">
+                  <use xlink:href="images/sprite.svg#search"></use>
+                </svg>
+              </a>
+              <a class="user-panel__link user-panel__link--heart" href="#" id="likeButton">
+                <svg class="user-panel__link-img">
+                    <use xlink:href="images/sprite.svg#heart"></use>
+                </svg>
+                <span id="likeCount">0</span>
+              </a>
+              <div id="likeModal" class="like-modal">
+                <div class="like-modal-content">
+                    <span class="close-btn" id="closeModal">&times;</span>
+                    <h2>Товары, которые вам понравились</h2>
+                    <ul id="likedItemsList">
+                    </ul>
+                </div>
+              </div>
+              <a class="user-panel__link user-panel__link--basket" href="#" id="basketButton">
+                <svg class="user-panel__link-img">
+                  <use xlink:href="images/sprite.svg#basket"></use>
+                </svg>
+                <span id="basketCount">0</span>
+              </a>
+              <div id="basketModal" class="basket-modal">
+                <div class="basket-modal-content">
+                  <span class="close-btn" id="closeBasketModal">&times;</span>
+                  <h2>Ваша Корзина</h2>
+                  <ul id="basketItemsList">
+
+                  </ul>
+                  <div class="basket-total">
+                    <strong>Сумма: $<span id="basketTotal">0.00</span></strong>
+                  </div>
+                  <button id="clearBasketButton">Очистить</button>
+                  <button id="payButton">Оплатить</button>
+                </div>
+                <div>
+                  </div>
+              </div>
+              <a class="user-panel__link user-panel__link--menu" id="profile-button">
+  <svg class="user-panel__link-img">
+    <use xlink:href="images/sprite.svg#profile"></use>
+  </svg>
+</a>
+
+<!-- Выдвигающееся окно для входа -->
+<div class="side-panel hidden" id="login-panel">
+  <span id="close-panel" class="close-panel">&times;</span> <!-- Крестик для закрытия -->
+  <div class="login-container">
+    <div class="block block-left">
+      <h1>Войти</h1>
+      <input type="text" placeholder="Почта" id="email">
+      <input type="password" placeholder="Пароль" id="password">
+
+<div class="checkbox-container">
+  <input type="checkbox" id="rememberMe"> 
+  <label for="rememberMe">Запомнить меня</label>
+</div>
+
+      <button id="button-login">Войти</button>
+      <p id="error-message" style="color: red;"></p>
+      <button id="button-signup" class="signup-link">Зарегистрироваться</button>
+    </div>
+  </div>
+</div>
+
+<!-- Модальное окно для регистрации -->
+<div class="modal regist hidden" id="registration-modal">
+  <span id="close-registration-modal" class="close-panel">&times;</span>
+  <div class="registration-container">
+    <div class="block block-left">
+      <h1>Регистрация</h1>
+      <input type="text" placeholder="Имя" id="name">
+      <input type="email" placeholder="Электронная почта" id="email-registration">
+      <input type="password" placeholder="Пароль" id="password-registration">
+      <p id="error-message-registration" style="color: red;"></p>
+      <button id="button-submit-registration">Создать аккаунт</button>
+    </div>
+  </div>
+</div>        
+                  </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </header>     
+    <main class="main">
+      <section class="products" data-ref="products">
+        <div class="container__small">
+          <h3 class="title">Популярные продукты</h3>
+          <ul class="products__menu-items">
+            <li class="products__menu-item">
+              <button class="products__menu-btn" type="button" data-filter="all">Всё</button>
+            </li>
+            <li class="products__menu-item">
+              <button class="products__menu-btn" type="button" data-filter=".PC">
+                ПК
+              </button>
+            </li>
+            <li class="products__menu-item">
+              <button class="products__menu-btn" type="button" data-filter=".monitors">Мониторы</button>
+            </li>
+            <li class="products__menu-item">
+              <button class="products__menu-btn" type="button" data-filter=".devices">
+                Девайсы
+              </button>
+          </ul>
+          <ul class="products__cards">
+
+<!-- Первый товар -->
+<li class="mix PC" id="product-1">
+  <article class="products__card">
+    <img class="products__card-img" src="images/PC/product-1.png" alt="photo of furniture" />
+    <h4 class="products__card-title">JoyStick ONE</h4>
+    <span class="products__card-price"><span>$</span>919.99</span>
+    <ul class="products__card-nav">
+      <li class="products__card-item">
+        <a class="products__card-link" href="#">
+          <svg class="products__card-pic">
+            <use xlink:href="images/sprite.svg#search"></use>
+          </svg>
+        </a>
+      </li>
+      <li class="products__card-item">
+        <button class="products__card-bkn" type="button" 
+                data-product-id="product-1" 
+                data-product-name="HYPERPC ONE" 
+                data-product-price="919.99" 
+                onclick="toggleBasketProduct(this)">
+          <svg class="products__card-pic">
+            <use xlink:href="images/sprite.svg#basket"></use>
+          </svg>
+        </button>
+      </li>
+      <li class="products__card-item">
+        <button class="products__card-btn" type="button" data-product-id="product-1" onclick="toggleLikeProduct(this)">
+          <svg class="products__card-pic heart-icon">
+            <use xlink:href="images/sprite.svg#heart"></use>
+          </svg>
+        </button>
+      </li>
+      
+    </ul>
+  </article>
+</li>
+
+<!-- Второй товар -->
+<li class="mix PC" id="product-2">
+  <article class="products__card">
+    <img class="products__card-img" src="images/PC/product-2.png" alt="photo of furniture" />
+    <h4 class="products__card-title">JoyStick FURY</h4>
+    <span class="products__card-price"><span>$</span>1249.99</span>
+    <ul class="products__card-nav">
+      <li class="products__card-item">
+        <a class="products__card-link" href="#">
+          <svg class="products__card-pic">
+            <use xlink:href="images/sprite.svg#search"></use>
+          </svg>
+        </a>
+      </li>
+      <li class="products__card-item">
+        <button class="products__card-bkn basket-removed" type="button" 
+                data-product-id="product-2" 
+                data-product-name="HYPERPC FURY" 
+                data-product-price="1249.99" 
+                onclick="toggleBasketProduct(this)">
+          <svg class="products__card-pic">
+            <use xlink:href="images/sprite.svg#basket"></use>
+          </svg>
+        </button>
+      </li>
+      <li class="products__card-item">
+        <button class="products__card-btn" type="button" data-product-id="product-2" onclick="toggleLikeProduct(this)">
+          <svg class="products__card-pic heart-icon">
+            <use xlink:href="images/sprite.svg#heart"></use>
+          </svg>
+        </button>
+      </li>
+      
+
+    </ul>
+  </article>
+</li>
+
+<!-- Третий товар -->
+<li class="mix monitors" id="product-3">
+  <article class="products__card">
+    <img class="products__card-img" src="images/PC/product-3.png" alt="photo of furniture" />
+    <h4 class="products__card-title">JoyStick LEADER</h4>
+    <span class="products__card-price"><span>$</span>3074.99</span>
+    <ul class="products__card-nav">
+      <li class="products__card-item">
+        <a class="products__card-link" href="#">
+          <svg class="products__card-pic">
+            <use xlink:href="images/sprite.svg#search"></use>
+          </svg>
+        </a>
+      </li>
+      <li class="products__card-item">
+        <button class="products__card-bkn" type="button" 
+                data-product-id="product-3" 
+                data-product-name="JoyStick LEADER" 
+                data-product-price="3074.99" 
+                onclick="toggleBasketProduct(this)">
+          <svg class="products__card-pic">
+            <use xlink:href="images/sprite.svg#basket"></use>
+          </svg>
+        </button>
+      </li>
+      <li class="products__card-item">
+        <button class="products__card-btn" type="button" data-product-id="product-3" onclick="toggleLikeProduct(this)">
+          <svg class="products__card-pic heart-icon">
+            <use xlink:href="images/sprite.svg#heart"></use>
+          </svg>
+        </button>
+      </li>
+      
+    </ul>
+  </article>
+</li>
+
+<!-- Четвертый товар -->
+<li class="mix monitors" id="product-4">
+  <article class="products__card">
+    <img class="products__card-img" src="images/PC/product-4.png" alt="photo of furniture" />
+    <h4 class="products__card-title">JoyStick CYBER</h4>
+    <span class="products__card-price"><span>$</span>5042.99</span>
+    <ul class="products__card-nav">
+      <li class="products__card-item">
+        <a class="products__card-link" href="#">
+          <svg class="products__card-pic">
+            <use xlink:href="images/sprite.svg#search"></use>
+          </svg>
+        </a>
+      </li>
+      <li class="products__card-item">
+        <button class="products__card-bkn" type="button" 
+                data-product-id="product-4" 
+                data-product-name="JoyStick CYBER" 
+                data-product-price="5042.99" 
+                onclick="toggleBasketProduct(this)">
+          <svg class="products__card-pic">
+            <use xlink:href="images/sprite.svg#basket"></use>
+          </svg>
+        </button>
+      </li>
+      <li class="products__card-item">
+        <li class="products__card-item">
+          <button class="products__card-btn" type="button" data-product-id="product-4" onclick="toggleLikeProduct(this)">
+            <svg class="products__card-pic heart-icon">
+              <use xlink:href="images/sprite.svg#heart"></use>
+            </svg>
+          </button>
+        </li>
+        
+      </li>
+    </ul>
+  </article>
+</li>
+
+<!-- Пятый товар -->
+<li class="mix devices" id="product-5">
+  <article class="products__card">
+    <img class="products__card-img" src="images/PC/product-5.png" alt="photo of furniture" />
+    <h4 class="products__card-title">JoyStick DYNAMIC</h4>
+    <span class="products__card-price"><span>$</span>7421.34</span>
+    <ul class="products__card-nav">
+      <li class="products__card-item">
+        <a class="products__card-link" href="#">
+          <svg class="products__card-pic">
+            <use xlink:href="images/sprite.svg#search"></use>
+          </svg>
+        </a>
+      </li>
+      <li class="products__card-item">
+        <button class="products__card-bkn" type="button" 
+                data-product-id="product-5" 
+                data-product-name="JoyStick DYNAMIC" 
+                data-product-price="7421.34" 
+                onclick="toggleBasketProduct(this)">
+          <svg class="products__card-pic">
+            <use xlink:href="images/sprite.svg#basket"></use>
+          </svg>
+        </button>
+      </li>
+      <li class="products__card-item">
+        <button class="products__card-btn" type="button" data-product-id="product-5" onclick="toggleLikeProduct(this)">
+          <svg class="products__card-pic heart-icon">
+            <use xlink:href="images/sprite.svg#heart"></use>
+          </svg>
+        </button>
+      </li>
+      
+    </ul>
+  </article>
+</li>
+
+<!-- Шестой товар -->
+<li class="mix devices" id="product-6">
+  <article class="products__card">
+    <img class="products__card-img" src="images/PC/product-6.png" alt="photo of furniture" />
+    <h4 class="products__card-title">JoyStick DYNAMIC CONCEPT</h4>
+    <span class="products__card-price"><span>$</span>10262,22</span>
+    <ul class="products__card-nav">
+      <li class="products__card-item">
+        <a class="products__card-link" href="#">
+          <svg class="products__card-pic">
+            <use xlink:href="images/sprite.svg#search"></use>
+          </svg>
+        </a>
+      </li>
+      <li class="products__card-item">
+        <button class="products__card-bkn" type="button" 
+                data-product-id="product-6" 
+                data-product-name="JoyStick DYNAMIC CONCEPT" 
+                data-product-price="10262,22" 
+                onclick="toggleBasketProduct(this)">
+          <svg class="products__card-pic">
+            <use xlink:href="images/sprite.svg#basket"></use>
+          </svg>
+        </button>
+      </li>
+      <li class="products__card-item">
+        <button class="products__card-btn" type="button" data-product-id="product-6" onclick="toggleLikeProduct(this)">
+          <svg class="products__card-pic heart-icon">
+            <use xlink:href="images/sprite.svg#heart"></use>
+          </svg>
+        </button>
+      </li> 
+    </ul>
+  </article>
+</li>
+<!-- Седьмой товар -->
+<li class="mix PC" id="product-7">
+  <article class="products__card">
+    <img class="products__card-img" src="images/PC/product-7.png" alt="photo of furniture" />
+    <h4 class="products__card-title">JoyStick WARRIOR</h4>
+    <span class="products__card-price"><span>$</span>1699.99</span>
+    <ul class="products__card-nav">
+      <li class="products__card-item">
+        <a class="products__card-link" href="#">
+          <svg class="products__card-pic">
+            <use xlink:href="images/sprite.svg#search"></use>
+          </svg>
+        </a>
+      </li>
+      <li class="products__card-item">
+        <button class="products__card-bkn" type="button" 
+                data-product-id="product-7" 
+                data-product-name="HYPERPC WARRIOR" 
+                data-product-price="1699.99" 
+                onclick="toggleBasketProduct(this)">
+          <svg class="products__card-pic">
+            <use xlink:href="images/sprite.svg#basket"></use>
+          </svg>
+        </button>
+      </li>
+      <li class="products__card-item">
+        <button class="products__card-btn" type="button" data-product-id="product-7" onclick="toggleLikeProduct(this)">
+          <svg class="products__card-pic heart-icon">
+            <use xlink:href="images/sprite.svg#heart"></use>
+          </svg>
+        </button>
+      </li>
+      
+    </ul>
+  </article>
+</li>
+
+<!-- Восьмой товар -->
+<li class="mix PC" id="product-8">
+  <article class="products__card">
+    <img class="products__card-img" src="images/PC/product-8.png" alt="photo of furniture" />
+    <h4 class="products__card-title">JoyStick CHAMPION</h4>
+    <span class="products__card-price"><span>$</span>2179.99</span>
+    <ul class="products__card-nav">
+      <li class="products__card-item">
+        <a class="products__card-link" href="#">
+          <svg class="products__card-pic">
+            <use xlink:href="images/sprite.svg#search"></use>
+          </svg>
+        </a>
+      </li>
+      <li class="products__card-item">
+        <button class="products__card-bkn" type="button" 
+                data-product-id="product-8" 
+                data-product-name="HYPERPC CHAMPION" 
+                data-product-price="2179.99" 
+                onclick="toggleBasketProduct(this)">
+          <svg class="products__card-pic">
+            <use xlink:href="images/sprite.svg#basket"></use>
+          </svg>
+        </button>
+      </li>
+      <li class="products__card-item">
+        <button class="products__card-btn" type="button" data-product-id="product-8" onclick="toggleLikeProduct(this)">
+          <svg class="products__card-pic heart-icon">
+            <use xlink:href="images/sprite.svg#heart"></use>
+          </svg>
+        </button>
+      </li>
+    </ul>
+      </section>
+
+      <footer class="footer">
+        <div class="container__small">
+          <div class="footer-top">
+            <div class="footer-top__item">
+              <div class='footer-top__item-inner'>
+              <a class="logo footer-top__logo" href="index.html">
+                <img class="logo__img" src="images/logo.png" alt="logo" />
+              </a>
+              <a class="footer-top__address" href="#">
+                <span>Адрес:</span> 4772 Wines Lane Houston, TX 77032
+              </a>
+              <a class="footer-top__phone" href="tel:+8323475843">
+                <span>Телефон:</span> +832-347-5843
+              </a>
+              <a class="footer-top__email" href="mailto:contact@Glee.com">
+                <span>Email:</span> contact@Glee.com
+              </a>
+              </div>
+            </div>
+            <div class="footer-top__item">
+              <h5 class="footer-top__item-title">О нас</h5>
+              <a class="footer-top__item-link" href="#">Услуги</a>
+              <a class="footer-top__item-link" href="#">Условия возврата</a>
+              <a class="footer-top__item-link" href="#">Наш блог</a>
+              <a class="footer-top__item-link" href="#">Связаться с нами</a>
+              <a class="footer-top__item-link" href="#">Правила и условия</a>
+            </div>
+            <div class="footer-top__item">
+              <h5 class="footer-top__item-title">Услуги</h5>
+              <a class="footer-top__item-link" href="catalog.html">Игровые Пк</a>
+              <a class="footer-top__item-link" href="#">Конфигуратор</a>
+              <a class="footer-top__item-link" href="#">Другие продукты</a>
+              <a class="footer-top__item-link" href="#">Услуги</a>
+            </div>
+            <div class="footer-top__item">
+              <h5 class="footer-top__item-title">Новостная рассылка</h5>
+              <p class="footer-top__item-text">
+                Подпишитесь на нашу рассылку и получайте обновления ежедневно.
+              </p>
+              <form class="footer-top__form" action="#">
+                <input
+                  class="footer-top__form-input"
+                  type="email"
+                  placeholder="Email address"
+                  required
+                />
+              </form>
+              <button class="footer-top__form-btn btn" type="submit">Subscribe</button>
+            </div>
+            
+          </div>
+          <div class="footer-bottom">
+            <p class="footer-bottom__copy">©2024 CopyRight Example. All rights reserved.</p>
+            <div class="footer-bottom__links">
+              <a class="footer-bottom__link" href="#">Home</a>
+              <a class="footer-bottom__link" href="#">About</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mixitup/3.3.1/mixitup.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+    <script>
+      var containerEl1 = document.querySelector('[data-ref="products"]');
+      var containerEl2 = document.querySelector('[data-ref="design"]');
+
+      var config = {
+    controls: {
+      scope: 'local',  
+    },
+    load: {
+      filter: 'all' 
+    }
+  };;
+
+      var mixer1 = mixitup(containerEl1, config);
+      var mixer2 = mixitup(containerEl2, config);
+    </script>
+    <script src="js/index.js"></script>
+  </body>
+</html>
