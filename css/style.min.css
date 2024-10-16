@@ -185,7 +185,7 @@ body {
 }
 
 #main {
-  transition: margin-left .5s;
+  transition: margin-left 0.5s;
   padding: 16px;
 }
 .container {
@@ -229,10 +229,10 @@ body {
 }
 .header {
   padding: 10px 0;
-  position: fixed; 
-  width: 100%; 
-  z-index: 1000; 
-  background-color: #191a1b; 
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+  background-color: #191a1b;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
@@ -339,36 +339,34 @@ button:hover {
 }
 
 /* Заголовки и параграфы */
-.block-right h2, .block-left h1 {
+.block-right h2,
+.block-left h1 {
   margin-bottom: 10px;
 }
 
-.block-right p, .block-left p {
+.block-right p,
+.block-left p {
   margin-bottom: 20px;
   text-align: center;
 }
 
-
 .checkbox-container {
-  display: flex; 
-  align-items: center; 
+  display: flex;
+  align-items: center;
   margin-bottom: 15px;
-  flex-direction: row-reverse; 
+  flex-direction: row-reverse;
 }
-
 
 input[type="checkbox"] {
-  margin-left: 10px; 
-  transform: scale(1.3); 
+  margin-left: 10px;
+  transform: scale(1.3);
 }
-
 
 .checkbox-container label {
   font-size: 15px;
-  color: #333; 
-  cursor: pointer; 
+  color: #333;
+  cursor: pointer;
 }
-
 
 /* Стиль для бокового меню */
 .side-panel {
@@ -498,8 +496,6 @@ input[type="checkbox"] {
   }
 }
 
-
-
 .header .user-panel {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -603,6 +599,7 @@ input[type="checkbox"] {
   align-items: center;
   height: 700px;
   border-radius: 20px;
+  margin-top: 100px;
 }
 .intro .intro-top__slider-inner {
   display: -webkit-box;
@@ -694,12 +691,12 @@ input[type="checkbox"] {
 }
 .intro .slick-dots li.slick-active button {
   background-color: #a4cd39;
-  width: 20px; 
-  height: 20px; 
+  width: 20px;
+  height: 20px;
   border-radius: 100%;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); 
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
-.intro .slick-dots button { 
+.intro .slick-dots button {
   text-indent: -9999px;
   padding: 0;
   width: 13px;
@@ -718,7 +715,7 @@ input[type="checkbox"] {
 .intro .intro-bottom {
   background-color: #202020;
   border-radius: 20px;
-  margin-top: 20px;
+  margin-top: 50px;
 }
 .intro .intro-bottom__items {
   display: -webkit-box;
@@ -799,13 +796,12 @@ input[type="checkbox"] {
 }
 
 .products__menu-btn:hover {
- background-color: #90aaff;  /* Фон кнопки при наведении */
-  color: #fff;  /* Текст белый при наведении */
+  background-color: #90aaff; /* Фон кнопки при наведении */
+  color: #fff; /* Текст белый при наведении */
 }
 
 .products__menu-btn.active {
-   
-   background-color: #436fff;
+  background-color: #436fff;
   color: #fff;
 }
 
@@ -916,17 +912,16 @@ input[type="checkbox"] {
 .products__card-btn:hover {
   background-color: #a3bbc8;
 }
-.products__card-bkn:hover svg{
-  fill:#62c400;
+.products__card-bkn:hover svg {
+  fill: #62c400;
 }
 
-.products__card-link:hover svg{
+.products__card-link:hover svg {
   fill: #000;
 }
 .products__card-btn:hover svg {
   fill: #d56161;
 }
-
 
 /* Модальное окно */
 .like-modal {
@@ -1022,8 +1017,6 @@ input[type="checkbox"] {
     opacity: 1;
   }
 }
-
-
 
 .decor__inner {
   display: -webkit-box;
@@ -1139,20 +1132,19 @@ input[type="checkbox"] {
 }
 
 .design__menu-btn:hover {
-  background-color: #90aaff;  /* Фон кнопки при наведении */
-  color: #fff;  /* Текст белый при наведении */
+  background-color: #90aaff; /* Фон кнопки при наведении */
+  color: #fff; /* Текст белый при наведении */
 }
 
 .design__menu-btn.active {
-   /* Фон для активной кнопки */
-   background-color: #436fff;
+  /* Фон для активной кнопки */
+  background-color: #436fff;
   color: #fff;
 }
 
 .design__menu-btn:active {
   transform: scale(0.98); /* Легкое уменьшение при клике */
 }
-
 
 .design__cards {
   display: -webkit-box;
@@ -1221,7 +1213,7 @@ input[type="checkbox"] {
   margin-right: 15px;
 }
 
-.design__card-link{
+.design__card-link {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1244,15 +1236,15 @@ input[type="checkbox"] {
   transition: all 0.3s;
   cursor: pointer;
 }
-.design__card-link svg{
+.design__card-link svg {
   width: 20px;
   height: 20px;
   fill: #a3bbc8;
 }
-.design__card-link:hover{
+.design__card-link:hover {
   background-color: #a3bbc8;
 }
-.design__card-link:hover svg{
+.design__card-link:hover svg {
   fill: #000;
 }
 .design-video__link {
@@ -1501,7 +1493,7 @@ input[type="checkbox"] {
   color: #436fff;
 }
 .footer .footer-top__form-input:-ms-input-placeholder {
-  color: #436fff
+  color: #436fff;
 }
 .footer .footer-top__form-input::-ms-input-placeholder {
   color: #436fff;
@@ -1556,7 +1548,12 @@ input[type="checkbox"] {
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Темнее фон для выделения модального окна */
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.5
+  ); /* Темнее фон для выделения модального окна */
   overflow: auto;
   padding-top: 60px;
   animation: fadeIn 0.5s ease-in-out; /* Плавное появление */
@@ -1564,8 +1561,12 @@ input[type="checkbox"] {
 
 /* Анимация для модального окна */
 @keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 /* Контент модального окна */
@@ -1604,7 +1605,6 @@ input[type="checkbox"] {
   margin: 0;
 }
 
-
 #basketItemsList li {
   padding: 15px;
   border-bottom: 1px solid #ddd;
@@ -1639,7 +1639,7 @@ input[type="checkbox"] {
   white-space: nowrap; /* Не позволяет тексту переноситься на следующую строку */
 }
 
-#payButton{
+#payButton {
   background-color: #00fc19;
   color: #fff;
   padding: 10px 20px;
@@ -1674,7 +1674,6 @@ input[type="checkbox"] {
 .remove-btn:hover {
   background-color: darkred;
 }
-
 
 /* Добавлен класс для зеленого цвета иконки, когда товар в корзине */
 .basket-added svg {
