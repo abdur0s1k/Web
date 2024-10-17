@@ -204,7 +204,24 @@ body {
   line-height: 1;
   text-align: center;
   color: #fff;
-  margin-top: 50px;
+  margin-top: 20px;
+  width: 100%; 
+}
+
+.text { 
+  width: 1530px;
+  height: 700px;
+  height: auto;
+  padding: 20px;
+  margin: 90px auto 0 auto; 
+}
+
+.title-2{
+  left: 50px;
+  font-size: 36px;
+  line-height: 1;
+  text-align: left;
+  color: #fff;
 }
 
 .colortext {
@@ -571,42 +588,39 @@ input[type="checkbox"] {
   -ms-transform: translateY(2px);
   transform: translateY(2px);
 }
+
+/* Стили для блока с видео */
+.video-block {
+  position: relative;
+  width: 1500px; /* Фиксированная ширина */
+  height: 700px; /* Фиксированная высота (соотношение сторон 16:9) */
+  overflow: hidden;
+  border-radius: 20px;
+  margin: 30px auto 0 auto; 
+}
+
+/* Стили для видео */
+#background-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Видео будет масштабироваться внутри блока, сохраняя пропорции */
+  transform: translate(-50%, -50%); /* Центрирует видео */
+  z-index: -1; /* Помещает видео на задний план */
+}
+
+/* Адаптация для мобильных устройств */
+@media (max-width: 768px) {
+  .video-block {
+      width: 100%; /* Растягиваем видео по ширине устройства */
+      height: auto; /* Автоматическая высота, чтобы видео сохраняло пропорции */
+  }
+}
+
 .products {
   padding: 70px 0 0;
-}
-.products__menu-items {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  margin-bottom: 80px;
-}
-.products__menu-item:not(:last-child) {
-  margin-right: 30px;
-}
-.products__menu-btn {
-  background-color: #2a2a2a; /* Темный фон для неактивных кнопок */
-  border: none;
-  border-radius: 20px;
-  padding: 12px 24px;
-  font-size: 16px;
-  font-weight: bold;
-  color: #cfcfcf; /* Светло-серый текст для неактивных кнопок */
-  letter-spacing: 1px;
-  transition: all 0.2s ease-in-out;
-  cursor: pointer;
-}
-
-.products__menu-btn:hover {
-  background-color: #90aaff; /* Фон кнопки при наведении */
-  color: #fff; /* Текст белый при наведении */
-}
-
-.products__menu-btn.active {
-  background-color: #436fff;
-  color: #fff;
 }
 
 .products__cards {
@@ -617,6 +631,7 @@ input[type="checkbox"] {
   flex-wrap: wrap;
   margin-bottom: 180px;
 }
+
 .products__card {
   position: relative;
   display: -webkit-box;
@@ -632,7 +647,7 @@ input[type="checkbox"] {
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
-  margin: 0 20px 40px 0;
+  margin: 0 22px -20px 0;
   padding: 35px 20px 40px;
   width: 270px;
   min-height: 380px;
@@ -641,9 +656,11 @@ input[type="checkbox"] {
   box-shadow: 0 6px 47px 3px rgba(37, 37, 37, 0.05);
   background-color: #202020;
 }
+
 .products__card:hover .products__card-nav {
   opacity: 1;
 }
+
 .products__card-title {
   overflow: hidden;
   display: -webkit-box;
@@ -652,15 +669,17 @@ input[type="checkbox"] {
   margin-bottom: 15px;
   font-size: 16px;
   color: #fff;
-  -webkit-line-clamp: 2;
 }
+
 .products__card-price {
   font-size: 16px;
   color: #aab5bb;
 }
+
 .products__card-img {
   margin: auto;
 }
+
 .products__card-nav {
   position: absolute;
   left: 50%;
@@ -676,9 +695,64 @@ input[type="checkbox"] {
   -o-transition: opacity 0.3s;
   transition: opacity 0.3s;
 }
+
 .products__card-item:not(:last-child) {
   margin-right: 15px;
 }
+/* Начальное состояние анимации */
+.fade-in {
+  opacity: 0;
+  transform: scale(0.8); /* Эффект увеличения */
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Карточка становится видимой при прокрутке */
+.fade-in-visible {
+  opacity: 1;
+  transform: scale(1); /* Возвращаем нормальный размер */
+}
+.fps-card {
+  background-color: #1c1c1c; /* Цвет фона карточки */
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  margin-top: 10px; /* Отступ сверху для разделения */
+  color: #fff; /* Цвет текста */
+}
+
+.fps-progress {
+  position: relative;
+  width: 60px; /* Ширина прогресс-бара */
+  height: 60px; /* Высота прогресс-бара */
+  margin: auto;
+}
+
+.fps-circle {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.fps-value {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px; /* Размер шрифта для значения FPS */
+  color: #62c400; /* Цвет значения FPS */
+}
+
+.fps-title {
+  margin-top: 10px;
+  font-size: 20px; /* Размер шрифта для заголовка */
+}
+
+.fps-subtitle {
+  font-size: 14px; /* Размер шрифта для подзаголовка */
+  color: #aab5bb; /* Цвет подзаголовка */
+}
+
+
 .products__card-bkn,
 .products__card-link,
 .products__card-btn {
@@ -1078,3 +1152,16 @@ input[type="checkbox"] {
 .basket-added svg {
   fill: #62c400;
 }
+
+.fade-in {
+  opacity: 0; /* Элемент изначально невидим */
+  transform: translateY(20px); /* Элемент смещён на 20px вниз */
+  transition: opacity 1s ease
+  -out, transform 1s ease-out; /* Плавная анимация появления */
+}
+
+.fade-in-visible {
+  opacity: 1; /* Делает элемент видимым */
+  transform: translateY(0); /* Возвращает элемент на исходную позицию */
+}
+

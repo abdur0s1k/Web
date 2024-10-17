@@ -1,848 +1,763 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <link rel="icon" type="image/png" href="images/icon.png">
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JoyStick</title>
-    <link rel="stylesheet" href="css/style.min.css" />
-  </head>
-  <body>
-    <header class="header">
-      <div class="container">
-        <div class="header__wrapper">
-          <nav class="menu">
-            <a class="logo" href="index.html">
-              <img class="logo__img" width="146" height="39" src="images/logo-2.png" alt="logo" />
+
+<head>
+  <link rel="icon" type="image/png" href="images/icon.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JoyStick</title>
+  <link rel="stylesheet" href="css/style.min.css" />
+</head>
+
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="header__wrapper">
+        <nav class="menu">
+          <a class="logo" href="index.html">
+            <img class="logo__img" width="146" height="39" src="images/logo-2.png" alt="logo" />
+          </a>
+          <ul class="menu__list">
+            <li class="menu__list-item">
+              <a class="menu__list-link menu__list-link--active" href="index.html">Главная +</a>
+            </li>
+            <li class="menu__list-item">
+              <a class="menu__list-link" href="catalog.html">Игроовые ПК</a>
+            </li>
+            <li class="menu__list-item">
+              <a class="menu__list-link" href="#">Конфигуратор</a>
+            </li>
+            <li class="menu__list-item">
+              <a class="menu__list-link" href="#">Другие продукты</a>
+            </li>
+            <li class="menu__list-item">
+              <a class="menu__list-link" href="#">#</a>
+            </li>
+            <li class="menu__list-item">
+              <a class="menu__list-link" href="#">Услуги</a>
+            </li>
+          </ul>
+          <div class="user-panel">
+            <a class="user-panel__link user-panel__link--search" href="#">
+              <svg class="user-panel__link-img">
+                <use xlink:href="images/sprite.svg#search"></use>
+              </svg>
             </a>
-            <ul class="menu__list">
-              <li class="menu__list-item">
-                <a class="menu__list-link menu__list-link--active" href="index.html">Главная +</a>
-              </li>
-              <li class="menu__list-item">
-                <a class="menu__list-link" href="catalog.html">Игроовые ПК</a>
-              </li>
-              <li class="menu__list-item">
-                <a class="menu__list-link" href="#">Конфигуратор</a>
-              </li>
-              <li class="menu__list-item">
-                <a class="menu__list-link" href="#">Другие продукты</a>
-              </li>
-              <li class="menu__list-item">
-                <a class="menu__list-link" href="#">#</a>
-              </li>
-              <li class="menu__list-item">
-                <a class="menu__list-link" href="#">Услуги</a>
-              </li>
-            </ul>
-            <div class="user-panel">
-              <a class="user-panel__link user-panel__link--search" href="#">
-                <svg class="user-panel__link-img">
-                  <use xlink:href="images/sprite.svg#search"></use>
-                </svg>
-              </a>
-              <a class="user-panel__link user-panel__link--heart" href="#" id="likeButton">
-                <svg class="user-panel__link-img">
-                    <use xlink:href="images/sprite.svg#heart"></use>
-                </svg>
-                <span id="likeCount">0</span>
-              </a>
-              <div id="likeModal" class="like-modal">
-                <div class="like-modal-content">
-                    <span class="close-btn" id="closeModal">&times;</span>
-                    <h2>Товары, которые вам понравились</h2>
-                    <ul id="likedItemsList">
-                    </ul>
-                </div>
+            <a class="user-panel__link user-panel__link--heart" href="#" id="likeButton">
+              <svg class="user-panel__link-img">
+                <use xlink:href="images/sprite.svg#heart"></use>
+              </svg>
+              <span id="likeCount">0</span>
+            </a>
+            <div id="likeModal" class="like-modal">
+              <div class="like-modal-content">
+                <span class="close-btn" id="closeModal">&times;</span>
+                <h2>Товары, которые вам понравились</h2>
+                <ul id="likedItemsList">
+                </ul>
               </div>
-              <a class="user-panel__link user-panel__link--basket" href="#" id="basketButton">
-                <svg class="user-panel__link-img">
-                  <use xlink:href="images/sprite.svg#basket"></use>
-                </svg>
-                <span id="basketCount">0</span>
-              </a>
-              <div id="basketModal" class="basket-modal">
-                <div class="basket-modal-content">
-                  <span class="close-btn" id="closeBasketModal">&times;</span>
-                  <h2>Ваша Корзина</h2>
-                  <ul id="basketItemsList">
-
-                  </ul>
-                  <div class="basket-total">
-                    <strong>Сумма: $<span id="basketTotal">0.00</span></strong>
-                  </div>
-                  <button id="clearBasketButton">Очистить</button>
-                  <button id="payButton">Оплатить</button>
-                </div>
-                <div>
-                  </div>
-              </div>
-              <a class="user-panel__link user-panel__link--menu" id="profile-button">
-  <svg class="user-panel__link-img">
-    <use xlink:href="images/sprite.svg#profile"></use>
-  </svg>
-</a>
-
-<!-- Выдвигающееся окно для входа -->
-<div class="side-panel hidden" id="login-panel">
-  <span id="close-panel" class="close-panel">&times;</span> <!-- Крестик для закрытия -->
-  <div class="login-container">
-    <div class="block block-left">
-      <h1>Войти</h1>
-      <input type="text" placeholder="Почта" id="email">
-      <input type="password" placeholder="Пароль" id="password">
-
-<div class="checkbox-container">
-  <input type="checkbox" id="rememberMe"> 
-  <label for="rememberMe">Запомнить меня</label>
-</div>
-
-      <button id="button-login">Войти</button>
-      <p id="error-message" style="color: red;"></p>
-      <button id="button-signup" class="signup-link">Зарегистрироваться</button>
-    </div>
-  </div>
-</div>
-
-<!-- Модальное окно для регистрации -->
-<div class="modal regist hidden" id="registration-modal">
-  <span id="close-registration-modal" class="close-panel">&times;</span>
-  <div class="registration-container">
-    <div class="block block-left">
-      <h1>Регистрация</h1>
-      <input type="text" placeholder="Имя" id="name">
-      <input type="email" placeholder="Электронная почта" id="email-registration">
-      <input type="password" placeholder="Пароль" id="password-registration">
-      <p id="error-message-registration" style="color: red;"></p>
-      <button id="button-submit-registration">Создать аккаунт</button>
-    </div>
-  </div>
-</div>        
-                  </div>
             </div>
-          </nav>
-        </div>
-      </div>
-    </header>     
-    <main class="main">
-      <section class="intro">
-        <div class="container">
-          <div class="intro-top">
-            <div class="intro-top__slider">
-              <div class="container__small">
-                <div class="intro-top__slider-inner">
-                  <div class="intro-top__slider-content">
-                    <h2 class="intro-top__slider-title">JoyStick  WALL</h2>
-                    <p class="intro-top__slider-subtitle">
-                      Настенный компьютер, сочетающий мощь, эстетику и передовые технологии.
-                    </p>
-                    <button class="intro-top__slider-btn btn" type="button">
-                      УЗНАТЬ БОЛЬШЕ
-                    </button>
+            <a class="user-panel__link user-panel__link--basket" href="#" id="basketButton">
+              <svg class="user-panel__link-img">
+                <use xlink:href="images/sprite.svg#basket"></use>
+              </svg>
+              <span id="basketCount">0</span>
+            </a>
+            <div id="basketModal" class="basket-modal">
+              <div class="basket-modal-content">
+                <span class="close-btn" id="closeBasketModal">&times;</span>
+                <h2>Ваша Корзина</h2>
+                <ul id="basketItemsList">
+
+                </ul>
+                <div class="basket-total">
+                  <strong>Сумма: $<span id="basketTotal">0.00</span></strong>
+                </div>
+                <button id="clearBasketButton">Очистить</button>
+                <button id="payButton">Оплатить</button>
+              </div>
+              <div>
+              </div>
+            </div>
+            <a class="user-panel__link user-panel__link--menu" id="profile-button">
+              <svg class="user-panel__link-img">
+                <use xlink:href="images/sprite.svg#profile"></use>
+              </svg>
+            </a>
+
+            <!-- Выдвигающееся окно для входа -->
+            <div class="side-panel hidden" id="login-panel">
+              <span id="close-panel" class="close-panel">&times;</span> <!-- Крестик для закрытия -->
+              <div class="login-container">
+                <div class="block block-left">
+                  <h1>Войти</h1>
+                  <input type="text" placeholder="Почта" id="email">
+                  <input type="password" placeholder="Пароль" id="password">
+
+                  <div class="checkbox-container">
+                    <input type="checkbox" id="rememberMe">
+                    <label for="rememberMe">Запомнить меня</label>
                   </div>
+
+                  <button id="button-login">Войти</button>
+                  <p id="error-message" style="color: red;"></p>
+                  <button id="button-signup" class="signup-link">Зарегистрироваться</button>
                 </div>
               </div>
             </div>
-            <div class="intro-top__slider">
-              <div class="container__small">
-                <div class="intro-top__slider-inner">
-                  <div class="intro-top__slider-content">
-                    <h2 class="intro-top__slider-title">JoyStick LUMEN</h2>
-                    <p class="intro-top__slider-subtitle">
-                      Эталон игрового компьютера с безграничными возможностями кастомизации.
-                    </p>
-                    <button class="intro-top__slider-btn btn" type="button">
-                      УЗНАТЬ БОЛЬШЕ
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="intro-top__slider">
-              <div class="container__small">
-                <div class="intro-top__slider-inner">
-                  <div class="intro-top__slider-content">
-                    <h2 class="intro-top__slider-title">JoyStick CYBER</h2>
-                    <p class="intro-top__slider-subtitle">
-                      Готов к будущему. Агрессивный футуристичный дизайн, созданный для настоящих кибер-воинов.
-                    </p>
-                    <button class="intro-top__slider-btn btn" type="button">
-                      УЗНАТЬ БОЛЬШЕ
-                    </button>
-                  </div>
+
+            <!-- Модальное окно для регистрации -->
+            <div class="modal regist hidden" id="registration-modal">
+              <span id="close-registration-modal" class="close-panel">&times;</span>
+              <div class="registration-container">
+                <div class="block block-left">
+                  <h1>Регистрация</h1>
+                  <input type="text" placeholder="Имя" id="name">
+                  <input type="email" placeholder="Электронная почта" id="email-registration">
+                  <input type="password" placeholder="Пароль" id="password-registration">
+                  <p id="error-message-registration" style="color: red;"></p>
+                  <button id="button-submit-registration">Создать аккаунт</button>
                 </div>
               </div>
             </div>
           </div>
+      </div>
+      </nav>
+    </div>
+    </div>
+  </header>
+  <main class="main">
+    <section class="intro">
+      <div class="container">
+        <div class="intro-top">
+          <div class="intro-top__slider">
+            <div class="container__small">
+              <div class="intro-top__slider-inner">
+                <div class="intro-top__slider-content">
+                  <h2 class="intro-top__slider-title">JoyStick WALL</h2>
+                  <p class="intro-top__slider-subtitle">
+                    Настенный компьютер, сочетающий мощь, эстетику и передовые технологии.
+                  </p>
+                  <button class="intro-top__slider-btn btn" type="button">
+                    УЗНАТЬ БОЛЬШЕ
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="intro-top__slider">
+            <div class="container__small">
+              <div class="intro-top__slider-inner">
+                <div class="intro-top__slider-content">
+                  <h2 class="intro-top__slider-title">JoyStick LUMEN</h2>
+                  <p class="intro-top__slider-subtitle">
+                    Эталон игрового компьютера с безграничными возможностями кастомизации.
+                  </p>
+                  <button class="intro-top__slider-btn btn" type="button">
+                    УЗНАТЬ БОЛЬШЕ
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="intro-top__slider">
+            <div class="container__small">
+              <div class="intro-top__slider-inner">
+                <div class="intro-top__slider-content">
+                  <h2 class="intro-top__slider-title">JoyStick CYBER</h2>
+                  <p class="intro-top__slider-subtitle">
+                    Готов к будущему. Агрессивный футуристичный дизайн, созданный для настоящих кибер-воинов.
+                  </p>
+                  <button class="intro-top__slider-btn btn" type="button">
+                    УЗНАТЬ БОЛЬШЕ
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-          <div class="intro-bottom">
-            <div class="container">
-              <ul class="intro-bottom__items">
-                <li class="intro-bottom__item">
-                  <img
-                    class="intro-bottom__img"
-                    src="images/icons/support.svg"
-                    alt="support icon"
-                  />
-                  <div class="intro-bottom__info">
-                    <h5 class="intro-bottom__info-title">Помощь 24/7.</h5>
-                    <p class="intro-bottom__info-text">Свяжитесь с нами 24 часа в сутки, 7 дней в неделю.</p>
-                  </div>
+        <div class="intro-bottom">
+          <div class="container">
+            <ul class="intro-bottom__items">
+              <li class="intro-bottom__item">
+                <img class="intro-bottom__img" src="images/icons/support.svg" alt="support icon" />
+                <div class="intro-bottom__info">
+                  <h5 class="intro-bottom__info-title">Помощь 24/7.</h5>
+                  <p class="intro-bottom__info-text">Свяжитесь с нами 24 часа в сутки, 7 дней в неделю.</p>
+                </div>
+              </li>
+              <li class="intro-bottom__item">
+                <img class="intro-bottom__img" src="images/icons/truck.svg" alt="support icon" />
+                <div class="intro-bottom__info">
+                  <h5 class="intro-bottom__info-title">Доставка.</h5>
+                  <p class="intro-bottom__info-text">Бесплатная доставка по всем реигонам в СНГ.</p>
+                </div>
+              </li>
+              <li class="intro-bottom__item">
+                <img class="intro-bottom__img" src="images/icons/secure.svg" alt="support icon" />
+                <div class="intro-bottom__info">
+                  <h5 class="intro-bottom__info-title">100% Безопасная оплата.</h5>
+                  <p class="intro-bottom__info-text">Мы гарантируем безопасную оплату с помощью PEV.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="products" data-ref="products">
+      <div class="container__small">
+        <h3 class="title">Популярные продукты</h3>
+        <ul class="products__menu-items">
+          <li class="products__menu-item">
+            <button class="products__menu-btn" type="button" data-filter="all">Всё</button>
+          </li>
+          <li class="products__menu-item">
+            <button class="products__menu-btn" type="button" data-filter=".PC">
+              ПК
+            </button>
+          </li>
+          <li class="products__menu-item">
+            <button class="products__menu-btn" type="button" data-filter=".monitors">Мониторы</button>
+          </li>
+          <li class="products__menu-item">
+            <button class="products__menu-btn" type="button" data-filter=".devices">
+              Девайсы
+            </button>
+        </ul>
+        <ul class="products__cards">
+
+          <!-- Первый товар -->
+          <li class="mix PC" id="product-1">
+            <article class="products__card">
+              <img class="products__card-img" src="images/content/product-1.png" alt="photo of furniture" />
+              <h4 class="products__card-title">JoyStick ONE</h4>
+              <span class="products__card-price"><span>$</span>919.99</span>
+              <ul class="products__card-nav">
+                <li class="products__card-item">
+                  <a class="products__card-link" href="#">
+                    <svg class="products__card-pic">
+                      <use xlink:href="images/sprite.svg#search"></use>
+                    </svg>
+                  </a>
                 </li>
-                <li class="intro-bottom__item">
-                  <img
-                    class="intro-bottom__img"
-                    src="images/icons/truck.svg"
-                    alt="support icon"
-                  />
-                  <div class="intro-bottom__info">
-                    <h5 class="intro-bottom__info-title">Доставка.</h5>
-                    <p class="intro-bottom__info-text">Бесплатная доставка по всем реигонам в СНГ.</p>
-                  </div>
+                <li class="products__card-item">
+                  <button class="products__card-bkn" type="button" data-product-id="product-1"
+                    data-product-name="JoyStick ONE" data-product-price="919.99" onclick="toggleBasketProduct(this)">
+                    <svg class="products__card-pic">
+                      <use xlink:href="images/sprite.svg#basket"></use>
+                    </svg>
+                  </button>
                 </li>
-                <li class="intro-bottom__item">
-                  <img
-                    class="intro-bottom__img"
-                    src="images/icons/secure.svg"
-                    alt="support icon"
-                  />
-                  <div class="intro-bottom__info">
-                    <h5 class="intro-bottom__info-title">100% Безопасная оплата.</h5>
-                    <p class="intro-bottom__info-text">Мы гарантируем безопасную оплату с помощью PEV.</p>
-                  </div>
+                <li class="products__card-item">
+                  <button class="products__card-btn" type="button" data-product-id="product-1"
+                    onclick="toggleLikeProduct(this)">
+                    <svg class="products__card-pic heart-icon">
+                      <use xlink:href="images/sprite.svg#heart"></use>
+                    </svg>
+                  </button>
+                </li>
+
+              </ul>
+            </article>
+          </li>
+
+          <!-- Второй товар -->
+          <li class="mix PC" id="product-2">
+            <article class="products__card">
+              <img class="products__card-img" src="images/content/product-2.png" alt="photo of furniture" />
+              <h4 class="products__card-title">JoyStick FURY</h4>
+              <span class="products__card-price"><span>$</span>1249.99</span>
+              <ul class="products__card-nav">
+                <li class="products__card-item">
+                  <a class="products__card-link" href="#">
+                    <svg class="products__card-pic">
+                      <use xlink:href="images/sprite.svg#search"></use>
+                    </svg>
+                  </a>
+                </li>
+                <li class="products__card-item">
+                  <button class="products__card-bkn basket-removed" type="button" data-product-id="product-2"
+                    data-product-name="JoyStick FURY" data-product-price="1249.99" onclick="toggleBasketProduct(this)">
+                    <svg class="products__card-pic">
+                      <use xlink:href="images/sprite.svg#basket"></use>
+                    </svg>
+                  </button>
+                </li>
+                <li class="products__card-item">
+                  <button class="products__card-btn" type="button" data-product-id="product-2"
+                    onclick="toggleLikeProduct(this)">
+                    <svg class="products__card-pic heart-icon">
+                      <use xlink:href="images/sprite.svg#heart"></use>
+                    </svg>
+                  </button>
+                </li>
+
+
+              </ul>
+            </article>
+          </li>
+
+          <!-- Третий товар -->
+          <li class="mix monitors" id="product-3">
+            <article class="products__card">
+              <img class="products__card-img" src="images/content/product-3.png" alt="photo of furniture" />
+              <h4 class="products__card-title">LG UltraGear 27GP750-B </h4>
+              <span class="products__card-price"><span>$</span>329.99</span>
+              <ul class="products__card-nav">
+                <li class="products__card-item">
+                  <a class="products__card-link" href="#">
+                    <svg class="products__card-pic">
+                      <use xlink:href="images/sprite.svg#search"></use>
+                    </svg>
+                  </a>
+                </li>
+                <li class="products__card-item">
+                  <button class="products__card-bkn" type="button" data-product-id="product-3"
+                    data-product-name="LG UltraGear 27GP750-B" data-product-price="329.99"
+                    onclick="toggleBasketProduct(this)">
+                    <svg class="products__card-pic">
+                      <use xlink:href="images/sprite.svg#basket"></use>
+                    </svg>
+                  </button>
+                </li>
+                <li class="products__card-item">
+                  <button class="products__card-btn" type="button" data-product-id="product-3"
+                    onclick="toggleLikeProduct(this)">
+                    <svg class="products__card-pic heart-icon">
+                      <use xlink:href="images/sprite.svg#heart"></use>
+                    </svg>
+                  </button>
+                </li>
+
+              </ul>
+            </article>
+          </li>
+
+          <!-- Четвертый товар -->
+          <li class="mix monitors" id="product-4">
+            <article class="products__card">
+              <img class="products__card-img" src="images/content/product-4.png" alt="photo of furniture" />
+              <h4 class="products__card-title">ASUS TUF VG27AQ1A</h4>
+              <span class="products__card-price"><span>$</span>299.00</span>
+              <ul class="products__card-nav">
+                <li class="products__card-item">
+                  <a class="products__card-link" href="#">
+                    <svg class="products__card-pic">
+                      <use xlink:href="images/sprite.svg#search"></use>
+                    </svg>
+                  </a>
+                </li>
+                <li class="products__card-item">
+                  <button class="products__card-bkn" type="button" data-product-id="product-4"
+                    data-product-name="ASUS TUF VG27AQ1A" data-product-price="299.00"
+                    onclick="toggleBasketProduct(this)">
+                    <svg class="products__card-pic">
+                      <use xlink:href="images/sprite.svg#basket"></use>
+                    </svg>
+                  </button>
+                </li>
+                <li class="products__card-item">
+                <li class="products__card-item">
+                  <button class="products__card-btn" type="button" data-product-id="product-4"
+                    onclick="toggleLikeProduct(this)">
+                    <svg class="products__card-pic heart-icon">
+                      <use xlink:href="images/sprite.svg#heart"></use>
+                    </svg>
+                  </button>
+                </li>
+
+          </li>
+        </ul>
+        </article>
+        </li>
+
+        <!-- Пятый товар -->
+        <li class="mix devices" id="product-5">
+          <article class="products__card">
+            <img class="products__card-img" src="images/content/product-5.png" alt="photo of furniture" />
+            <h4 class="products__card-title">Logitech G305</h4>
+            <span class="products__card-price"><span>$</span>69.99</span>
+            <ul class="products__card-nav">
+              <li class="products__card-item">
+                <a class="products__card-link" href="#">
+                  <svg class="products__card-pic">
+                    <use xlink:href="images/sprite.svg#search"></use>
+                  </svg>
+                </a>
+              </li>
+              <li class="products__card-item">
+                <button class="products__card-bkn" type="button" data-product-id="product-5"
+                  data-product-name="Logitech G305" data-product-price="69.99" onclick="toggleBasketProduct(this)">
+                  <svg class="products__card-pic">
+                    <use xlink:href="images/sprite.svg#basket"></use>
+                  </svg>
+                </button>
+              </li>
+              <li class="products__card-item">
+                <button class="products__card-btn" type="button" data-product-id="product-5"
+                  onclick="toggleLikeProduct(this)">
+                  <svg class="products__card-pic heart-icon">
+                    <use xlink:href="images/sprite.svg#heart"></use>
+                  </svg>
+                </button>
+              </li>
+
+            </ul>
+          </article>
+        </li>
+
+        <!-- Шестой товар -->
+        <li class="mix devices" id="product-6">
+          <article class="products__card">
+            <img class="products__card-img" src="images/content/product-6.png" alt="photo of furniture" />
+            <h4 class="products__card-title">Razer Viper V2 Pro</h4>
+            <span class="products__card-price"><span>$</span>129.99</span>
+            <ul class="products__card-nav">
+              <li class="products__card-item">
+                <a class="products__card-link" href="#">
+                  <svg class="products__card-pic">
+                    <use xlink:href="images/sprite.svg#search"></use>
+                  </svg>
+                </a>
+              </li>
+              <li class="products__card-item">
+                <button class="products__card-bkn" type="button" data-product-id="product-6"
+                  data-product-name="Razer Viper V2 Pro" data-product-price="129.99"
+                  onclick="toggleBasketProduct(this)">
+                  <svg class="products__card-pic">
+                    <use xlink:href="images/sprite.svg#basket"></use>
+                  </svg>
+                </button>
+              </li>
+              <li class="products__card-item">
+                <button class="products__card-btn" type="button" data-product-id="product-6"
+                  onclick="toggleLikeProduct(this)">
+                  <svg class="products__card-pic heart-icon">
+                    <use xlink:href="images/sprite.svg#heart"></use>
+                  </svg>
+                </button>
+              </li>
+            </ul>
+          </article>
+        </li>
+        <!-- Седьмой товар -->
+        <li class="mix PC" id="product-7">
+          <article class="products__card">
+            <img class="products__card-img" src="images/content/product-7.png" alt="photo of furniture" />
+            <h4 class="products__card-title">JoyStick WARRIOR</h4>
+            <span class="products__card-price"><span>$</span>1699.99</span>
+            <ul class="products__card-nav">
+              <li class="products__card-item">
+                <a class="products__card-link" href="#">
+                  <svg class="products__card-pic">
+                    <use xlink:href="images/sprite.svg#search"></use>
+                  </svg>
+                </a>
+              </li>
+              <li class="products__card-item">
+                <button class="products__card-bkn" type="button" data-product-id="product-7"
+                  data-product-name="JoyStick WARRIOR" data-product-price="1699.99" onclick="toggleBasketProduct(this)">
+                  <svg class="products__card-pic">
+                    <use xlink:href="images/sprite.svg#basket"></use>
+                  </svg>
+                </button>
+              </li>
+              <li class="products__card-item">
+                <button class="products__card-btn" type="button" data-product-id="product-7"
+                  onclick="toggleLikeProduct(this)">
+                  <svg class="products__card-pic heart-icon">
+                    <use xlink:href="images/sprite.svg#heart"></use>
+                  </svg>
+                </button>
+              </li>
+
+            </ul>
+          </article>
+        </li>
+
+        <!-- Восьмой товар -->
+        <li class="mix PC" id="product-8">
+          <article class="products__card">
+            <img class="products__card-img" src="images/content/product-8.png" alt="photo of furniture" />
+            <h4 class="products__card-title">JoyStick CHAMPION</h4>
+            <span class="products__card-price"><span>$</span>2179.99</span>
+            <ul class="products__card-nav">
+              <li class="products__card-item">
+                <a class="products__card-link" href="#">
+                  <svg class="products__card-pic">
+                    <use xlink:href="images/sprite.svg#search"></use>
+                  </svg>
+                </a>
+              </li>
+              <li class="products__card-item">
+                <button class="products__card-bkn" type="button" data-product-id="product-8"
+                  data-product-name="JoyStick CHAMPION" data-product-price="2179.99"
+                  onclick="toggleBasketProduct(this)">
+                  <svg class="products__card-pic">
+                    <use xlink:href="images/sprite.svg#basket"></use>
+                  </svg>
+                </button>
+              </li>
+              <li class="products__card-item">
+                <button class="products__card-btn" type="button" data-product-id="product-8"
+                  onclick="toggleLikeProduct(this)">
+                  <svg class="products__card-pic heart-icon">
+                    <use xlink:href="images/sprite.svg#heart"></use>
+                  </svg>
+                </button>
+              </li>
+
+            </ul>
+          </article>
+        </li>
+        </ul>
+      </div>
+      <div class="decor">
+        <div class="container">
+          <div class="decor__inner">
+            <div class="decor__item">
+              <div class="decor__content">
+                <img class="decor__item-img" src="images/content/decor-1.png" alt="photo of product" />
+                <h4 class="decor__content-title">Сделайте Сюрприз Керамике</h4>
+                <p class="decor__content-text">
+                  Светодиодная кукурузная лампа 5 Вт 7 Вт 10 Вт 12 Вт 15 Вт E26 E27 LED CornLight
+                </p>
+                <a class="decor__content-link" href="#">Посмотреть больше</a>
+              </div>
+            </div>
+            <div class="decor__item">
+              <div class="decor__content">
+                <img class="decor__item-img" src="images/content/decor-2.png" alt="photo of product" />
+                <h4 class="decor__content-title">Высокая производительность</h4>
+                <p class="decor__content-text">
+                  Компактный размер 50W 8000lm для скрытой замены уличного фонаря привел к появлению кукурузного света
+                </p>
+                <a class="decor__content-link" href="#"> Посмотреть больше </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="design" data-ref="design">
+      <div class="container__small">
+        <h3 class="title">Новый дизайн</h3>
+        <ul class="design__menu-items">
+          <li class="design__menu-item">
+            <button class="design__menu-btn" type="button" data-filter="all">Всё</button>
+          </li>
+          <li class="design__menu-item">
+            <button class="design__menu-btn" type="button" data-filter=".PC">
+              Пк
+            </button>
+          </li>
+          <li class="design__menu-item">
+            <button class="design__menu-btn" type="button" data-filter=".monitors">Мониторы</button>
+          </li>
+          <li class="design__menu-item">
+            <button class="design__menu-btn" type="button" data-filter=".devices">
+              Девайсы
+            </button>
+          </li>
+        </ul>
+
+        <ul class="design__cards">
+          <li class="design__card mix PC">
+            <h4 class="design__card-title">JoyStick CYBER</h4>
+            <div class="design__card-img">
+              <img class="design__card-pic" src="images/content/design-1.png" alt="photo of furniture" />
+              <ul class="design__card-nav">
+                <li class="design__card-item">
+                  <a class="design__card-link" href="#">
+                    <svg class="design__card-pic">
+                      <use xlink:href="images/sprite.svg#search"></use>
+                    </svg>
+                  </a>
                 </li>
               </ul>
             </div>
-          </div>
-        </div>
-      </section>
+          </li>
 
-      <section class="products" data-ref="products">
-        <div class="container__small">
-          <h3 class="title">Популярные продукты</h3>
-          <ul class="products__menu-items">
-            <li class="products__menu-item">
-              <button class="products__menu-btn" type="button" data-filter="all">Всё</button>
-            </li>
-            <li class="products__menu-item">
-              <button class="products__menu-btn" type="button" data-filter=".PC">
-                ПК
-              </button>
-            </li>
-            <li class="products__menu-item">
-              <button class="products__menu-btn" type="button" data-filter=".monitors">Мониторы</button>
-            </li>
-            <li class="products__menu-item">
-              <button class="products__menu-btn" type="button" data-filter=".devices">
-                Девайсы
-              </button>
-          </ul>
-          <ul class="products__cards">
-
-<!-- Первый товар -->
-<li class="mix PC" id="product-1">
-  <article class="products__card">
-    <img class="products__card-img" src="images/content/product-1.png" alt="photo of furniture" />
-    <h4 class="products__card-title">JoyStick ONE</h4>
-    <span class="products__card-price"><span>$</span>919.99</span>
-    <ul class="products__card-nav">
-      <li class="products__card-item">
-        <a class="products__card-link" href="#">
-          <svg class="products__card-pic">
-            <use xlink:href="images/sprite.svg#search"></use>
-          </svg>
-        </a>
-      </li>
-      <li class="products__card-item">
-        <button class="products__card-bkn" type="button" 
-                data-product-id="product-1" 
-                data-product-name="JoyStick ONE" 
-                data-product-price="919.99" 
-                onclick="toggleBasketProduct(this)">
-          <svg class="products__card-pic">
-            <use xlink:href="images/sprite.svg#basket"></use>
-          </svg>
-        </button>
-      </li>
-      <li class="products__card-item">
-        <button class="products__card-btn" type="button" data-product-id="product-1" onclick="toggleLikeProduct(this)">
-          <svg class="products__card-pic heart-icon">
-            <use xlink:href="images/sprite.svg#heart"></use>
-          </svg>
-        </button>
-      </li>
-      
-    </ul>
-  </article>
-</li>
-
-<!-- Второй товар -->
-<li class="mix PC" id="product-2">
-  <article class="products__card">
-    <img class="products__card-img" src="images/content/product-2.png" alt="photo of furniture" />
-    <h4 class="products__card-title">JoyStick FURY</h4>
-    <span class="products__card-price"><span>$</span>1249.99</span>
-    <ul class="products__card-nav">
-      <li class="products__card-item">
-        <a class="products__card-link" href="#">
-          <svg class="products__card-pic">
-            <use xlink:href="images/sprite.svg#search"></use>
-          </svg>
-        </a>
-      </li>
-      <li class="products__card-item">
-        <button class="products__card-bkn basket-removed" type="button" 
-                data-product-id="product-2" 
-                data-product-name="JoyStick FURY" 
-                data-product-price="1249.99" 
-                onclick="toggleBasketProduct(this)">
-          <svg class="products__card-pic">
-            <use xlink:href="images/sprite.svg#basket"></use>
-          </svg>
-        </button>
-      </li>
-      <li class="products__card-item">
-        <button class="products__card-btn" type="button" data-product-id="product-2" onclick="toggleLikeProduct(this)">
-          <svg class="products__card-pic heart-icon">
-            <use xlink:href="images/sprite.svg#heart"></use>
-          </svg>
-        </button>
-      </li>
-      
-
-    </ul>
-  </article>
-</li>
-
-<!-- Третий товар -->
-<li class="mix monitors" id="product-3">
-  <article class="products__card">
-    <img class="products__card-img" src="images/content/product-3.png" alt="photo of furniture" />
-    <h4 class="products__card-title">LG UltraGear 27GP750-B </h4>
-    <span class="products__card-price"><span>$</span>329.99</span>
-    <ul class="products__card-nav">
-      <li class="products__card-item">
-        <a class="products__card-link" href="#">
-          <svg class="products__card-pic">
-            <use xlink:href="images/sprite.svg#search"></use>
-          </svg>
-        </a>
-      </li>
-      <li class="products__card-item">
-        <button class="products__card-bkn" type="button" 
-                data-product-id="product-3" 
-                data-product-name="LG UltraGear 27GP750-B" 
-                data-product-price="329.99" 
-                onclick="toggleBasketProduct(this)">
-          <svg class="products__card-pic">
-            <use xlink:href="images/sprite.svg#basket"></use>
-          </svg>
-        </button>
-      </li>
-      <li class="products__card-item">
-        <button class="products__card-btn" type="button" data-product-id="product-3" onclick="toggleLikeProduct(this)">
-          <svg class="products__card-pic heart-icon">
-            <use xlink:href="images/sprite.svg#heart"></use>
-          </svg>
-        </button>
-      </li>
-      
-    </ul>
-  </article>
-</li>
-
-<!-- Четвертый товар -->
-<li class="mix monitors" id="product-4">
-  <article class="products__card">
-    <img class="products__card-img" src="images/content/product-4.png" alt="photo of furniture" />
-    <h4 class="products__card-title">ASUS TUF VG27AQ1A</h4>
-    <span class="products__card-price"><span>$</span>299.00</span>
-    <ul class="products__card-nav">
-      <li class="products__card-item">
-        <a class="products__card-link" href="#">
-          <svg class="products__card-pic">
-            <use xlink:href="images/sprite.svg#search"></use>
-          </svg>
-        </a>
-      </li>
-      <li class="products__card-item">
-        <button class="products__card-bkn" type="button" 
-                data-product-id="product-4" 
-                data-product-name="ASUS TUF VG27AQ1A" 
-                data-product-price="299.00" 
-                onclick="toggleBasketProduct(this)">
-          <svg class="products__card-pic">
-            <use xlink:href="images/sprite.svg#basket"></use>
-          </svg>
-        </button>
-      </li>
-      <li class="products__card-item">
-        <li class="products__card-item">
-          <button class="products__card-btn" type="button" data-product-id="product-4" onclick="toggleLikeProduct(this)">
-            <svg class="products__card-pic heart-icon">
-              <use xlink:href="images/sprite.svg#heart"></use>
-            </svg>
-          </button>
-        </li>
-        
-      </li>
-    </ul>
-  </article>
-</li>
-
-<!-- Пятый товар -->
-<li class="mix devices" id="product-5">
-  <article class="products__card">
-    <img class="products__card-img" src="images/content/product-5.png" alt="photo of furniture" />
-    <h4 class="products__card-title">Logitech G305</h4>
-    <span class="products__card-price"><span>$</span>69.99</span>
-    <ul class="products__card-nav">
-      <li class="products__card-item">
-        <a class="products__card-link" href="#">
-          <svg class="products__card-pic">
-            <use xlink:href="images/sprite.svg#search"></use>
-          </svg>
-        </a>
-      </li>
-      <li class="products__card-item">
-        <button class="products__card-bkn" type="button" 
-                data-product-id="product-5" 
-                data-product-name="Logitech G305" 
-                data-product-price="69.99" 
-                onclick="toggleBasketProduct(this)">
-          <svg class="products__card-pic">
-            <use xlink:href="images/sprite.svg#basket"></use>
-          </svg>
-        </button>
-      </li>
-      <li class="products__card-item">
-        <button class="products__card-btn" type="button" data-product-id="product-5" onclick="toggleLikeProduct(this)">
-          <svg class="products__card-pic heart-icon">
-            <use xlink:href="images/sprite.svg#heart"></use>
-          </svg>
-        </button>
-      </li>
-      
-    </ul>
-  </article>
-</li>
-
-<!-- Шестой товар -->
-<li class="mix devices" id="product-6">
-  <article class="products__card">
-    <img class="products__card-img" src="images/content/product-6.png" alt="photo of furniture" />
-    <h4 class="products__card-title">Razer Viper V2 Pro</h4>
-    <span class="products__card-price"><span>$</span>129.99</span>
-    <ul class="products__card-nav">
-      <li class="products__card-item">
-        <a class="products__card-link" href="#">
-          <svg class="products__card-pic">
-            <use xlink:href="images/sprite.svg#search"></use>
-          </svg>
-        </a>
-      </li>
-      <li class="products__card-item">
-        <button class="products__card-bkn" type="button" 
-                data-product-id="product-6" 
-                data-product-name="Razer Viper V2 Pro" 
-                data-product-price="129.99" 
-                onclick="toggleBasketProduct(this)">
-          <svg class="products__card-pic">
-            <use xlink:href="images/sprite.svg#basket"></use>
-          </svg>
-        </button>
-      </li>
-      <li class="products__card-item">
-        <button class="products__card-btn" type="button" data-product-id="product-6" onclick="toggleLikeProduct(this)">
-          <svg class="products__card-pic heart-icon">
-            <use xlink:href="images/sprite.svg#heart"></use>
-          </svg>
-        </button>
-      </li> 
-    </ul>
-  </article>
-</li>
-<!-- Седьмой товар -->
-<li class="mix PC" id="product-7">
-  <article class="products__card">
-    <img class="products__card-img" src="images/content/product-7.png" alt="photo of furniture" />
-    <h4 class="products__card-title">JoyStick WARRIOR</h4>
-    <span class="products__card-price"><span>$</span>1699.99</span>
-    <ul class="products__card-nav">
-      <li class="products__card-item">
-        <a class="products__card-link" href="#">
-          <svg class="products__card-pic">
-            <use xlink:href="images/sprite.svg#search"></use>
-          </svg>
-        </a>
-      </li>
-      <li class="products__card-item">
-        <button class="products__card-bkn" type="button" 
-                data-product-id="product-7" 
-                data-product-name="JoyStick WARRIOR" 
-                data-product-price="1699.99" 
-                onclick="toggleBasketProduct(this)">
-          <svg class="products__card-pic">
-            <use xlink:href="images/sprite.svg#basket"></use>
-          </svg>
-        </button>
-      </li>
-      <li class="products__card-item">
-        <button class="products__card-btn" type="button" data-product-id="product-7" onclick="toggleLikeProduct(this)">
-          <svg class="products__card-pic heart-icon">
-            <use xlink:href="images/sprite.svg#heart"></use>
-          </svg>
-        </button>
-      </li>
-      
-    </ul>
-  </article>
-</li>
-
-<!-- Восьмой товар -->
-<li class="mix PC" id="product-8">
-  <article class="products__card">
-    <img class="products__card-img" src="images/content/product-8.png" alt="photo of furniture" />
-    <h4 class="products__card-title">JoyStick CHAMPION</h4>
-    <span class="products__card-price"><span>$</span>2179.99</span>
-    <ul class="products__card-nav">
-      <li class="products__card-item">
-        <a class="products__card-link" href="#">
-          <svg class="products__card-pic">
-            <use xlink:href="images/sprite.svg#search"></use>
-          </svg>
-        </a>
-      </li>
-      <li class="products__card-item">
-        <button class="products__card-bkn" type="button" 
-                data-product-id="product-8" 
-                data-product-name="JoyStick CHAMPION" 
-                data-product-price="2179.99" 
-                onclick="toggleBasketProduct(this)">
-          <svg class="products__card-pic">
-            <use xlink:href="images/sprite.svg#basket"></use>
-          </svg>
-        </button>
-      </li>
-      <li class="products__card-item">
-        <button class="products__card-btn" type="button" data-product-id="product-8" onclick="toggleLikeProduct(this)">
-          <svg class="products__card-pic heart-icon">
-            <use xlink:href="images/sprite.svg#heart"></use>
-          </svg>
-        </button>
-      </li>
-      
-    </ul>
-  </article>
-</li>
-          </ul>          
-        </div>
-        <div class="decor">
-          <div class="container">
-            <div class="decor__inner">
-              <div class="decor__item">
-                <div class="decor__content">
-                  <img
-                    class="decor__item-img"
-                    src="images/content/decor-1.png"
-                    alt="photo of product"
-                  />
-                  <h4 class="decor__content-title">Сделайте Сюрприз Керамике</h4>
-                  <p class="decor__content-text">
-                    Светодиодная кукурузная лампа 5 Вт 7 Вт 10 Вт 12 Вт 15 Вт E26 E27 LED CornLight
-                  </p>
-                  <a class="decor__content-link" href="#">Посмотреть больше</a>
-                </div>
-              </div>
-              <div class="decor__item">
-                <div class="decor__content">
-                  <img
-                    class="decor__item-img"
-                    src="images/content/decor-2.png"
-                    alt="photo of product"
-                  />
-                  <h4 class="decor__content-title">Высокая производительность</h4>
-                  <p class="decor__content-text">
-                    Компактный размер 50W 8000lm для скрытой замены уличного фонаря привел к появлению кукурузного света
-                  </p>
-                  <a class="decor__content-link" href="#"> Посмотреть больше </a>
-                </div>
-              </div>
+          <li class="design__card mix PC">
+            <h4 class="design__card-title">JoyStick LEADER</h4>
+            <div class="design__card-img">
+              <img class="design__card-pic" src="images/content/design-2.png" alt="photo of furniture" />
+              <ul class="design__card-nav">
+                <li class="design__card-item">
+                  <a class="design__card-link" href="#">
+                    <svg class="design__card-pic">
+                      <use xlink:href="images/sprite.svg#search"></use>
+                    </svg>
+                  </a>
+                </li>
+              </ul>
             </div>
-          </div>
-        </div>
-      </section>
+          </li>
 
-      <section class="design" data-ref="design">
-        <div class="container__small">
-          <h3 class="title">Новый дизайн</h3>
-          <ul class="design__menu-items">
-            <li class="design__menu-item">
-              <button class="design__menu-btn" type="button" data-filter="all">Всё</button>
-            </li>
-            <li class="design__menu-item">
-              <button class="design__menu-btn" type="button" data-filter=".PC">
-                Пк
-              </button>
-            </li>
-            <li class="design__menu-item">
-              <button class="design__menu-btn" type="button" data-filter=".monitors">Мониторы</button>
-            </li>
-            <li class="design__menu-item">
-              <button class="design__menu-btn" type="button" data-filter=".devices">
-                Девайсы
-              </button>
-            </li>
-          </ul>
+          <li class="design__card mix monitors">
+            <h4 class="design__card-title">Odyssey OLED G9</h4>
+            <div class="design__card-img design__card-img--small">
+              <img class="design__card-pic" src="images/content/design-3.png" alt="photo of furniture" />
+              <ul class="design__card-nav">
+                <li class="design__card-item">
+                  <a class="design__card-link" href="#">
+                    <svg class="design__card-pic">
+                      <use xlink:href="images/sprite.svg#search"></use>
+                    </svg>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
 
-          <ul class="design__cards">
-            <li class="design__card mix PC">
-              <h4 class="design__card-title">JoyStick CYBER</h4>
-              <div class="design__card-img">
-                <img
-                  class="design__card-pic"
-                  src="images/content/design-1.png"
-                  alt="photo of furniture"
-                />
-                <ul class="design__card-nav">
-                  <li class="design__card-item">
-                    <a class="design__card-link" href="#">
-                      <svg class="design__card-pic">
-                        <use xlink:href="images/sprite.svg#search"></use>
-                      </svg>
-                    </a>
-                  </li>
-                  </ul>
-              </div>
-            </li>
+          <li class="design__card mix devices ">
+            <h4 class="design__card-title">Razer Basilisk V3 Pro</h4>
+            <div class="design__card-img">
+              <img class="design__card-pic" src="images/content/design-4.png" alt="photo of furniture" />
+              <ul class="design__card-nav">
+                <li class="design__card-item">
+                  <a class="design__card-link" href="#">
+                    <svg class="design__card-pic">
+                      <use xlink:href="images/sprite.svg#search"></use>
+                    </svg>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
 
-            <li class="design__card mix PC">
-              <h4 class="design__card-title">JoyStick LEADER</h4>
-              <div class="design__card-img">
-                <img
-                  class="design__card-pic"
-                  src="images/content/design-2.png"
-                  alt="photo of furniture"
-                />
-                <ul class="design__card-nav">
-                  <li class="design__card-item">
-                    <a class="design__card-link" href="#">
-                      <svg class="design__card-pic">
-                        <use xlink:href="images/sprite.svg#search"></use>
-                      </svg>
-                    </a>
-                  </li>
-                  </ul>
-              </div>
-            </li>
+          <li class="design__card mix PC">
+            <h4 class="design__card-title">JoyStick DYNAMIC</h4>
 
-            <li class="design__card mix monitors">
-              <h4 class="design__card-title">Odyssey OLED G9</h4>
-              <div class="design__card-img design__card-img--small">
-                <img
-                  class="design__card-pic"
-                  src="images/content/design-3.png"
-                  alt="photo of furniture"
-                />
-                <ul class="design__card-nav">
-                  <li class="design__card-item">
-                    <a class="design__card-link" href="#">
-                      <svg class="design__card-pic">
-                        <use xlink:href="images/sprite.svg#search"></use>
-                      </svg>
-                    </a>
-                  </li>
-                  </ul>
-              </div>
-            </li>
+            <div class="design__card-img">
+              <img class="design__card-pic" src="images/content/design-6.png" alt="photo of furniture" />
+              <ul class="design__card-nav">
+                <li class="design__card-item">
+                  <a class="design__card-link" href="#">
+                    <svg class="design__card-pic">
+                      <use xlink:href="images/sprite.svg#search"></use>
+                    </svg>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="design-video">
+        <span class="sr-only">Press to play video</span>
+        <a class="design-video__link" data-fancybox href="https://www.youtube.com/watch?v=ujihdHQu7Fc"
+          style="background-image: url('images/video-bg.jpg')">
+          <svg class="design-video__pic">
+            <use xlink:href="images/sprite.svg#play-video"></use>
+          </svg>
+        </a>
+      </div>
+    </section>
 
-            <li class="design__card mix devices ">
-              <h4 class="design__card-title">Razer Basilisk V3 Pro</h4>
-              <div class="design__card-img">
-                <img
-                  class="design__card-pic"
-                  src="images/content/design-4.png"
-                  alt="photo of furniture"
-                />
-                <ul class="design__card-nav">
-                  <li class="design__card-item">
-                    <a class="design__card-link" href="#">
-                      <svg class="design__card-pic">
-                        <use xlink:href="images/sprite.svg#search"></use>
-                      </svg>
-                    </a>
-                  </li>
-                  </ul>
-              </div>
-            </li>
-
-            <li class="design__card mix PC">
-              <h4 class="design__card-title">JoyStick DYNAMIC</h4>
-
-              <div class="design__card-img">
-                <img
-                  class="design__card-pic"
-                  src="images/content/design-6.png"
-                  alt="photo of furniture"
-                />
-                <ul class="design__card-nav">
-                  <li class="design__card-item">
-                    <a class="design__card-link" href="#">
-                      <svg class="design__card-pic">
-                        <use xlink:href="images/sprite.svg#search"></use>
-                      </svg>
-                    </a>
-                  </li>
-                  </ul>
-              </div>
-            </li>
-          </ul>
-        </div>
-        <div class="design-video">
-          <span class="sr-only">Press to play video</span>
-          <a
-            class="design-video__link"
-            data-fancybox
-            href="https://www.youtube.com/watch?v=ujihdHQu7Fc"
-            style="background-image: url('images/video-bg.jpg')"
-          >
-            <svg class="design-video__pic">
-              <use xlink:href="images/sprite.svg#play-video"></use>
+    <section class="article">
+      <div class="container__small">
+        <div class="article__title-inner">
+          <h3 class="article__title title">Новости</h3>
+          <a class="article__title-link" href="#">Посмотреть все
+            <svg class="article__title-mark">
+              <use xlink:href="images/sprite.svg#view-all-mark"></use>
             </svg>
           </a>
         </div>
-      </section>
-
-      <section class="article">
+        <ul class="article-items">
+          <li class="article-item">
+            <div class="article-item__photo-inner">
+              <img class="article-item__photo" src="images/article/article-1.png" alt="photo of article" />
+              <a class="article-item__label"
+                href="https://www.playground.ru/black_myth_wu_kong/news/black_myth_wukong_uzhe_pochti_dva_mesyatsa_ostaetsya_v_desyatke_luchshih_bestsellerov_steam-1728784">
+                News </a>
+            </div>
+            <div class="article-item__content">
+              <a class="article-item__descr"
+                href="https://www.playground.ru/black_myth_wu_kong/news/black_myth_wukong_uzhe_pochti_dva_mesyatsa_ostaetsya_v_desyatke_luchshih_bestsellerov_steam-1728784">
+                Black Myth: Wukong уже почти два месяца остается в десятке лучших бестселлеров Steam
+              </a>
+              <div class="article-item__bottom">
+                <span class="article-item__bottom-date"> 15 October, 2024 </span>
+                <a class="article-item__bottom-user" href="#"> By admin </a>
+              </div>
+            </div>
+          </li>
+          <li class="article-item">
+            <div class="article-item__photo-inner">
+              <img class="article-item__photo" src="images/article/article-2.jpg" alt="photo of article" />
+              <a class="article-item__label"
+                href="https://stopgame.ru/newsdata/64386/v_steam_nachalsya_osenniy_festival_demoversiy_igram_byt">
+                News </a>
+            </div>
+            <div class="article-item__content">
+              <a class="article-item__descr"
+                href="https://stopgame.ru/newsdata/64386/v_steam_nachalsya_osenniy_festival_demoversiy_igram_byt">
+                В Steam начался осенний фестиваль демоверсий «Играм быть»
+              </a>
+              <div class="article-item__bottom">
+                <span class="article-item__bottom-date"> 14 October, 2024 </span>
+                <a class="article-item__bottom-user" href="#"> By admin </a>
+              </div>
+            </div>
+          </li>
+          <li class="article-item">
+            <div class="article-item__photo-inner">
+              <img class="article-item__photo" src="images/article/article-3.jpg" alt="photo of article" />
+              <a class="article-item__label"
+                href="https://shazoo.ru/2024/10/15/160912/bolee-milliona-igrokov-vernulis-v-gta-online-ctoby-poprobovat-novyi-zombi-rezim-v-stile-call-of-duty">
+                News </a>
+            </div>
+            <div class="article-item__content">
+              <a class="article-item__descr"
+                href="https://shazoo.ru/2024/10/15/160912/bolee-milliona-igrokov-vernulis-v-gta-online-ctoby-poprobovat-novyi-zombi-rezim-v-stile-call-of-duty">
+                Более миллиона игроков вернулись в GTA Online, чтобы попробовать новый зомби-режим в стиле Call of Duty
+              </a>
+              <div class="article-item__bottom">
+                <span class="article-item__bottom-date"> 15 October, 2024 </span>
+                <a class="article-item__bottom-user" href="#"> By Admin </a>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="partners">
         <div class="container__small">
-          <div class="article__title-inner">
-            <h3 class="article__title title">Новости</h3>
-            <a class="article__title-link" href="#"
-              >Посмотреть все
-              <svg class="article__title-mark">
-                <use xlink:href="images/sprite.svg#view-all-mark"></use>
-              </svg>
-            </a>
-          </div>
-          <ul class="article-items">
-            <li class="article-item">
-              <div class="article-item__photo-inner">
-                <img
-                  class="article-item__photo"
-                  src="images/article/article-1.png"
-                  alt="photo of article"
-                />
-                <a class="article-item__label" href="https://www.playground.ru/black_myth_wu_kong/news/black_myth_wukong_uzhe_pochti_dva_mesyatsa_ostaetsya_v_desyatke_luchshih_bestsellerov_steam-1728784"> 
-                  News </a>
-              </div>
-              <div class="article-item__content">
-                <a class="article-item__descr" href="https://www.playground.ru/black_myth_wu_kong/news/black_myth_wukong_uzhe_pochti_dva_mesyatsa_ostaetsya_v_desyatke_luchshih_bestsellerov_steam-1728784">
-                  Black Myth: Wukong уже почти два месяца остается в десятке лучших бестселлеров Steam
-                </a>
-                <div class="article-item__bottom">
-                  <span class="article-item__bottom-date"> 15 October, 2024 </span>
-                  <a class="article-item__bottom-user" href="#"> By admin </a>
-                </div>
-              </div>
+          <ul class="partners__items">
+            <li class="partners__item">
+              <img class="partners__items-icon" src="images/partners/partner-1.png" alt="logo of partner" />
             </li>
-            <li class="article-item">
-              <div class="article-item__photo-inner">
-                <img
-                  class="article-item__photo"
-                  src="images/article/article-2.jpg"
-                  alt="photo of article"
-                />
-                <a class="article-item__label" href="https://stopgame.ru/newsdata/64386/v_steam_nachalsya_osenniy_festival_demoversiy_igram_byt"> 
-                  News </a>
-              </div>
-              <div class="article-item__content">
-                <a class="article-item__descr" href="https://stopgame.ru/newsdata/64386/v_steam_nachalsya_osenniy_festival_demoversiy_igram_byt">
-                  В Steam начался осенний фестиваль демоверсий «Играм быть»
-                </a>
-                <div class="article-item__bottom">
-                  <span class="article-item__bottom-date"> 14 October, 2024 </span>
-                  <a class="article-item__bottom-user" href="#"> By admin </a>
-                </div>
-              </div>
+            <li class="partners__item">
+              <img class="partners__items-icon" src="images/partners/partner-2.png" alt="logo of partner" />
             </li>
-            <li class="article-item">
-              <div class="article-item__photo-inner">
-                <img
-                  class="article-item__photo"
-                  src="images/article/article-3.jpg"
-                  alt="photo of article"
-                />
-                <a class="article-item__label" href="https://shazoo.ru/2024/10/15/160912/bolee-milliona-igrokov-vernulis-v-gta-online-ctoby-poprobovat-novyi-zombi-rezim-v-stile-call-of-duty"> 
-                  News </a>
-              </div>
-              <div class="article-item__content">
-                <a class="article-item__descr" href="https://shazoo.ru/2024/10/15/160912/bolee-milliona-igrokov-vernulis-v-gta-online-ctoby-poprobovat-novyi-zombi-rezim-v-stile-call-of-duty">
-                  Более миллиона игроков вернулись в GTA Online, чтобы попробовать новый зомби-режим в стиле Call of Duty
-                </a>
-                <div class="article-item__bottom">
-                  <span class="article-item__bottom-date"> 15 October, 2024 </span>
-                  <a class="article-item__bottom-user" href="#"> By Admin </a>
-                </div>
-              </div>
+            <li class="partners__item">
+              <img class="partners__items-icon" src="images/partners/partner-3.png" alt="logo of partner" />
+            </li>
+            <li class="partners__item">
+              <img class="partners__items-icon" src="images/partners/partner-4.png" alt="logo of partner" />
+            </li>
+            <li class="partners__item">
+              <img class="partners__items-icon" src="images/partners/partner-5.png" alt="logo of partner" />
+            </li>
+            <li class="partners__item">
+              <img class="partners__items-icon" src="images/partners/partner-6.png" alt="logo of partner" />
             </li>
           </ul>
         </div>
-        <div class="partners">
-          <div class="container__small">
-            <ul class="partners__items">
-              <li class="partners__item">
-                <img
-                  class="partners__items-icon"
-                  src="images/partners/partner-1.png"
-                  alt="logo of partner"
-                />
-              </li>
-              <li class="partners__item">
-                <img
-                  class="partners__items-icon"
-                  src="images/partners/partner-2.png"
-                  alt="logo of partner"
-                />
-              </li>
-              <li class="partners__item">
-                <img
-                  class="partners__items-icon"
-                  src="images/partners/partner-3.png"
-                  alt="logo of partner"
-                />
-              </li>
-              <li class="partners__item">
-                <img
-                  class="partners__items-icon"
-                  src="images/partners/partner-4.png"
-                  alt="logo of partner"
-                />
-              </li>
-              <li class="partners__item">
-                <img
-                  class="partners__items-icon"
-                  src="images/partners/partner-5.png"
-                  alt="logo of partner"
-                />
-              </li>
-              <li class="partners__item">
-                <img
-                  class="partners__items-icon"
-                  src="images/partners/partner-6.png"
-                  alt="logo of partner"
-                />
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-    </main>
+      </div>
+    </section>
+  </main>
 
-    <footer class="footer">
-      <div class="container__small">
-        <div class="footer-top">
-          <div class="footer-top__item">
-            <div class='footer-top__item-inner'>
+  <footer class="footer">
+    <div class="container__small">
+      <div class="footer-top">
+        <div class="footer-top__item">
+          <div class='footer-top__item-inner'>
             <a class="logo footer-top__logo" href="index.html">
               <img class="logo__img" src="images/logo.png" alt="logo" />
             </a>
@@ -855,70 +770,66 @@
             <a class="footer-top__email" href="mailto:contact@Glee.com">
               <span>Email:</span> contact@Glee.com
             </a>
-            </div>
           </div>
-          <div class="footer-top__item">
-            <h5 class="footer-top__item-title">О нас</h5>
-            <a class="footer-top__item-link" href="#">Услуги</a>
-            <a class="footer-top__item-link" href="#">Условия возврата</a>
-            <a class="footer-top__item-link" href="#">Наш блог</a>
-            <a class="footer-top__item-link" href="#">Связаться с нами</a>
-            <a class="footer-top__item-link" href="#">Правила и условия</a>
-          </div>
-          <div class="footer-top__item">
-            <h5 class="footer-top__item-title">Услуги</h5>
-            <a class="footer-top__item-link" href="catalog.html">Игровые Пк</a>
-            <a class="footer-top__item-link" href="#">Конфигуратор</a>
-            <a class="footer-top__item-link" href="#">Другие продукты</a>
-            <a class="footer-top__item-link" href="#">Услуги</a>
-          </div>
-          <div class="footer-top__item">
-            <h5 class="footer-top__item-title">Новостная рассылка</h5>
-            <p class="footer-top__item-text">
-              Подпишитесь на нашу рассылку и получайте обновления ежедневно.
-            </p>
-            <form class="footer-top__form" action="#">
-              <input
-                class="footer-top__form-input"
-                type="email"
-                placeholder="Email address"
-                required
-              />
-            </form>
-            <button class="footer-top__form-btn btn" type="submit">Subscribe</button>
-          </div>
-          
         </div>
-        <div class="footer-bottom">
-          <p class="footer-bottom__copy">©2024 CopyRight Example. All rights reserved.</p>
-          <div class="footer-bottom__links">
-            <a class="footer-bottom__link" href="#">Home</a>
-            <a class="footer-bottom__link" href="#">About</a>
-          </div>
+        <div class="footer-top__item">
+          <h5 class="footer-top__item-title">О нас</h5>
+          <a class="footer-top__item-link" href="#">Услуги</a>
+          <a class="footer-top__item-link" href="#">Условия возврата</a>
+          <a class="footer-top__item-link" href="#">Наш блог</a>
+          <a class="footer-top__item-link" href="#">Связаться с нами</a>
+          <a class="footer-top__item-link" href="#">Правила и условия</a>
+        </div>
+        <div class="footer-top__item">
+          <h5 class="footer-top__item-title">Услуги</h5>
+          <a class="footer-top__item-link" href="catalog.html">Игровые Пк</a>
+          <a class="footer-top__item-link" href="#">Конфигуратор</a>
+          <a class="footer-top__item-link" href="#">Другие продукты</a>
+          <a class="footer-top__item-link" href="#">Услуги</a>
+        </div>
+        <div class="footer-top__item">
+          <h5 class="footer-top__item-title">Новостная рассылка</h5>
+          <p class="footer-top__item-text">
+            Подпишитесь на нашу рассылку и получайте обновления ежедневно.
+          </p>
+          <form class="footer-top__form" action="#">
+            <input class="footer-top__form-input" type="email" placeholder="Email address" required />
+          </form>
+          <button class="footer-top__form-btn btn" type="submit">Subscribe</button>
+        </div>
+
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-bottom__copy">©2024 CopyRight Example. All rights reserved.</p>
+        <div class="footer-bottom__links">
+          <a class="footer-bottom__link" href="#">Home</a>
+          <a class="footer-bottom__link" href="#">About</a>
         </div>
       </div>
-    </footer>
+    </div>
+  </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mixitup/3.3.1/mixitup.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
-    <script>
-      var containerEl1 = document.querySelector('[data-ref="products"]');
-      var containerEl2 = document.querySelector('[data-ref="design"]');
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mixitup/3.3.1/mixitup.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+  <script>
+    var containerEl1 = document.querySelector('[data-ref="products"]');
+    var containerEl2 = document.querySelector('[data-ref="design"]');
 
-      var config = {
-    controls: {
-      scope: 'local',  // Локальная фильтрация внутри этой секции
-    },
-    load: {
-      filter: 'all'  // По умолчанию показывать все элементы
-    }
-  };;
+    var config = {
+      controls: {
+        scope: 'local',  // Локальная фильтрация внутри этой секции
+      },
+      load: {
+        filter: 'all'  // По умолчанию показывать все элементы
+      }
+    };;
 
-      var mixer1 = mixitup(containerEl1, config);
-      var mixer2 = mixitup(containerEl2, config);
-    </script>
-    <script src="js/index.js"></script>
-  </body>
+    var mixer1 = mixitup(containerEl1, config);
+    var mixer2 = mixitup(containerEl2, config);
+  </script>
+  <script src="js/index.js"></script>
+</body>
+
 </html>

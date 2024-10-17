@@ -398,3 +398,21 @@ document
       button.classList.add("basket-removed"); // Возвращаем стандартный цвет у всех иконок
     });
   });
+
+  document.addEventListener("DOMContentLoaded", function() {
+    const elements = document.querySelectorAll('.fade-in');
+  
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('fade-in-visible');
+          observer.unobserve(entry.target); // Прекращаем наблюдение после появления
+        }
+      });
+    });
+  
+    elements.forEach(el => {
+      observer.observe(el);
+    });
+  });
+  
