@@ -688,6 +688,158 @@ input[type="checkbox"] {
   }
 }
 
+.review-stars{
+  color:rgb(255, 178, 35);
+  font-size: 25px;
+}
+
+.main-content {
+  max-width: 1450px;
+  width: 100%; 
+  margin: 0 auto; 
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px; 
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 4px 12px rgba(143, 143, 143, 0.1);
+  border: 1px solid rgba(143, 143, 143, 0.1); 
+  margin-top: 100px; 
+  overflow: hidden;
+}
+
+.main-content-img img {
+  max-width: 100%; /* Чтобы картинка не выходила за рамки */
+  border-radius: 12px; /* Добавляем скругление углов картинки */
+}
+
+.product-container h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #ffffff; /* Темный цвет заголовка */
+}
+
+.product-reviews {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.product-reviews .reviews-count {
+  color: #888;
+  font-size: 1rem;
+}
+
+.product-reviews .compare-button a {
+  text-decoration: none;
+  color: #62c400;
+  font-weight: bold;
+  border: 1px solid #62c400;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.product-reviews .compare-button a:hover {
+  background-color: #62c400;
+  color: #fff;
+}
+
+.product-description p {
+  line-height: 1.6;
+  color: #ccc ;
+  margin-bottom: 20px;
+}
+
+.benefits {
+  list-style: none;
+  padding: 0;
+  margin: 15px 0;
+}
+
+.benefits li {
+  background-color: #333;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.benefits li::before {
+  content: '✓';
+  color: #000;
+  margin-right: 10px;
+}
+
+.benefits strong {
+  color: #ff0000;
+}
+
+
+.product-price-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.product-price p {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.credit-options a {
+  text-decoration: none;
+  color: #62c400;
+  font-weight: bold;
+  border: 1px solid #62c400;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.credit-options a:hover {
+  background-color: #62c400;
+  color: #fff;
+}
+
+.product-actions {
+  display: flex;
+  gap: 90px;
+}
+
+.products__card-bkn,
+.btn-buy-one-click {
+  background-color: #62c400;
+  color: #fff;
+  border: none;
+  padding: 5px 50px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.products__card-bkn:hover,
+.btn-buy-one-click:hover {
+  background-color: #4a9f00;
+  transform: translateY(-2px); /* Легкий подъем при наведении */
+}
+
+.products__card-bkn:active,
+.btn-buy-one-click:active {
+  transform: translateY(0); /* Убираем эффект подъема при клике */
+}
+
+
+
+
+
 .intro .intro-top__slider {
   position: relative;
   z-index: 1;
@@ -696,9 +848,9 @@ input[type="checkbox"] {
   height: 700px; 
   border-radius: 20px; 
   margin-top: 100px; 
-  box-shadow: 0 10px 20px rgba(98, 196, 0, 0.5); 
+  box-shadow: 0 4px 20px rgba(143, 143, 143, 0.1); 
   padding: 20px; 
-  border: 1px solid rgba(98, 196, 0, 0.5); 
+  border: 1px solid rgba(143, 143, 143, 0.1); 
   margin-bottom: 50px;
 }
 .intro .intro-top__slider-inner {
