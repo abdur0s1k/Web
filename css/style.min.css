@@ -416,6 +416,18 @@ input[type="checkbox"] {
   color: rgb(84, 84, 84);
 }
 
+.container {
+  margin: 0 auto;
+  padding: 0 15px;
+  max-width: 1470px;
+}
+.container__small {
+  margin: 0 auto;
+  padding: 0 15px;
+  width: 100%;
+  max-width: 1200px;
+}
+
 /* Модальное окно регистрации */
 .modal {
   position: fixed;

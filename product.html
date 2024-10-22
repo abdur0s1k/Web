@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="icon" type="image/png" href="images/icon.png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JoyStick</title>
+    <link rel="stylesheet" href="css/product.css" />
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header__wrapper">
+                <nav class="menu">
+                    <a class="logo" href="index.html">
+                        <img class="logo__img" width="146" height="39" src="images/logo-2.png" alt="logo" />
+                    </a>
+                    <ul class="menu__list">
+                        <li class="menu__list-item">
+                            <a class="menu__list-link " href="index.html">Главная +</a>
+                        </li>
+                        <li class="menu__list-item">
+                            <a class="menu__list-link menu__list-link--active" href="catalog.html">Игроовые ПК</a>
+                        </li>
+                        <li class="menu__list-item">
+                            <a class="menu__list-link" href="#">Конфигуратор</a>
+                        </li>
+                        <li class="menu__list-item">
+                            <a class="menu__list-link" href="#">Другие продукты</a>
+                        </li>
+                        <li class="menu__list-item">
+                            <a class="menu__list-link" href="#">#</a>
+                        </li>
+                        <li class="menu__list-item">
+                            <a class="menu__list-link" href="#">Услуги</a>
+                        </li>
+                    </ul>
+                    <div class="user-panel">
+                        <a class="user-panel__link user-panel__link--search" href="#">
+                            <svg class="user-panel__link-img">
+                                <use xlink:href="images/sprite.svg#search"></use>
+                            </svg>
+                        </a>
+                        <a class="user-panel__link user-panel__link--heart" href="#" id="likeButton">
+                            <svg class="user-panel__link-img">
+                                <use xlink:href="images/sprite.svg#heart"></use>
+                            </svg>
+                            <span id="likeCount">0</span>
+                        </a>
+                        <div id="likeModal" class="like-modal">
+                            <div class="like-modal-content">
+                                <span class="close-btn" id="closeModal">&times;</span>
+                                <h2>Товары, которые вам понравились</h2>
+                                <ul id="likedItemsList">
+                                </ul>
+                            </div>
+                        </div>
+                        <a class="user-panel__link user-panel__link--basket" href="#" id="basketButton">
+                            <svg class="user-panel__link-img">
+                                <use xlink:href="images/sprite.svg#basket"></use>
+                            </svg>
+                            <span id="basketCount">0</span>
+                        </a>
+                        <div id="basketModal" class="basket-modal">
+                            <div class="basket-modal-content">
+                                <span class="close-btn" id="closeBasketModal">&times;</span>
+                                <h2>Ваша Корзина</h2>
+                                <ul id="basketItemsList">
+
+                                </ul>
+                                <div class="basket-total">
+                                    <strong>Сумма: $<span id="basketTotal">0.00</span></strong>
+                                </div>
+                                <button id="clearBasketButton">Очистить</button>
+                                <button id="payButton">Оплатить</button>
+                            </div>
+                            <div>
+                            </div>
+                        </div>
+                        <a class="user-panel__link user-panel__link--menu" id="profile-button">
+                            <svg class="user-panel__link-img">
+                                <use xlink:href="images/sprite.svg#profile"></use>
+                            </svg>
+                        </a>
+
+                        <!-- Выдвигающееся окно для входа -->
+                        <div class="side-panel hidden" id="login-panel">
+                            <span id="close-panel" class="close-panel">&times;</span> <!-- Крестик для закрытия -->
+                            <div class="login-container">
+                                <div class="block block-left">
+                                    <h1>Войти</h1>
+                                    <input type="text" placeholder="Почта" id="email">
+                                    <input type="password" placeholder="Пароль" id="password">
+
+                                    <div class="checkbox-container">
+                                        <input type="checkbox" id="rememberMe">
+                                        <label for="rememberMe">Запомнить меня</label>
+                                    </div>
+
+                                    <button id="button-login">Войти</button>
+                                    <p id="error-message" style="color: red;"></p>
+                                    <button id="button-signup" class="signup-link">Зарегистрироваться</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Модальное окно для регистрации -->
+                        <div class="modal regist hidden" id="registration-modal">
+                            <span id="close-registration-modal" class="close-panel">&times;</span>
+                            <div class="registration-container">
+                                <div class="block block-left">
+                                    <h1>Регистрация</h1>
+                                    <input type="text" placeholder="Имя" id="name">
+                                    <input type="email" placeholder="Электронная почта" id="email-registration">
+                                    <input type="password" placeholder="Пароль" id="password-registration">
+                                    <p id="error-message-registration" style="color: red;"></p>
+                                    <button id="button-submit-registration">Создать аккаунт</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            </nav>
+        </div>
+        </div>
+    </header>
+    <main class="main">
+        <div class="main-content">
+            <div class="main-content-img">
+                <img src="images/PC/product-1.png" alt="product">
+            </div>
+            <div class="product-container">
+                <h2>HYPERPC ONE</h2>
+                <div class="product-reviews">
+                    <span class="reviews-count">9 отзывов</span>
+                    <span class="compare-button"><a href="#">Сравнить</a></span>
+                </div>
+                <div class="product-description">
+                    <p>
+                        <strong>HYPERPC ONE</strong> — это твой идеальный старт в захватывающий мир гейминга.
+                        Оборудованный мощными комплектующими, этот ПК обеспечивает невероятно плавный геймплей даже в
+                        самых требовательных играх. Благодаря современному дизайну и продуманной системе охлаждения,
+                        HYPERPC ONE не только выглядит стильно, но и работает бесшумно, позволяя тебе сосредоточиться на
+                        игре.
+                    </p>
+                    <ul class="benefits">
+                        <li><strong>Мощная видеокарта и процессор</strong> обеспечат высокую производительность даже в
+                            играх с ультра-настройками графики.</li>
+                        <li><strong>Высокоскоростной SSD на 1TB</strong> позволяет моментально загружать игры и
+                            приложения.</li>
+                        <li><strong>Поддержка RGB-подсветки</strong> добавит индивидуальности твоей игровой установке.
+                        </li>
+                    </ul>
+                    <p>Этот ПК идеально подходит как для новичков, которые хотят ворваться в мир современных игр, так и
+                        для опытных геймеров, ищущих надежного помощника в достижении новых высот. Будь уверен — с
+                        HYPERPC ONE ты готов побеждать!</p>
+                </div>
+                <div class="product-price-section">
+                    <div class="product-price">
+                        <p><strong>Цена:</strong> 91 330 ₽</p>
+                    </div>
+                    <div class="credit-options">
+                        <a href="#">Рассчитать кредит</a>
+                    </div>
+                </div>
+                <div class="product-actions">
+                    <li class="products__card-item">
+                        <button class="products__card-bkn" type="button" data-product-id="product-4"
+                            data-product-name="ASUS TUF VG27AQ1A" data-product-price="299.00"
+                            onclick="toggleBasketProduct(this)">
+                            В Корзину
+                        </button>
+                    </li>
+                    <button class="btn btn-buy-one-click">Купить в 1 клик</button>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <section class="intro">
+            <div class="container">
+                <div class="intro-top">
+                    <div class="intro-top__slider">
+                        <div class="container__small">
+                            <div class="intro-top__slider-inner">
+                                <div class="intro-top__slider-content">
+                                    <h2 class="intro-top__slider-title">ASUS GeForce RTX 3050 Dual</h2>
+                                    <p class="intro-top__slider-subtitle">
+                                        Видеокарта ASUS GeForce RTX 3050 Dual обеспечивает высокое качество графики. 6
+                                        ГБ
+                                        видеопамяти и трассировка лучей для фантастического реализма.
+                                    </p>
+                                    <img src="images/Compon/asus-geforce-rtx-3050-dual-780x439.jpg"
+                                        alt="ASUS GeForce RTX 3050" class="card-image">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="intro-top__slider">
+                        <div class="container__small">
+                            <div class="intro-top__slider-inner">
+                                <div class="intro-top__slider-content">
+                                    <h2 class="intro-top__slider-title">Intel Core i5-12400F</h2>
+                                    <p class="intro-top__slider-subtitle">
+                                        6 ядер для игр, творчества и многозадачности. Частота до 4.4GHz для отличной
+                                        производительности.
+                                    </p>
+                                    <img src="images/Compon/inter-core-12th-f-780x439.jpg" alt="Intel Core i5"
+                                        class="card-image">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="intro-top__slider">
+                        <div class="container__small">
+                            <div class="intro-top__slider-inner">
+                                <div class="intro-top__slider-content">
+                                    <h2 class="intro-top__slider-title">ASUS PRIME B760M-K</h2>
+                                    <p class="intro-top__slider-subtitle">
+                                        Материнская плата для сборки игрового ПК, поддержка DDR4 до 64ГБ и два слота
+                                        M.2.
+                                    </p>
+                                    <img src="images/Compon/asus-prime-b760m-k-d4-780x439.jpg" alt="ASUS PRIME B760M-K"
+                                        class="card-image">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="intro-top__slider">
+                        <div class="container__small">
+                            <div class="intro-top__slider-inner">
+                                <div class="intro-top__slider-content">
+                                    <h2 class="intro-top__slider-title">DeepCool AG400 BK ARGB</h2>
+                                    <p class="intro-top__slider-subtitle">
+                                        Кулер для процессора с вентилятором на 2000 об/мин, ARGB-подсветкой и тихой
+                                        работой.
+                                    </p>
+                                    <img src="images/Compon/deepcool-ag400-argb-black-780x439.jpg"
+                                        alt="DeepCool AG400 BK ARGB" class="card-image">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="intro-top__slider">
+                        <div class="container__small">
+                            <div class="intro-top__slider-inner">
+                                <div class="intro-top__slider-content">
+                                    <h2 class="intro-top__slider-title">16GB Kingston FURY Beast RGB</h2>
+                                    <p class="intro-top__slider-subtitle">
+                                        DDR4 3200MHz с RGB-подсветкой для высокопроизводительных сборок.
+                                    </p>
+                                    <img src="images/Compon/kingston-fury-beast-ddr4-rgb-2x-780x439.jpg"
+                                        alt="16GB Kingston FURY Beast" class="card-image">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="intro-top__slider">
+                        <div class="container__small">
+                            <div class="intro-top__slider-inner">
+                                <div class="intro-top__slider-content">
+                                    <h2 class="intro-top__slider-title">1TB ADATA LEGEND 850</h2>
+                                    <p class="intro-top__slider-subtitle">
+                                        Высокопроизводительный NVMe SSD с скоростью до 4500MB/s и долговечностью.
+                                    </p>
+                                    <img src="images/Compon/adata-legend-850-alt-2-780x439.jpg" alt="1TB ADATA LEGEND 850"
+                                        class="card-image">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="intro-top__slider">
+                        <div class="container__small">
+                            <div class="intro-top__slider-inner">
+                                <div class="intro-top__slider-content">
+                                    <h2 class="intro-top__slider-title">550W DeepCool PF550</h2>
+                                    <p class="intro-top__slider-subtitle">
+                                        Блок питания мощностью 550 Вт с активным охлаждением и поддержкой ATX.
+                                    </p>
+                                    <img src="images/Compon/deepcool-pk550d-780x439.jpg" alt="550W DeepCool PF550"
+                                        class="card-image">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    <footer class="footer">
+        <div class="container__small">
+            <div class="footer-top">
+                <div class="footer-top__item">
+                    <div class='footer-top__item-inner'>
+                        <a class="logo footer-top__logo" href="index.html">
+                            <img class="logo__img" src="images/logo.png" alt="logo" />
+                        </a>
+                        <a class="footer-top__address" href="#">
+                            <span>Адрес:</span> 4772 Wines Lane Houston, TX 77032
+                        </a>
+                        <a class="footer-top__phone" href="tel:+8323475843">
+                            <span>Телефон:</span> +832-347-5843
+                        </a>
+                        <a class="footer-top__email" href="mailto:contact@Glee.com">
+                            <span>Email:</span> contact@Glee.com
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-top__item">
+                    <h5 class="footer-top__item-title">О нас</h5>
+                    <a class="footer-top__item-link" href="#">Услуги</a>
+                    <a class="footer-top__item-link" href="#">Условия возврата</a>
+                    <a class="footer-top__item-link" href="#">Наш блог</a>
+                    <a class="footer-top__item-link" href="#">Связаться с нами</a>
+                    <a class="footer-top__item-link" href="#">Правила и условия</a>
+                </div>
+                <div class="footer-top__item">
+                    <h5 class="footer-top__item-title">Услуги</h5>
+                    <a class="footer-top__item-link" href="catalog.html">Игровые Пк</a>
+                    <a class="footer-top__item-link" href="#">Конфигуратор</a>
+                    <a class="footer-top__item-link" href="#">Другие продукты</a>
+                    <a class="footer-top__item-link" href="#">Услуги</a>
+                </div>
+                <div class="footer-top__item">
+                    <h5 class="footer-top__item-title">Новостная рассылка</h5>
+                    <p class="footer-top__item-text">
+                        Подпишитесь на нашу рассылку и получайте обновления ежедневно.
+                    </p>
+                    <form class="footer-top__form" action="#">
+                        <input class="footer-top__form-input" type="email" placeholder="Email address" required />
+                    </form>
+                    <button class="footer-top__form-btn btn" type="submit">Subscribe</button>
+                </div>
+
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-bottom__copy">©2024 CopyRight Example. All rights reserved.</p>
+                <div class="footer-bottom__links">
+                    <a class="footer-bottom__link" href="#">Home</a>
+                    <a class="footer-bottom__link" href="#">About</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mixitup/3.3.1/mixitup.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+    <script>
+        var containerEl1 = document.querySelector('[data-ref="products"]');
+        var containerEl2 = document.querySelector('[data-ref="design"]');
+
+        var config = {
+            controls: {
+                scope: 'local',
+            },
+            load: {
+                filter: 'all'
+            }
+        };;
+
+        var mixer1 = mixitup(containerEl1, config);
+        var mixer2 = mixitup(containerEl2, config);
+    </script>
+    <script src="js/index.min.js"></script>
+</body>
+
+</html>
