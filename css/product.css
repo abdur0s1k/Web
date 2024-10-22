@@ -691,15 +691,15 @@ input[type="checkbox"] {
 .intro .intro-top__slider {
   position: relative;
   z-index: 1;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  height: 700px;
-  border-radius: 20px;
-  margin-top: 100px;
+  display: flex; 
+  align-items: center; 
+  height: 700px; 
+  border-radius: 20px; 
+  margin-top: 100px; 
+  box-shadow: 0 10px 20px rgba(98, 196, 0, 0.5); 
+  padding: 20px; 
+  border: 1px solid rgba(98, 196, 0, 0.5); 
+  margin-bottom: 50px;
 }
 .intro .intro-top__slider-inner {
   display: -webkit-box;
@@ -735,43 +735,31 @@ input[type="checkbox"] {
   -webkit-line-clamp: 2;
   margin-bottom: 40px;
   width: 100%;
-  max-width: 370px;
+  max-width: 470px;
   font-size: 28px;
   line-height: 30px;
   color: #79797a;
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 5;
 }
-.intro .intro-top__slider-btn {
+
+.intro .intro-top__slider-bg {
   position: relative;
-  padding: 20px 26px;
-  width: 200px;
-  font-size: 15px;
-  line-height: 12px;
-  text-align: center; /* Выравнивание текста по центру */
-  background: transparent; /* Прозрачный фон */
-  color: #cf0; /* Зелёный текст */
-  border: 2px solid #cf0; /* Зелёная обводка */
-  border-radius: 30px;
-  box-shadow: none; /* Убрана тень */
-  transition: all 0.3s ease;
+  z-index: 1
 }
 
-.intro .intro-top__slider-btn svg {
+.intro .intro-top__slider-bg::before {
+  content: "";
   position: absolute;
-  right: 10%;
+  right: -15%;
   top: 50%;
-  fill: #cf0; /* Зелёная иконка */
-  transform: translateY(-50%);
-  transition: fill 0.3s ease;
-}
-
-.intro .intro-top__slider-btn:hover {
-  color: #fff; /* Белый текст при наведении */
-  background-color: #cf0; /* Зелёный фон при наведении */
-}
-
-.intro .intro-top__slider-btn:hover svg {
-  fill: #fff; /* Иконка белая при наведении */
+  z-index: -1;
+  width: 609px;
+  height: 634px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%)
 }
 .intro .slick-dots {
   position: absolute;

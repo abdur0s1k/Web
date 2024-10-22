@@ -600,6 +600,9 @@ input[type="checkbox"] {
   -ms-transform: translateY(2px);
   transform: translateY(2px);
 }
+
+
+
 .intro .intro-top__slider {
   position: relative;
   z-index: 1;
@@ -685,7 +688,6 @@ input[type="checkbox"] {
 .intro .intro-top__slider-btn:hover svg {
   fill: #fff; /* Иконка белая при наведении */
 }
-
 .intro .slick-dots {
   position: absolute;
   left: 0;
