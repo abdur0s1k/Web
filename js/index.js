@@ -1,11 +1,12 @@
 $(function () {
   $(".intro-top").slick({
-    dots: true,
-    arrows: false,
-    autoplay: true,
-    autoplaySpeed: 12000,
-    pauseOnFocus: false,
-    pauseOnHover: true,
+    dots: true,              
+    arrows: false,            
+    autoplay: true,           
+    autoplaySpeed: 12000,     
+    pauseOnFocus: false,      
+    pauseOnHover: true,       
+    swipe: true,              
   });
 
   $(".partners__items").slick({
