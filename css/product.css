@@ -709,7 +709,7 @@ input[type="checkbox"] {
 }
 
 .main-content-img img {
-  max-width: 100%; /* Чтобы картинка не выходила за рамки */
+  max-width: 150%; /* Чтобы картинка не выходила за рамки */
   border-radius: 12px; /* Добавляем скругление углов картинки */
 }
 
@@ -811,14 +811,29 @@ input[type="checkbox"] {
 .product-actions {
   display: flex;
   gap: 90px;
+  list-style-type: none;
+  padding: 0;            
+  margin: 0;        
 }
 
-.products__card-bkn,
+.products__card-bkn{
+  background-color: #62c400;
+  color: #fff;
+  border: none;
+  width: 200px; 
+  height: 50px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
 .btn-buy-one-click {
   background-color: #62c400;
   color: #fff;
   border: none;
-  padding: 5px 50px;
+  width: 200px; 
+  height: 50px;
   font-size: 1rem;
   border-radius: 5px;
   cursor: pointer;

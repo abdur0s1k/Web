@@ -37,12 +37,14 @@
               <a class="menu__list-link" href="#">Услуги</a>
             </li>
           </ul>
+
           <div class="user-panel">
             <a class="user-panel__link user-panel__link--search" href="#">
               <svg class="user-panel__link-img">
                 <use xlink:href="images/sprite.svg#search"></use>
               </svg>
             </a>
+
             <a class="user-panel__link user-panel__link--heart" href="#" id="likeButton">
               <svg class="user-panel__link-img">
                 <use xlink:href="images/sprite.svg#heart"></use>
@@ -57,6 +59,7 @@
                 </ul>
               </div>
             </div>
+
             <a class="user-panel__link user-panel__link--basket" href="#" id="basketButton">
               <svg class="user-panel__link-img">
                 <use xlink:href="images/sprite.svg#basket"></use>
@@ -68,7 +71,6 @@
                 <span class="close-btn" id="closeBasketModal">&times;</span>
                 <h2>Ваша Корзина</h2>
                 <ul id="basketItemsList">
-
                 </ul>
                 <div class="basket-total">
                   <strong>Сумма: $<span id="basketTotal">0.00</span></strong>
@@ -79,13 +81,13 @@
               <div>
               </div>
             </div>
+
             <a class="user-panel__link user-panel__link--menu" id="profile-button">
               <svg class="user-panel__link-img">
                 <use xlink:href="images/sprite.svg#profile"></use>
               </svg>
             </a>
 
-            <!-- Выдвигающееся окно для входа -->
             <div class="side-panel hidden" id="login-panel">
               <span id="close-panel" class="close-panel">&times;</span> <!-- Крестик для закрытия -->
               <div class="login-container">
@@ -93,20 +95,16 @@
                   <h1>Войти</h1>
                   <input type="text" placeholder="Почта" id="email">
                   <input type="password" placeholder="Пароль" id="password">
-
                   <div class="checkbox-container">
                     <input type="checkbox" id="rememberMe">
                     <label for="rememberMe">Запомнить меня</label>
                   </div>
-
                   <button id="button-login">Войти</button>
                   <p id="error-message" style="color: red;"></p>
                   <button id="button-signup" class="signup-link">Зарегистрироваться</button>
                 </div>
               </div>
             </div>
-
-            <!-- Модальное окно для регистрации -->
             <div class="modal regist hidden" id="registration-modal">
               <span id="close-registration-modal" class="close-panel">&times;</span>
               <div class="registration-container">
@@ -126,6 +124,7 @@
     </div>
     </div>
   </header>
+
   <main class="main">
     <section class="intro">
       <div class="container">
@@ -138,9 +137,9 @@
                   <p class="intro-top__slider-subtitle">
                     Настенный компьютер, сочетающий мощь, эстетику и передовые технологии.
                   </p>
-                  <button class="intro-top__slider-btn btn" type="button">
+                  <button class="intro-top__slider-btn btn" type="button" onclick="location.href='product.html?id=12'">
                     УЗНАТЬ БОЛЬШЕ
-                  </button>
+                </button> 
                 </div>
               </div>
             </div>
@@ -153,9 +152,9 @@
                   <p class="intro-top__slider-subtitle">
                     Эталон игрового компьютера с безграничными возможностями кастомизации.
                   </p>
-                  <button class="intro-top__slider-btn btn" type="button">
+                  <button class="intro-top__slider-btn btn" type="button" onclick="location.href='product.html?id=6'">
                     УЗНАТЬ БОЛЬШЕ
-                  </button>
+                </button>
                 </div>
               </div>
             </div>
@@ -168,9 +167,9 @@
                   <p class="intro-top__slider-subtitle">
                     Готов к будущему. Агрессивный футуристичный дизайн, созданный для настоящих кибер-воинов.
                   </p>
-                  <button class="intro-top__slider-btn btn" type="button">
+                  <button class="intro-top__slider-btn btn" type="button" onclick="location.href='product.html?id=8'">
                     УЗНАТЬ БОЛЬШЕ
-                  </button>
+                </button>
                 </div>
               </div>
             </div>
@@ -229,7 +228,6 @@
         </ul>
         <ul class="products__cards">
 
-          <!-- Первый товар -->
           <li class="mix PC" id="product-1">
             <article class="products__card">
               <img class="products__card-img" src="images/content/product-1.png" alt="photo of furniture" />
@@ -264,7 +262,6 @@
             </article>
           </li>
 
-          <!-- Второй товар -->
           <li class="mix PC" id="product-2">
             <article class="products__card">
               <img class="products__card-img" src="images/content/product-2.png" alt="photo of furniture" />
@@ -294,13 +291,10 @@
                     </svg>
                   </button>
                 </li>
-
-
               </ul>
             </article>
           </li>
 
-          <!-- Третий товар -->
           <li class="mix monitors" id="product-3">
             <article class="products__card">
               <img class="products__card-img" src="images/content/product-3.png" alt="photo of furniture" />
@@ -331,12 +325,10 @@
                     </svg>
                   </button>
                 </li>
-
               </ul>
             </article>
           </li>
 
-          <!-- Четвертый товар -->
           <li class="mix monitors" id="product-4">
             <article class="products__card">
               <img class="products__card-img" src="images/content/product-4.png" alt="photo of furniture" />
@@ -359,7 +351,7 @@
                     </svg>
                   </button>
                 </li>
-  
+
                 <li class="products__card-item">
                   <button class="products__card-btn" type="button" data-product-id="product-4"
                     onclick="toggleLikeProduct(this)">
@@ -368,13 +360,11 @@
                     </svg>
                   </button>
                 </li>
-
           </li>
         </ul>
         </article>
         </li>
 
-        <!-- Пятый товар -->
         <li class="mix devices" id="product-5">
           <article class="products__card">
             <img class="products__card-img" src="images/content/product-5.png" alt="photo of furniture" />
@@ -409,7 +399,6 @@
           </article>
         </li>
 
-        <!-- Шестой товар -->
         <li class="mix devices" id="product-6">
           <article class="products__card">
             <img class="products__card-img" src="images/content/product-6.png" alt="photo of furniture" />
@@ -443,7 +432,7 @@
             </ul>
           </article>
         </li>
-        <!-- Седьмой товар -->
+
         <li class="mix PC" id="product-7">
           <article class="products__card">
             <img class="products__card-img" src="images/content/product-7.png" alt="photo of furniture" />
@@ -451,7 +440,7 @@
             <span class="products__card-price"><span>$</span>1699.99</span>
             <ul class="products__card-nav">
               <li class="products__card-item">
-                <a class="products__card-link" href="#">
+                <a class="products__card-link" href="product.html?id=3">
                   <svg class="products__card-pic">
                     <use xlink:href="images/sprite.svg#search"></use>
                   </svg>
@@ -478,7 +467,6 @@
           </article>
         </li>
 
-        <!-- Восьмой товар -->
         <li class="mix PC" id="product-8">
           <article class="products__card">
             <img class="products__card-img" src="images/content/product-8.png" alt="photo of furniture" />
@@ -486,7 +474,7 @@
             <span class="products__card-price"><span>$</span>2179.99</span>
             <ul class="products__card-nav">
               <li class="products__card-item">
-                <a class="products__card-link" href="#">
+                <a class="products__card-link" href="product.html?id=4">
                   <svg class="products__card-pic">
                     <use xlink:href="images/sprite.svg#search"></use>
                   </svg>
@@ -509,12 +497,12 @@
                   </svg>
                 </button>
               </li>
-
             </ul>
           </article>
         </li>
         </ul>
       </div>
+
       <div class="decor">
         <div class="container">
           <div class="decor__inner">
@@ -572,7 +560,7 @@
               <img class="design__card-pic" src="images/content/design-1.png" alt="photo of furniture" />
               <ul class="design__card-nav">
                 <li class="design__card-item">
-                  <a class="design__card-link" href="#">
+                  <a class="design__card-link" href="product.html?id=8">
                     <svg class="design__card-pic">
                       <use xlink:href="images/sprite.svg#search"></use>
                     </svg>
@@ -588,7 +576,7 @@
               <img class="design__card-pic" src="images/content/design-2.png" alt="photo of furniture" />
               <ul class="design__card-nav">
                 <li class="design__card-item">
-                  <a class="design__card-link" href="#">
+                  <a class="design__card-link" href="product.html?id=7">
                     <svg class="design__card-pic">
                       <use xlink:href="images/sprite.svg#search"></use>
                     </svg>
@@ -632,12 +620,11 @@
 
           <li class="design__card mix PC">
             <h4 class="design__card-title">JoyStick DYNAMIC</h4>
-
             <div class="design__card-img">
               <img class="design__card-pic" src="images/content/design-6.png" alt="photo of furniture" />
               <ul class="design__card-nav">
                 <li class="design__card-item">
-                  <a class="design__card-link" href="#">
+                  <a class="design__card-link" href="product.html?id=5">
                     <svg class="design__card-pic">
                       <use xlink:href="images/sprite.svg#search"></use>
                     </svg>
@@ -648,6 +635,7 @@
           </li>
         </ul>
       </div>
+
       <div class="design-video">
         <span class="sr-only">Press to play video</span>
         <a class="design-video__link" data-fancybox href="https://www.youtube.com/watch?v=ujihdHQu7Fc"
@@ -819,10 +807,10 @@
 
     var config = {
       controls: {
-        scope: 'local',  // Локальная фильтрация внутри этой секции
+        scope: 'local',
       },
       load: {
-        filter: 'all'  // По умолчанию показывать все элементы
+        filter: 'all'
       }
     };;
 
