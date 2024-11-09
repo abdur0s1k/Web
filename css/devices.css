@@ -710,10 +710,11 @@ input[type="checkbox"] {
 }
 
 .main-content-img img {
-    width: 600px;
-    height: auto;
-    margin-top: auto;
+  width: 100%;          /* Ширина изображения будет 100% от ширины родительского блока */
+  height: 100%;         /* Высота изображения будет 100% от высоты родительского блока */
+  object-fit: contain;  /* Изображение будет сохранять свои пропорции, не выходя за пределы блока */
 }
+
 
 
 .product-container h2 {
