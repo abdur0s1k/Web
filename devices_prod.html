@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="icon" type="image/png" href="images/icon.png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JoyStick</title>
+    <link rel="stylesheet" href="css/devices.css" />
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header__wrapper">
+                <nav class="menu">
+                    <a class="logo" href="index.html">
+                        <img class="logo__img" width="146" height="39" src="images/logo-2.png" alt="logo" />
+                    </a>
+                    <ul class="menu__list">
+                        <li class="menu__list-item">
+                            <a class="menu__list-link " href="index.html">Главная +</a>
+                        </li>
+                        <li class="menu__list-item">
+                            <a class="menu__list-link " href="catalog.html">Игроовые ПК</a>
+                        </li>
+                        <li class="menu__list-item">
+                            <a class="menu__list-link" href="#">Конфигуратор</a>
+                        </li>
+                        <li class="menu__list-item">
+                            <a class="menu__list-link" href="devices.html">Другие продукты</a>
+                        </li>
+                        <li class="menu__list-item">
+                            <a class="menu__list-link" href="#">#</a>
+                        </li>
+                        <li class="menu__list-item">
+                            <a class="menu__list-link" href="#">Услуги</a>
+                        </li>
+                    </ul>
+                    <div class="user-panel">
+                        <a class="user-panel__link user-panel__link--heart" href="#" id="likeButton">
+                            <svg class="user-panel__link-img">
+                                <use xlink:href="images/sprite.svg#heart"></use>
+                            </svg>
+                            <span id="likeCount">0</span>
+                        </a>
+                        <div id="likeModal" class="like-modal">
+                            <div class="like-modal-content">
+                                <span class="close-btn" id="closeModal">&times;</span>
+                                <h2>Товары, которые вам понравились</h2>
+                                <ul id="likedItemsList">
+                                </ul>
+                            </div>
+                        </div>
+                        <a class="user-panel__link user-panel__link--basket" href="#" id="basketButton">
+                            <svg class="user-panel__link-img">
+                                <use xlink:href="images/sprite.svg#basket"></use>
+                            </svg>
+                            <span id="basketCount">0</span>
+                        </a>
+                        <div id="basketModal" class="basket-modal">
+                            <div class="basket-modal-content">
+                                <span class="close-btn" id="closeBasketModal">&times;</span>
+                                <h2>Ваша Корзина</h2>
+                                <ul id="basketItemsList">
+
+                                </ul>
+                                <div class="basket-total">
+                                    <strong>Сумма: $<span id="basketTotal">0.00</span></strong>
+                                </div>
+                                <button id="clearBasketButton">Очистить</button>
+                                <button id="payButton">Оплатить</button>
+                            </div>
+                            <div>
+                            </div>
+                        </div>
+                        <a class="user-panel__link user-panel__link--menu" id="profile-button">
+                            <svg class="user-panel__link-img">
+                                <use xlink:href="images/sprite.svg#profile"></use>
+                            </svg>
+                        </a>
+
+                        <!-- Выдвигающееся окно для входа -->
+                        <div class="side-panel hidden" id="login-panel">
+                            <span id="close-panel" class="close-panel">&times;</span> <!-- Крестик для закрытия -->
+                            <div class="login-container">
+                                <div class="block block-left">
+                                    <h1>Войти</h1>
+                                    <input type="text" placeholder="Почта" id="email">
+                                    <input type="password" placeholder="Пароль" id="password">
+
+                                    <div class="checkbox-container">
+                                        <input type="checkbox" id="rememberMe">
+                                        <label for="rememberMe">Запомнить меня</label>
+                                    </div>
+
+                                    <button id="button-login">Войти</button>
+                                    <p id="error-message" style="color: red;"></p>
+                                    <button id="button-signup" class="signup-link">Зарегистрироваться</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Модальное окно для регистрации -->
+                        <div class="modal regist hidden" id="registration-modal">
+                            <span id="close-registration-modal" class="close-panel">&times;</span>
+                            <div class="registration-container">
+                                <div class="block block-left">
+                                    <h1>Регистрация</h1>
+                                    <input type="text" placeholder="Имя" id="name">
+                                    <input type="email" placeholder="Электронная почта" id="email-registration">
+                                    <input type="password" placeholder="Пароль" id="password-registration">
+                                    <p id="error-message-registration" style="color: red;"></p>
+                                    <button id="button-submit-registration">Создать аккаунт</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            </nav>
+        </div>
+        </div>
+    </header>
+    <main class="main">
+        <div class="product" data-product-id="1">
+            <div class="main-content">
+                <div class="main-content-img">
+                    <img src="images/devices/devices-1.png" alt="product">
+                </div>
+                <div class="product-container">
+                    <h2>Logitech G305</h2>
+                    <div class="product-reviews">
+                        <span class="review-stars">
+                            &#9733;&#9733;&#9733;&#9733;&#9733;
+                        </span>
+                        <span class="reviews-count">(9 отзывов)</span>
+                    </div>
+                    <div class="product-description">
+                        <p>
+                            <strong>Logitech G305</strong> — беспроводная мышь для победителей.
+                            Logitech G305 — это беспроводная игровая мышь, которая сочетает в себе отличную
+                            производительность, стильный дизайн и высокую автономность. Оборудованная передовой
+                            технологией Lightspeed и сенсором HERO, она обеспечивает мгновенную реакцию и точность,
+                            которые необходимы для самых интенсивных игр.
+                        </p>
+                        <ul class="benefits">
+                            <li><strong>Технология Lightspeed:</strong> Беспроводное соединение с минимальной задержкой,
+                                обеспечивающее стабильную и быструю передачу данных.</li>
+                            <li><strong>Сенсор HERO:</strong> Оптический сенсор с разрешением до 12 000 DPI, который
+                                гарантирует невероятную точность и отзывчивость.</li>
+                            <li><strong>Долгая автономность:</strong> До 250 часов игры на одной батарее, что делает
+                                G305 идеальной для долгих игровых сессий без перерывов на зарядку.
+                            </li>
+                        </ul>
+                        <p>Logitech G305 — это идеальный выбор для геймеров, которые ценят высокую производительность,
+                            комфорт и автономность.</p>
+                    </div>
+                    <div class="product-price-section">
+                        <div class="product-price">
+                            <p><strong>Цена:</strong> 69.99 $</p>
+                        </div>
+                    </div>
+                    <div class="product-actions">
+                        <li class="products__card-item">
+                            <button class="products__card-bkn" type="button" data-product-id="product-1"
+                                data-product-name="Logitech G305" data-product-price="69.99"
+                                onclick="toggleBasketProduct(this)">
+                                В Корзину
+                            </button>
+                        </li>
+                        <button class="btn btn-buy-one-click">Купить в 1 клик</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="product" data-product-id="2">
+            <div class="main-content">
+                <div class="main-content-img">
+                    <img src="images/devices/devices-2.png" alt="product">
+                </div>
+                <div class="product-container">
+                    <h2>Razer Viper V2 Pro</h2>
+                    <div class="product-reviews">
+                        <span class="review-stars">
+                            &#9733;&#9733;&#9733;&#9733;&#9733;
+                        </span>
+                        <span class="reviews-count">(9 отзывов)</span>
+                    </div>
+                    <div class="product-description">
+                        <p>
+                            <strong>Razer Viper V2 Pro</strong> — ультимативная беспроводная игровая мышь.
+                            Razer Viper V2 Pro — это легкая и высокопроизводительная игровая мышь, разработанная для
+                            профессиональных геймеров и тех, кто стремится к максимальной точности и скорости в играх. С
+                            ультра-легким корпусом, передовыми технологиями и беспроводной технологией Razer HyperSpeed,
+                            она станет твоим надежным союзником на пути к победам.
+                        </p>
+                        <ul class="benefits">
+                            <li><strong>Сенсор Focus+ Optical:</strong> Профессиональный сенсор с разрешением до 30 000
+                                DPI, обеспечивающий исключительную точность и отклик, что делает каждое движение мыши
+                                мгновенно заметным в игре.</li>
+                            <li><strong>Технология Razer HyperSpeed Wireless:</strong> Беспроводное соединение с
+                                минимальной задержкой и максимальной стабильностью, сравнимое с проводным соединением,
+                                для абсолютной скорости.</li>
+                            <li><strong>Ультра-легкий корпус:</strong> Вес всего 58 г, что позволяет ускорить движения и
+                                уменьшить усталость, обеспечивая комфорт даже на самых длинных игровых сессиях.
+                            </li>
+                        </ul>
+                        <p>Razer Viper V2 Pro — это идеальный выбор для тех, кто ищет мышь с максимальной
+                            производительностью, легкостью и точностью, чтобы всегда оставаться на шаг впереди
+                            противников.</p>
+                    </div>
+                    <div class="product-price-section">
+                        <div class="product-price">
+                            <p><strong>Цена:</strong> 129.99 $</p>
+                        </div>
+                    </div>
+                    <div class="product-actions">
+                        <li class="products__card-item">
+                            <button class="products__card-bkn" type="button" data-product-id="product-2"
+                                data-product-name="Razer Viper V2 Pro" data-product-price="129.99"
+                                onclick="toggleBasketProduct(this)">
+                                В Корзину
+                            </button>
+                        </li>
+                        <button class="btn btn-buy-one-click">Купить в 1 клик</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="product" data-product-id="3">
+            <div class="main-content">
+                <div class="main-content-img">
+                    <img src="images/devices/devices-3.png" alt="product">
+                </div>
+                <div class="product-container">
+                    <h2>Razer Basilisk V3 Pro</h2>
+                    <div class="product-reviews">
+                        <span class="review-stars">
+                            &#9733;&#9733;&#9733;&#9733;&#9733;
+                        </span>
+                        <span class="reviews-count">(9 отзывов)</span>
+                    </div>
+                    <div class="product-description">
+                        <p>
+                            <strong>Razer Basilisk V3 Pro</strong>— универсальная игровая мышь с максимальной
+                            кастомизацией.
+                            Razer Basilisk V3 Pro — это беспроводная игровая мышь, которая сочетает в себе передовые
+                            технологии, продвинутую кастомизацию и комфорт для длительных игровых сессий. С её
+                            возможностью адаптироваться под любые игровые потребности, эта мышь идеально подходит для
+                            игроков, которые хотят контролировать каждую деталь.
+                        </p>
+                        <ul class="benefits">
+                            <li><strong>Сенсор Focus+ Optical:</strong> Резолюция до 30 000 DPI и точность до 99,8%,
+                                обеспечивающие невероятную отзывчивость и минимальные погрешности в движениях.</li>
+                            <li><strong>Технология Razer HyperSpeed Wireless:</strong> Быстрое беспроводное соединение с
+                                нулевой задержкой, идеально подходящее для профессиональных геймеров.</li>
+                            <li><strong>Инновационная кнопка с регулируемым сопротивлением: </strong> Позволяет
+                                настроить сопротивление колесика прокрутки, чтобы оно идеально соответствовало твоему
+                                стилю игры.
+                            </li>
+                        </ul>
+                        <p>Razer Basilisk V3 Pro — это идеальный выбор для геймеров, которые хотят максимальную
+                            кастомизацию и гибкость. С этой мышью ты будешь готов к любым игровым вызовам.</p>
+                    </div>
+                    <div class="product-price-section">
+                        <div class="product-price">
+                            <p><strong>Цена:</strong> 143.99 $</p>
+                        </div>
+                    </div>
+                    <div class="product-actions">
+                        <li class="products__card-item">
+                            <button class="products__card-bkn" type="button" data-product-id="product-3"
+                                data-product-name="Razer Basilisk V3 Pro" data-product-price="143.99"
+                                onclick="toggleBasketProduct(this)">
+                                В Корзину
+                            </button>
+                        </li>
+                        <button class="btn btn-buy-one-click">Купить в 1 клик</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="product" data-product-id="4">
+            <div class="main-content">
+                <div class="main-content-img">
+                    <img src="images/devices/devices-4.png" alt="product">
+                </div>
+                <div class="product-container">
+                    <h2>HyperX Pulsefire Haste 2</h2>
+                    <div class="product-reviews">
+                        <span class="review-stars">
+                            &#9733;&#9733;&#9733;&#9733;&#9733;
+                        </span>
+                        <span class="reviews-count">(4 отзывов)</span>
+                    </div>
+                    <div class="product-description">
+                        <p>
+                            <strong>HyperX Pulsefire Haste 2</strong>— ультралегкая игровая мышь для максимальной
+                            скорости и точности.
+                            HyperX Pulsefire Haste 2 — это обновленная версия популярной ультралегкой игровой мыши,
+                            предназначенная для геймеров, которые ценят скорость, точность и комфорт в каждой игре. С
+                            улучшенными характеристиками, включая сверхбыстрое соединение и сверхлегкий корпус, она
+                            идеально подходит для тех, кто хочет добиться наилучших результатов в соревновательных
+                            играх.
+                        </p>
+                        <ul class="benefits">
+                            <li><strong>Оптический сенсор HyperX 26K:</strong> Сенсор с разрешением до 26 000 DPI,
+                                обеспечивающий невероятную точность и отклик, который необходим для профессионального
+                                гейминга.</li>
+                            <li><strong>Сверхлегкий корпус (59 г):</strong>Один из самых легких вариантов на рынке, что
+                                позволяет снизить усталость в длительных сессиях и повысить скорость движения.</li>
+                            <li><strong>Технология HyperX Speedflex:</strong>Кабель с низким сопротивлением,
+                                обеспечивающий плавные и быстрые движения, без ощущения «задержки» от кабеля.
+                            </li>
+                        </ul>
+                        <p>HyperX Pulsefire Haste 2 — это идеальный выбор для тех, кто ценит не только скорость и
+                            точность, но и комфорт на протяжении долгих игровых сессий. Мышь сочетает в себе легкость и
+                            профессиональные характеристики, которые помогают улучшить игровые результаты.</p>
+                    </div>
+                    <div class="product-price-section">
+                        <div class="product-price">
+                            <p><strong>Цена:</strong> 99.99 $</p>
+                        </div>
+                    </div>
+                    <div class="product-actions">
+                        <li class="products__card-item">
+                            <button class="products__card-bkn" type="button" data-product-id="product-4"
+                                data-product-name="HyperX Pulsefire Haste 2" data-product-price="99.99"
+                                onclick="toggleBasketProduct(this)">
+                                В Корзину
+                            </button>
+                        </li>
+                        <button class="btn btn-buy-one-click">Купить в 1 клик</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="container__small">
+            <div class="footer-top">
+                <div class="footer-top__item">
+                    <div class='footer-top__item-inner'>
+                        <a class="logo footer-top__logo" href="index.html">
+                            <img class="logo__img" src="images/logo.png" alt="logo" />
+                        </a>
+                        <a class="footer-top__address" href="#">
+                            <span>Адрес:</span> 4772 Wines Lane Houston, TX 77032
+                        </a>
+                        <a class="footer-top__phone" href="tel:+83234758435">
+                            <span>Телефон:</span> +832-347-5843
+                        </a>
+                        <a class="footer-top__email" href="mailto:contact@Glee.com">
+                            <span>Email:</span> contact@Glee.com
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-top__item social-links">
+                    <h5 class="footer-top__item-title">О нас</h5>
+                    <a href="https://instagram.com/ваш_профиль" target="_blank">
+                        <img src="images/media/instagram.png" alt="Instagram">
+                        <span>Instagram</span>
+                    </a>
+                    <a href="https://t.me/ваш_профиль" target="_blank">
+                        <img src="images/media/Telegram.png" alt="Telegram">
+                        <span>Telegram</span>
+                    </a>
+                    <a href="https://Youtube.com/ваш_профиль" target="_blank">
+                        <img src="images/media/Youtube.png" alt="Youtube">
+                        <span>Youtube</span>
+                    </a>
+                    <a href="https://VKontakte.com/ваш_профиль" target="_blank">
+                        <img src="images/media/VKontakte.png" alt="VKontakte">
+                        <span>VKontakte</span>
+                    </a>
+                    <a href="https://Dzen.com/ваш_профиль" target="_blank">
+                        <img src="images/media/Dzen.png" alt="Dzen">
+                        <span>Dzen</span>
+                    </a>
+                </div>
+
+                <div class="footer-top__item">
+                    <h5 class="footer-top__item-title">Услуги</h5>
+                    <a class="footer-top__item-link" href="catalog.html">Игровые Пк</a>
+                    <a class="footer-top__item-link" href="#">Конфигуратор</a>
+                    <a class="footer-top__item-link" href="devices.html">Другие продукты</a>
+                    <a class="footer-top__item-link" href="#">Услуги</a>
+                </div>
+
+                <div class="footer-top__item">
+                    <h5 class="footer-top__item-title">Новостная рассылка</h5>
+                    <p class="footer-top__item-text">
+                        Подпишитесь на нашу рассылку и получайте обновления ежедневно.
+                    </p>
+                    <form class="footer-top__form" action="#">
+                        <input class="footer-top__form-input" type="email" placeholder="Email address" required />
+                    </form>
+                    <button class="footer-top__form-btn btn" type="submit">Subscribe</button>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="footer-bottom__copy">©2024 CopyRight Example. All rights reserved.</p>
+                <div class="footer-bottom__links">
+                    <a class="footer-bottom__link" href="index.html">Home</a>
+                    <a class="footer-bottom__link" href="#">About</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mixitup/3.3.1/mixitup.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+    <script>
+        var containerEl1 = document.querySelector('[data-ref="products"]');
+        var containerEl2 = document.querySelector('[data-ref="design"]');
+
+        var config = {
+            controls: {
+                scope: 'local',
+            },
+            load: {
+                filter: 'all'
+            }
+        };;
+
+        var mixer1 = mixitup(containerEl1, config);
+        var mixer2 = mixitup(containerEl2, config);
+    </script>
+    <script src="js/index.min.js"></script>
+</body>
+
+</html>
