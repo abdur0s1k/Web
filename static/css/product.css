@@ -1,21 +1,5 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css");
-body,
-.header .menu__list-link,
-.decor__content-link {
-  font-family: "Rubik-Medium", sans-serif;
-  font-weight: 500;
-}
-.decor__content-text,
-.article .article-item__bottom-date,
-.article .article-item__bottom-user {
-  font-family: "Rubik-Regular", sans-serif;
-  font-weight: 400;
-}
-.article .article-item__label {
-  font-family: "Poppins-Bold", sans-serif;
-  font-weight: 700;
-}
 html {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -64,46 +48,6 @@ button,
 textarea,
 select {
   font: inherit;
-}
-@font-face {
-  src: local("DMSans-Medium"), url("../fonts/DMSans-Medium.woff2") format(woff2),
-    url("../fonts/DMSans-Medium.woff") format(woff);
-  font-family: "DMSans-Medium";
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  src: local("DMSans-Bold"), url("../fonts/DMSans-Bold.woff2") format(woff2),
-    url("../fonts/DMSans-Bold.woff") format(woff);
-  font-family: "DMSans-Bold";
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  src: local("Rubik-Medium"), url("../fonts/Rubik-Medium.woff2") format(woff2),
-    url("../fonts/Rubik-Medium.woff") format(woff);
-  font-family: "Rubik-Medium";
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  src: local("Rubik-Regular"), url("../fonts/Rubik-Regular.woff2") format(woff2),
-    url("../fonts/Rubik-Regular.woff") format(woff);
-  font-family: "Rubik-Regular";
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  src: local("Poppins-Bold"), url("../fonts/Poppins-Bold.woff2") format(woff2),
-    url("../fonts/Poppins-Bold.woff") format(woff);
-  font-family: "Poppins-Bold";
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
 }
 html,
 body {
@@ -403,6 +347,106 @@ input[type="checkbox"] {
     transform: translateX(0);
   }
 }
+/* Основные стили боковой панели */
+.profile-sidebar {
+  position: fixed;
+  top: 0;
+  right: -350px; /* Панель скрыта за пределами экрана */
+  width: 300px;
+  height: 100%;
+  background-color: #ffffff;
+  box-shadow: -3px 0 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+  animation: slideInRight 0.5s ease-out;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Размещаем содержимое сверху и снизу */
+  align-items: center;
+}
+
+.profile-sidebar.show {
+  right: 0; /* Показываем панель */
+}
+
+.profile-sidebar__container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1; /* Заполняем оставшееся пространство */
+}
+
+.profile-sidebar__title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin: 10px 0;
+  text-align: center;
+}
+
+.profile-sidebar__photo-section {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.profile-sidebar__photo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #e0e0e0;
+  cursor: pointer;
+}
+
+.profile-sidebar__photo-input {
+  display: none;
+}
+
+.profile-sidebar__info {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 10px;
+  text-align: left;
+  width: 100%;
+}
+
+.profile-sidebar__logout {
+  padding: 10px 15px;
+  font-size: 14px;
+  background-color: #ff4d4f;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: calc(100% - 40px); /* Учитываем отступы панели */
+  margin: 20px 20px; /* Отступы от краев */
+  margin-top: 600px;
+}
+
+.profile-sidebar__logout:hover {
+  background-color: #d9363e;
+}
+
+.profile-sidebar__history {
+  display: block;
+  width: 100%;
+  padding: 10px 20px;
+  margin-top: 10px;
+  background-color: #4caf50; /* Зелёный цвет кнопки */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.profile-sidebar__history:hover {
+  background-color: #45a049; /* Более тёмный зелёный при наведении */
+}
 
 /* Крестик для закрытия бокового меню */
 .close-panel {
@@ -448,6 +492,11 @@ input[type="checkbox"] {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.basket-item:hover {
+  background-color: #f9f9f9; /* Цвет фона при наведении */
+  border-color: #aaa; /* Можно также изменить цвет границы */
 }
 
 .close-button {
@@ -593,6 +642,76 @@ input[type="checkbox"] {
   transform: translateY(2px);
 }
 
+/* Стили контейнера уведомлений */
+.notification-container {
+  position: fixed; /* Фиксируем контейнер относительно экрана */
+  top: 20px; /* Отступ сверху */
+  right: 20px; /* Отступ справа */
+  z-index: 1000; /* Устанавливаем высокий приоритет для слоя */
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Расстояние между уведомлениями */
+  margin-top: 60px;
+}
+
+/* Стили уведомления */
+.notification {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #202020; /* Градиентный фон */
+  color: white;
+  padding: 15px 20px;
+  border-radius: 10px; /* Скругленные углы */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Тень */
+  font-family: 'Arial', sans-serif;
+  font-size: 16px;
+  max-width: 300px;
+  animation: slideIn 0.5s ease, fadeOut 0.5s 4.5s ease; /* Анимации */
+}
+
+/* Кнопка закрытия уведомления */
+.notification .close-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  border-radius: 50%;
+  color: white;
+  font-size: 16px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.notification .close-btn:hover {
+  background: rgba(255, 255, 255, 0.4); /* Изменение цвета при наведении */
+}
+
+/* Анимация появления уведомления */
+@keyframes slideIn {
+  from {
+    transform: translateX(100%); /* Начальная позиция */
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0); /* Финальная позиция */
+    opacity: 1;
+  }
+}
+
+/* Анимация исчезновения уведомления */
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
 /* Модальное окно */
 .like-modal {
   display: none;
@@ -692,7 +811,9 @@ input[type="checkbox"] {
   color:rgb(255, 178, 35);
   font-size: 25px;
 }
-
+.stars{
+  letter-spacing: -3.5px;
+}
 .main-content {
   max-width: 1450px;
   width: 100%; 
@@ -708,14 +829,11 @@ input[type="checkbox"] {
   overflow: hidden;
   margin-bottom: 100px;
 }
-
 .main-content-img img {
-  width: 100%;          /* Ширина изображения будет 100% от ширины родительского блока */
-  height: 100%;         /* Высота изображения будет 100% от высоты родительского блока */
-  object-fit: contain;  /* Изображение будет сохранять свои пропорции, не выходя за пределы блока */
+  width: 100%;          
+  height: 80%;        
+  object-fit: contain;  
 }
-
-
 
 .product-container h2 {
   font-size: 2rem;
@@ -856,6 +974,120 @@ input[type="checkbox"] {
 }
 
 
+
+
+
+.intro .intro-top__slider {
+  position: relative;
+  z-index: 1;
+  display: flex; 
+  align-items: center; 
+  height: 700px; 
+  border-radius: 20px; 
+  margin-top: 100px; 
+  box-shadow: 0 4px 20px rgba(143, 143, 143, 0.1); 
+  padding: 20px; 
+  border: 1px solid rgba(143, 143, 143, 0.1); 
+  margin-bottom: 100px;
+}
+.intro .intro-top__slider-inner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+  -ms-flex-align: end;
+  align-items: flex-end;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+.intro .intro-top__slider-content {
+  margin-right: 30px;
+  width: 100%;
+  max-width: 470px;
+}
+.intro .intro-top__slider-title {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  font-size: 42px;
+  line-height: 70px;
+  text-transform: uppercase;
+  color: #ffffff;
+  -webkit-line-clamp: 3;
+}
+.intro .intro-top__slider-subtitle {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  margin-bottom: 40px;
+  width: 100%;
+  max-width: 470px;
+  font-size: 28px;
+  line-height: 30px;
+  color: #79797a;
+  -webkit-line-clamp: 5;
+}
+
+.intro .intro-top__slider-bg {
+  position: relative;
+  z-index: 1
+}
+
+.intro .intro-top__slider-bg::before {
+  content: "";
+  position: absolute;
+  right: -15%;
+  top: 50%;
+  z-index: -1;
+  width: 609px;
+  height: 634px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%)
+}
+.intro .slick-dots {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 8%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+.intro .slick-dots li:not(:last-child) {
+  margin-right: 3px;
+}
+.intro .slick-dots li.slick-active button {
+  background-color: #a4cd39;
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+.intro .slick-dots button {
+  text-indent: -9999px;
+  padding: 0;
+  width: 13px;
+  height: 13px;
+  border: none;
+  border-radius: 50%;
+  font-size: 12px;
+  color: #243f4d;
+  background-color: #ccc;
+  transition: all 0.5s ease;
+  cursor: pointer;
+}
+.intro .slick-dots button:hover {
+  background-color: #a4cd39;
+}
 
 .footer a {
   -webkit-transition: all 0.3s;
@@ -1057,12 +1289,43 @@ input[type="checkbox"] {
   cursor: pointer;
 }
 
+.liked-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.liked-item .remove-btn {
+  background-color: rgb(138, 138, 138);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.liked-item .remove-btn:hover {
+  background-color: darkred;
+}
+
 /* Стили для списка товаров в корзине */
 #basketItemsList {
   list-style-type: none;
   padding: 0;
   margin: 0;
+  margin-top: 20px;
 }
+
+.basket-item-image{
+  width: 100px;
+  height: 100px;
+  }
 
 #basketItemsList li {
   padding: 15px;
@@ -1087,7 +1350,7 @@ input[type="checkbox"] {
 
 /* Кнопка очистки корзины */
 #clearBasketButton {
-  background-color: #ff000f;
+  background-color: #ca0418;
   color: #fff;
   padding: 10px 20px;
   border: none;
@@ -1099,7 +1362,7 @@ input[type="checkbox"] {
 }
 
 #payButton {
-  background-color: #00fc19;
+  background-color: #33c738;
   color: #fff;
   padding: 10px 20px;
   border: none;
@@ -1118,16 +1381,81 @@ input[type="checkbox"] {
   background-color: #d00;
 }
 
+.basket-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.basket-item-content {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 15px; /* Уменьшаем расстояние между картинкой и текстом */
+}
+
+.basket-item-details {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.basket-item-details span {
+  font-size: 1em;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333; /* Темный цвет для текста */
+}
+
+.basket-item-quantity {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  gap: 5px; /* Меньше отступов между кнопками и полем ввода */
+}
+
+.quantity-btn {
+  padding: 5px 8px;
+  background-color: #33c738; /* Зеленый фон */
+  border: 1px solid #4a9d35; /* Более темная рамка */
+  cursor: pointer;
+  font-size: 1.2em;
+  width: 28px;
+  height: 28px;
+  color: white;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.quantity-btn:hover {
+  background-color: #009c10; /* Темный зеленый при наведении */
+}
+
+.quantity-input {
+  width: 50px;
+  margin: 0;
+  padding: 5px;
+  text-align: center;
+  font-size: 1.2em;
+  border: 1px solid #ccc;
+  background-color: #f0f0f0;
+  pointer-events: none;
+  border-radius: 5px;
+}
+
 /* Кнопка удаления */
 .remove-btn {
-  background-color: red;
+  background-color: #ca0418;
   color: white;
   border: none;
-  padding: 5px 10px;
+  padding: 8px 10px;
   cursor: pointer;
-  margin-left: 10px;
   width: auto; /* Убираем растягивание */
   white-space: nowrap; /* Не позволяет тексту переноситься на следующую строку */
+  margin-top: 10px;
+  width: 100px;
 }
 
 .remove-btn:hover {

@@ -1,12 +1,13 @@
-<!DOCTYPE html>
+4<!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <link rel="icon" type="image/png" href="images/icon.png">
+  <link rel="icon" type="image/png" href="/static/images/icon.png">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>JoyStick</title>
-  <link rel="stylesheet" href="css/style.min.css" />
+  <link rel="stylesheet" href="/static/css/style.min.css">
+  
 </head>
 
 <body>
@@ -14,31 +15,28 @@
     <div class="container">
       <div class="header__wrapper">
         <nav class="menu">
-          <a class="logo" href="index.html">
-            <img class="logo__img" width="146" height="39" src="images/logo-2.png" alt="logo" />
+          <a class="logo" href="{{ url_for('home') }}">
+            <img class="logo__img" width="146" height="39" src="{{ url_for('static', filename='images/logo-2.png') }}" alt="logo" />
           </a>
           <ul class="menu__list">
             <li class="menu__list-item">
-              <a class="menu__list-link menu__list-link--active" href="index.html">Главная +</a>
+              <a class="menu__list-link menu__list-link--active" href="{{ url_for('home') }}">Главная +</a>
             </li>
             <li class="menu__list-item">
-              <a class="menu__list-link" href="catalog.html">Игроовые ПК</a>
+              <a class="menu__list-link" href="{{ url_for('catalog') }}">Игровые ПК</a>
             </li>
             <li class="menu__list-item">
-              <a class="menu__list-link" href="#">Конфигуратор</a>
+              <a class="menu__list-link" href="{{ url_for('devices') }}">Другие продукты</a>
             </li>
             <li class="menu__list-item">
-              <a class="menu__list-link" href="devices.html">Другие продукты</a>
-            </li>
-            <li class="menu__list-item">
-              <a class="menu__list-link" href="#">Услуги</a>
+              <a class="menu__list-link" href="{{ url_for('services') }}">Услуги</a>
             </li>
           </ul>
-
+  
           <div class="user-panel">
             <a class="user-panel__link user-panel__link--heart" href="#" id="likeButton">
               <svg class="user-panel__link-img">
-                <use xlink:href="images/sprite.svg#heart"></use>
+                <use xlink:href="/static/images/sprite.svg#heart"></use>
               </svg>
               <span id="likeCount">0</span>
             </a>
@@ -50,10 +48,10 @@
                 </ul>
               </div>
             </div>
-
+  
             <a class="user-panel__link user-panel__link--basket" href="#" id="basketButton">
               <svg class="user-panel__link-img">
-                <use xlink:href="images/sprite.svg#basket"></use>
+                <use xlink:href="/static/images/sprite.svg#basket"></use>
               </svg>
               <span id="basketCount">0</span>
             </a>
@@ -61,26 +59,25 @@
               <div class="basket-modal-content">
                 <span class="close-btn" id="closeBasketModal">&times;</span>
                 <h2>Ваша Корзина</h2>
-                <ul id="basketItemsList">
-                </ul>
+                <ul id="basketItemsList"></ul>
                 <div class="basket-total">
                   <strong>Сумма: $<span id="basketTotal">0.00</span></strong>
                 </div>
                 <button id="clearBasketButton">Очистить</button>
-                <button id="payButton">Оплатить</button>
-              </div>
-              <div>
+                <button id="payButton" >Оплатить</button>
               </div>
             </div>
+           
 
+  
             <a class="user-panel__link user-panel__link--menu" id="profile-button">
               <svg class="user-panel__link-img">
-                <use xlink:href="images/sprite.svg#profile"></use>
+                <use xlink:href="/static/images/sprite.svg#profile"></use>
               </svg>
             </a>
-
+  
             <div class="side-panel hidden" id="login-panel">
-              <span id="close-panel" class="close-panel">&times;</span> <!-- Крестик для закрытия -->
+              <span id="close-panel" class="close-panel">&times;</span>
               <div class="login-container">
                 <div class="block block-left">
                   <h1>Войти</h1>
@@ -96,6 +93,7 @@
                 </div>
               </div>
             </div>
+  
             <div class="modal regist hidden" id="registration-modal">
               <span id="close-registration-modal" class="close-panel">&times;</span>
               <div class="registration-container">
@@ -109,12 +107,29 @@
                 </div>
               </div>
             </div>
+  
+            <div class="profile-sidebar hidden" id="profile-panel">
+              <span id="close-profile-panel" class="close-panel">&times;</span>
+              <div class="profile-sidebar__container">
+                <h1 class="profile-sidebar__title">Ваш профиль</h1>
+                <div class="profile-sidebar__photo-section">
+                  <img id="profile-photo" src="/static/icon_users/default.png" alt="Profile Photo" class="profile-sidebar__photo" title="Нажмите, чтобы изменить фото">
+                  <input type="file" id="profile-photo-input" class="profile-sidebar__photo-input" accept="image/*">
+                </div>
+                <p class="profile-sidebar__info">Имя: <span id="user-name"></span></p>
+                <p class="profile-sidebar__info">Email: <span id="user-email"></span></p>
+                <button id="history-button" class="profile-sidebar__history">История заказов</button>
+                <button id="logout-button" class="profile-sidebar__logout">Выйти</button>
+              </div>
+            </div>
+            
           </div>
+        </nav>
       </div>
-      </nav>
-    </div>
     </div>
   </header>
+  
+  <div id="notification-container" class="notification-container"></div>
 
   <main class="main">
     <section class="intro">
@@ -128,7 +143,7 @@
                   <p class="intro-top__slider-subtitle">
                     Настенный компьютер, сочетающий мощь, эстетику и передовые технологии.
                   </p>
-                  <button class="intro-top__slider-btn btn" type="button" onclick="location.href='product.html?id=12'">
+                  <button class="intro-top__slider-btn btn" type="button" onclick="location.href='/product/12'">
                     УЗНАТЬ БОЛЬШЕ
                   </button>
                 </div>
@@ -143,7 +158,7 @@
                   <p class="intro-top__slider-subtitle">
                     Эталон игрового компьютера с безграничными возможностями кастомизации.
                   </p>
-                  <button class="intro-top__slider-btn btn" type="button" onclick="location.href='product.html?id=6'">
+                  <button class="intro-top__slider-btn btn" type="button" onclick="location.href='/product/6'">
                     УЗНАТЬ БОЛЬШЕ
                   </button>
                 </div>
@@ -158,7 +173,7 @@
                   <p class="intro-top__slider-subtitle">
                     Готов к будущему. Агрессивный футуристичный дизайн, созданный для настоящих кибер-воинов.
                   </p>
-                  <button class="intro-top__slider-btn btn" type="button" onclick="location.href='product.html?id=8'">
+                  <button class="intro-top__slider-btn btn" type="button" onclick="location.href='/product/8'">
                     УЗНАТЬ БОЛЬШЕ
                   </button>
                 </div>
@@ -171,21 +186,21 @@
           <div class="container">
             <ul class="intro-bottom__items">
               <li class="intro-bottom__item">
-                <img class="intro-bottom__img" src="images/icons/support.svg" alt="support icon" />
+                <img class="intro-bottom__img" src="{{ url_for('static', filename='images/icons/support.svg') }}" alt="support icon" />
                 <div class="intro-bottom__info">
                   <h5 class="intro-bottom__info-title">Помощь 24/7.</h5>
                   <p class="intro-bottom__info-text">Свяжитесь с нами 24 часа в сутки, 7 дней в неделю.</p>
                 </div>
               </li>
               <li class="intro-bottom__item">
-                <img class="intro-bottom__img" src="images/icons/truck.svg" alt="support icon" />
+                <img class="intro-bottom__img" src="{{ url_for('static', filename='images/icons/truck.svg') }}" alt="truck icon" />
                 <div class="intro-bottom__info">
                   <h5 class="intro-bottom__info-title">Доставка.</h5>
                   <p class="intro-bottom__info-text">Бесплатная доставка по всем реигонам в СНГ.</p>
                 </div>
               </li>
               <li class="intro-bottom__item">
-                <img class="intro-bottom__img" src="images/icons/secure.svg" alt="support icon" />
+                <img class="intro-bottom__img" src="{{ url_for('static', filename='images/icons/secure.svg') }}" alt="secure icon" />
                 <div class="intro-bottom__info">
                   <h5 class="intro-bottom__info-title">100% Безопасная оплата.</h5>
                   <p class="intro-bottom__info-text">Мы гарантируем безопасную оплату с помощью PEV.</p>
@@ -218,25 +233,25 @@
             </button>
         </ul>
         <ul class="products__cards">
-
           <li class="mix PC" id="product-1">
             <article class="products__card">
-              <img class="products__card-img" src="images/content/product-1.png" alt="photo of furniture" />
+              <img class="products__card-img" src="static/images/content/product-1.png" alt="photo of furniture" />
               <h4 class="products__card-title">JoyStick ONE</h4>
               <span class="products__card-price"><span>$</span>919.99</span>
               <ul class="products__card-nav">
                 <li class="products__card-item">
-                  <a class="products__card-link" href="product.html?id=1">
+                  <a class="products__card-link" href="/product/1">
                     <svg class="products__card-pic">
-                      <use xlink:href="images/sprite.svg#search"></use>
+                      <use xlink:href="static/images/sprite.svg#search"></use>
                     </svg>
                   </a>
                 </li>
                 <li class="products__card-item">
                   <button class="products__card-bkn" type="button" data-product-id="product-1"
-                    data-product-name="JoyStick ONE" data-product-price="919.99" onclick="toggleBasketProduct(this)">
+                    data-product-name="JoyStick ONE" data-product-price="919.99" data-product-image="/static/images/content/product-1.png"
+                    onclick="toggleBasketProduct(this)">
                     <svg class="products__card-pic">
-                      <use xlink:href="images/sprite.svg#basket"></use>
+                      <use xlink:href="static/images/sprite.svg#basket"></use>
                     </svg>
                   </button>
                 </li>
@@ -244,33 +259,33 @@
                   <button class="products__card-btn" type="button" data-product-id="product-1"
                     onclick="toggleLikeProduct(this)">
                     <svg class="products__card-pic heart-icon">
-                      <use xlink:href="images/sprite.svg#heart"></use>
+                      <use xlink:href="static/images/sprite.svg#heart"></use>
                     </svg>
                   </button>
                 </li>
-
               </ul>
             </article>
           </li>
-
+          
           <li class="mix PC" id="product-2">
             <article class="products__card">
-              <img class="products__card-img" src="images/content/product-2.png" alt="photo of furniture" />
+              <img class="products__card-img" src="static/images/content/product-2.png" alt="photo of furniture" />
               <h4 class="products__card-title">JoyStick FURY</h4>
               <span class="products__card-price"><span>$</span>1249.99</span>
               <ul class="products__card-nav">
                 <li class="products__card-item">
-                  <a class="products__card-link" href="product.html?id=2">
+                  <a class="products__card-link" href="/product/2">
                     <svg class="products__card-pic">
-                      <use xlink:href="images/sprite.svg#search"></use>
+                      <use xlink:href="static/images/sprite.svg#search"></use>
                     </svg>
                   </a>
                 </li>
                 <li class="products__card-item">
                   <button class="products__card-bkn basket-removed" type="button" data-product-id="product-2"
-                    data-product-name="JoyStick FURY" data-product-price="1249.99" onclick="toggleBasketProduct(this)">
+                    data-product-name="JoyStick FURY" data-product-price="1249.99" data-product-image="/static/images/content/product-2.png"
+                    onclick="toggleBasketProduct(this)">
                     <svg class="products__card-pic">
-                      <use xlink:href="images/sprite.svg#basket"></use>
+                      <use xlink:href="static/images/sprite.svg#basket"></use>
                     </svg>
                   </button>
                 </li>
@@ -278,110 +293,111 @@
                   <button class="products__card-btn" type="button" data-product-id="product-2"
                     onclick="toggleLikeProduct(this)">
                     <svg class="products__card-pic heart-icon">
-                      <use xlink:href="images/sprite.svg#heart"></use>
+                      <use xlink:href="static/images/sprite.svg#heart"></use>
                     </svg>
                   </button>
                 </li>
               </ul>
             </article>
           </li>
-
+          
           <li class="mix monitors" id="product-3">
             <article class="products__card">
-              <img class="products__card-img" src="images/content/product-3.png" alt="photo of furniture" />
+              <img class="products__card-img" src="static/images/content/product-3.png" alt="photo of furniture" />
               <h4 class="products__card-title">LG UltraGear 27GP750-B </h4>
               <span class="products__card-price"><span>$</span>329.99</span>
               <ul class="products__card-nav">
                 <li class="products__card-item">
-                  <a class="products__card-link" href="devices_prod.html?id=6">
+                  <a class="products__card-link" href="/product/22">
                     <svg class="products__card-pic">
-                      <use xlink:href="images/sprite.svg#search"></use>
+                      <use xlink:href="static/images/sprite.svg#search"></use>
                     </svg>
                   </a>
                 </li>
                 <li class="products__card-item">
-                  <button class="products__card-bkn" type="button" data-product-id="product-3"
-                    data-product-name="LG UltraGear 27GP750-B" data-product-price="329.99"
+                  <button class="products__card-bkn" type="button" data-product-id="product-22"
+                    data-product-name="LG UltraGear 27GP750-B" data-product-price="329.99" data-product-image="/static/images/content/product-3.png"
                     onclick="toggleBasketProduct(this)">
                     <svg class="products__card-pic">
-                      <use xlink:href="images/sprite.svg#basket"></use>
+                      <use xlink:href="static/images/sprite.svg#basket"></use>
                     </svg>
                   </button>
                 </li>
                 <li class="products__card-item">
-                  <button class="products__card-btn" type="button" data-product-id="product-3"
+                  <button class="products__card-btn" type="button" data-product-id="product-22"
                     onclick="toggleLikeProduct(this)">
                     <svg class="products__card-pic heart-icon">
-                      <use xlink:href="images/sprite.svg#heart"></use>
+                      <use xlink:href="static/images/sprite.svg#heart"></use>
                     </svg>
                   </button>
                 </li>
               </ul>
             </article>
           </li>
-
+          
           <li class="mix monitors" id="product-4">
             <article class="products__card">
-              <img class="products__card-img" src="images/content/product-4.png" alt="photo of furniture" />
+              <img class="products__card-img" src="static/images/content/product-4.png" alt="photo of furniture" />
               <h4 class="products__card-title">ASUS TUF VG27AQ1A</h4>
               <span class="products__card-price"><span>$</span>299.00</span>
               <ul class="products__card-nav">
                 <li class="products__card-item">
-                  <a class="products__card-link" href="devices_prod.html?id=5">
+                  <a class="products__card-link" href="/product/21">
                     <svg class="products__card-pic">
-                      <use xlink:href="images/sprite.svg#search"></use>
+                      <use xlink:href="static/images/sprite.svg#search"></use>
                     </svg>
                   </a>
                 </li>
                 <li class="products__card-item">
-                  <button class="products__card-bkn" type="button" data-product-id="product-4"
-                    data-product-name="ASUS TUF VG27AQ1A" data-product-price="299.00"
+                  <button class="products__card-bkn" type="button" data-product-id="product-21"
+                    data-product-name="ASUS TUF VG27AQ1A" data-product-price="299.00" data-product-image="/static/images/content/product-4.png"
                     onclick="toggleBasketProduct(this)">
                     <svg class="products__card-pic">
-                      <use xlink:href="images/sprite.svg#basket"></use>
+                      <use xlink:href="static/images/sprite.svg#basket"></use>
                     </svg>
                   </button>
                 </li>
-
+          
                 <li class="products__card-item">
-                  <button class="products__card-btn" type="button" data-product-id="product-4"
+                  <button class="products__card-btn" type="button" data-product-id="product-21"
                     onclick="toggleLikeProduct(this)">
                     <svg class="products__card-pic heart-icon">
-                      <use xlink:href="images/sprite.svg#heart"></use>
+                      <use xlink:href="static/images/sprite.svg#heart"></use>
                     </svg>
                   </button>
                 </li>
+              </ul>
+            </article>
           </li>
-        </ul>
-        </article>
-        </li>
+          
 
         <li class="mix devices" id="product-5">
           <article class="products__card">
-            <img class="products__card-img" src="images/content/product-5.png" alt="photo of furniture" />
+            <img class="products__card-img" src="/static/images/content/product-5.png" alt="photo of furniture" />
             <h4 class="products__card-title">Logitech G305</h4>
             <span class="products__card-price"><span>$</span>69.99</span>
             <ul class="products__card-nav">
               <li class="products__card-item">
-                <a class="products__card-link" href="devices_prod.html?id=1">
+                <a class="products__card-link" href="/product/17">
                   <svg class="products__card-pic">
-                    <use xlink:href="images/sprite.svg#search"></use>
+                    <use xlink:href="/static/images/sprite.svg#search"></use>
                   </svg>
                 </a>
               </li>
               <li class="products__card-item">
-                <button class="products__card-bkn" type="button" data-product-id="product-5"
-                  data-product-name="Logitech G305" data-product-price="69.99" onclick="toggleBasketProduct(this)">
+                <button class="products__card-bkn" type="button" data-product-id="product-17"
+                  data-product-name="Logitech G305" data-product-price="69.99" data-product-image="/static/images/content/product-5.png" 
+                  onclick="toggleBasketProduct(this)">
                   <svg class="products__card-pic">
-                    <use xlink:href="images/sprite.svg#basket"></use>
+                    <use xlink:href="/static/images/sprite.svg#basket"></use>
                   </svg>
                 </button>
               </li>
               <li class="products__card-item">
-                <button class="products__card-btn" type="button" data-product-id="product-5"
+                <button class="products__card-btn" type="button" data-product-id="product-17"
                   onclick="toggleLikeProduct(this)">
                   <svg class="products__card-pic heart-icon">
-                    <use xlink:href="images/sprite.svg#heart"></use>
+                    <use xlink:href="/static/images/sprite.svg#heart"></use>
                   </svg>
                 </button>
               </li>
@@ -392,31 +408,31 @@
 
         <li class="mix devices" id="product-6">
           <article class="products__card">
-            <img class="products__card-img" src="images/content/product-6.png" alt="photo of furniture" />
+            <img class="products__card-img" src="/static/images/content/product-6.png" alt="photo of furniture" />
             <h4 class="products__card-title">Razer Viper V2 Pro</h4>
             <span class="products__card-price"><span>$</span>129.99</span>
             <ul class="products__card-nav">
               <li class="products__card-item">
-                <a class="products__card-link" href="devices_prod.html?id=2">
+                <a class="products__card-link" href="/product/18">
                   <svg class="products__card-pic">
-                    <use xlink:href="images/sprite.svg#search"></use>
+                    <use xlink:href="/static/images/sprite.svg#search"></use>
                   </svg>
                 </a>
               </li>
               <li class="products__card-item">
-                <button class="products__card-bkn" type="button" data-product-id="product-6"
-                  data-product-name="Razer Viper V2 Pro" data-product-price="129.99"
+                <button class="products__card-bkn" type="button" data-product-id="product-18"
+                  data-product-name="Razer Viper V2 Pro" data-product-price="129.99" data-product-image="/static/images/content/product-6.png"
                   onclick="toggleBasketProduct(this)">
                   <svg class="products__card-pic">
-                    <use xlink:href="images/sprite.svg#basket"></use>
+                    <use xlink:href="/static/images/sprite.svg#basket"></use>
                   </svg>
                 </button>
               </li>
               <li class="products__card-item">
-                <button class="products__card-btn" type="button" data-product-id="product-6"
+                <button class="products__card-btn" type="button" data-product-id="product-18"
                   onclick="toggleLikeProduct(this)">
                   <svg class="products__card-pic heart-icon">
-                    <use xlink:href="images/sprite.svg#heart"></use>
+                    <use xlink:href="/static/images/sprite.svg#heart"></use>
                   </svg>
                 </button>
               </li>
@@ -426,30 +442,31 @@
 
         <li class="mix PC" id="product-7">
           <article class="products__card">
-            <img class="products__card-img" src="images/content/product-7.png" alt="photo of furniture" />
+            <img class="products__card-img" src="/static/images/content/product-7.png" alt="photo of furniture" />
             <h4 class="products__card-title">JoyStick WARRIOR</h4>
             <span class="products__card-price"><span>$</span>1699.99</span>
             <ul class="products__card-nav">
               <li class="products__card-item">
-                <a class="products__card-link" href="product.html?id=3">
+                <a class="products__card-link" href="/product/3">
                   <svg class="products__card-pic">
-                    <use xlink:href="images/sprite.svg#search"></use>
+                    <use xlink:href="/static/images/sprite.svg#search"></use>
                   </svg>
                 </a>
               </li>
               <li class="products__card-item">
-                <button class="products__card-bkn" type="button" data-product-id="product-7"
-                  data-product-name="JoyStick WARRIOR" data-product-price="1699.99" onclick="toggleBasketProduct(this)">
+                <button class="products__card-bkn" type="button" data-product-id="product-3"
+                  data-product-name="JoyStick WARRIOR" data-product-price="1699.99" data-product-image="/static/images/content/product-7.png"
+                  onclick="toggleBasketProduct(this)">
                   <svg class="products__card-pic">
-                    <use xlink:href="images/sprite.svg#basket"></use>
+                    <use xlink:href="/static/images/sprite.svg#basket"></use>
                   </svg>
                 </button>
               </li>
               <li class="products__card-item">
-                <button class="products__card-btn" type="button" data-product-id="product-7"
+                <button class="products__card-btn" type="button" data-product-id="product-3"
                   onclick="toggleLikeProduct(this)">
                   <svg class="products__card-pic heart-icon">
-                    <use xlink:href="images/sprite.svg#heart"></use>
+                    <use xlink:href="/static/images/sprite.svg#heart"></use>
                   </svg>
                 </button>
               </li>
@@ -460,31 +477,31 @@
 
         <li class="mix PC" id="product-8">
           <article class="products__card">
-            <img class="products__card-img" src="images/content/product-8.png" alt="photo of furniture" />
+            <img class="products__card-img" src="/static/images/content/product-8.png" alt="photo of furniture" />
             <h4 class="products__card-title">JoyStick CHAMPION</h4>
             <span class="products__card-price"><span>$</span>2179.99</span>
             <ul class="products__card-nav">
               <li class="products__card-item">
-                <a class="products__card-link" href="product.html?id=4">
+                <a class="products__card-link" href="/product/4">
                   <svg class="products__card-pic">
-                    <use xlink:href="images/sprite.svg#search"></use>
+                    <use xlink:href="/static/images/sprite.svg#search"></use>
                   </svg>
                 </a>
               </li>
               <li class="products__card-item">
-                <button class="products__card-bkn" type="button" data-product-id="product-8"
-                  data-product-name="JoyStick CHAMPION" data-product-price="2179.99"
+                <button class="products__card-bkn" type="button" data-product-id="product-4"
+                  data-product-name="JoyStick CHAMPION" data-product-price="2179.99" data-product-image="/static/images/content/product-8.png"
                   onclick="toggleBasketProduct(this)">
                   <svg class="products__card-pic">
-                    <use xlink:href="images/sprite.svg#basket"></use>
+                    <use xlink:href="/static/images/sprite.svg#basket"></use>
                   </svg>
                 </button>
               </li>
               <li class="products__card-item">
-                <button class="products__card-btn" type="button" data-product-id="product-8"
+                <button class="products__card-btn" type="button" data-product-id="product-4"
                   onclick="toggleLikeProduct(this)">
                   <svg class="products__card-pic heart-icon">
-                    <use xlink:href="images/sprite.svg#heart"></use>
+                    <use xlink:href="/static/images/sprite.svg#heart"></use>
                   </svg>
                 </button>
               </li>
@@ -499,22 +516,22 @@
           <div class="decor__inner">
             <div class="decor__item">
               <div class="decor__content">
-                <img class="decor__item-img" src="images/content/decor-1.png" alt="photo of product" />
-                <h4 class="decor__content-title">Сделайте Сюрприз Керамике</h4>
+                <img class="decor__item-img" src="/static/images/devices/devices-1.png" alt="photo of product" />
+                <h4 class="decor__content-title">Сделайте Сюрприз Качеству</h4>
                 <p class="decor__content-text">
-                  Светодиодная кукурузная лампа 5 Вт 7 Вт 10 Вт 12 Вт 15 Вт E26 E27 LED CornLight
+                  Беспроводная игровая мышь Logitech G305: беспроводной связи LIGHTSPEED, отслеживание движений с разрешением до 12,000 DPI
                 </p>
-                <a class="decor__content-link" href="#">Посмотреть больше</a>
+                <a class="decor__content-link" href="/product/17">Посмотреть больше</a>
               </div>
             </div>
             <div class="decor__item">
               <div class="decor__content">
-                <img class="decor__item-img" src="images/content/decor-2.png" alt="photo of product" />
-                <h4 class="decor__content-title">Высокая производительность</h4>
+                <img class="decor__item-img" src="/static/images/devices/devices-11.png" alt="photo of product" />
+                <h4 class="decor__content-title">Высокая точность звука</h4>
                 <p class="decor__content-text">
-                  Компактный размер 50W 8000lm для скрытой замены уличного фонаря привел к появлению кукурузного света
+                  G435 оснащены 40-мм динамиками, они поддерживают виртуальный объемный звук 7.1 (только на ПК), что повышает погружение в игру.
                 </p>
-                <a class="decor__content-link" href="#"> Посмотреть больше </a>
+                <a class="decor__content-link" href="/product/27"> Посмотреть больше </a>
               </div>
             </div>
           </div>
@@ -548,12 +565,12 @@
           <li class="design__card mix PC">
             <h4 class="design__card-title">JoyStick CYBER</h4>
             <div class="design__card-img">
-              <img class="design__card-pic" src="images/content/design-1.png" alt="photo of furniture" />
+              <img class="design__card-pic" src="/static/images/content/design-1.png" alt="photo of furniture" />
               <ul class="design__card-nav">
                 <li class="design__card-item">
-                  <a class="design__card-link" href="product.html?id=8">
+                  <a class="design__card-link" href="/product/8">
                     <svg class="design__card-pic">
-                      <use xlink:href="images/sprite.svg#search"></use>
+                      <use xlink:href="/static/images/sprite.svg#search"></use>
                     </svg>
                   </a>
                 </li>
@@ -564,12 +581,12 @@
           <li class="design__card mix PC">
             <h4 class="design__card-title">JoyStick LEADER</h4>
             <div class="design__card-img">
-              <img class="design__card-pic" src="images/content/design-2.png" alt="photo of furniture" />
+              <img class="design__card-pic" src="/static/images/content/design-2.png" alt="photo of furniture" />
               <ul class="design__card-nav">
                 <li class="design__card-item">
-                  <a class="design__card-link" href="product.html?id=7">
+                  <a class="design__card-link" href="/product/7">
                     <svg class="design__card-pic">
-                      <use xlink:href="images/sprite.svg#search"></use>
+                      <use xlink:href="/static/images/sprite.svg#search"></use>
                     </svg>
                   </a>
                 </li>
@@ -580,12 +597,12 @@
           <li class="design__card mix monitors">
             <h4 class="design__card-title">Odyssey OLED G9</h4>
             <div class="design__card-img design__card-img--small">
-              <img class="design__card-pic" src="images/content/design-3.png" alt="photo of furniture" />
+              <img class="design__card-pic" src="/static/images/content/design-3.png" alt="photo of furniture" />
               <ul class="design__card-nav">
                 <li class="design__card-item">
-                  <a class="design__card-link" href="devices_prod.html?id=7">
+                  <a class="design__card-link" href="/product/23">
                     <svg class="design__card-pic">
-                      <use xlink:href="images/sprite.svg#search"></use>
+                      <use xlink:href="/static/images/sprite.svg#search"></use>
                     </svg>
                   </a>
                 </li>
@@ -596,12 +613,12 @@
           <li class="design__card mix devices ">
             <h4 class="design__card-title">Razer Basilisk V3 Pro</h4>
             <div class="design__card-img">
-              <img class="design__card-pic" src="images/content/design-4.png" alt="photo of furniture" />
+              <img class="design__card-pic" src="/static/images/content/design-4.png" alt="photo of furniture" />
               <ul class="design__card-nav">
                 <li class="design__card-item">
-                  <a class="design__card-link" href="devices_prod.html?id=3">
+                  <a class="design__card-link" href="/product/19">
                     <svg class="design__card-pic">
-                      <use xlink:href="images/sprite.svg#search"></use>
+                      <use xlink:href="/static/images/sprite.svg#search"></use>
                     </svg>
                   </a>
                 </li>
@@ -612,12 +629,12 @@
           <li class="design__card mix PC">
             <h4 class="design__card-title">JoyStick DYNAMIC</h4>
             <div class="design__card-img">
-              <img class="design__card-pic" src="images/content/design-6.png" alt="photo of furniture" />
+              <img class="design__card-pic" src="/static/images/content/design-6.png" alt="photo of furniture" />
               <ul class="design__card-nav">
                 <li class="design__card-item">
-                  <a class="design__card-link" href="product.html?id=5">
+                  <a class="design__card-link" href="/product/5">
                     <svg class="design__card-pic">
-                      <use xlink:href="images/sprite.svg#search"></use>
+                      <use xlink:href="/static/images/sprite.svg#search"></use>
                     </svg>
                   </a>
                 </li>
@@ -630,9 +647,9 @@
       <div class="design-video">
         <span class="sr-only">Press to play video</span>
         <a class="design-video__link" data-fancybox href="https://www.youtube.com/watch?v=ujihdHQu7Fc"
-          style="background-image: url('images/video-bg.jpg')">
+          style="background-image: url('/static/images/video-bg.jpg')">
           <svg class="design-video__pic">
-            <use xlink:href="images/sprite.svg#play-video"></use>
+            <use xlink:href="/static/images/sprite.svg#play-video"></use>
           </svg>
         </a>
       </div>
@@ -642,16 +659,12 @@
       <div class="container__small">
         <div class="article__title-inner">
           <h3 class="article__title title">Новости</h3>
-          <a class="article__title-link" href="#">Посмотреть все
-            <svg class="article__title-mark">
-              <use xlink:href="images/sprite.svg#view-all-mark"></use>
-            </svg>
           </a>
         </div>
         <ul class="article-items">
           <li class="article-item">
             <div class="article-item__photo-inner">
-              <img class="article-item__photo" src="images/article/article-1.png" alt="photo of article" />
+              <img class="article-item__photo" src="/static/images/article/article-1.png" alt="photo of article" />
               <a class="article-item__label"
                 href="https://www.playground.ru/black_myth_wu_kong/news/black_myth_wukong_uzhe_pochti_dva_mesyatsa_ostaetsya_v_desyatke_luchshih_bestsellerov_steam-1728784">
                 News </a>
@@ -669,7 +682,7 @@
           </li>
           <li class="article-item">
             <div class="article-item__photo-inner">
-              <img class="article-item__photo" src="images/article/article-2.jpg" alt="photo of article" />
+              <img class="article-item__photo" src="/static/images/article/article-2.jpg" alt="photo of article" />
               <a class="article-item__label"
                 href="https://stopgame.ru/newsdata/64386/v_steam_nachalsya_osenniy_festival_demoversiy_igram_byt">
                 News </a>
@@ -687,7 +700,7 @@
           </li>
           <li class="article-item">
             <div class="article-item__photo-inner">
-              <img class="article-item__photo" src="images/article/article-3.jpg" alt="photo of article" />
+              <img class="article-item__photo" src="/static/images/article/article-3.jpg" alt="photo of article" />
               <a class="article-item__label"
                 href="https://shazoo.ru/2024/10/15/160912/bolee-milliona-igrokov-vernulis-v-gta-online-ctoby-poprobovat-novyi-zombi-rezim-v-stile-call-of-duty">
                 News </a>
@@ -709,22 +722,22 @@
         <div class="container__small">
           <ul class="partners__items">
             <li class="partners__item">
-              <img class="partners__items-icon" src="images/partners/partner-1.png" alt="logo of partner" />
+              <img class="partners__items-icon" src="/static/images/partners/partner-1.png" alt="logo of partner" />
             </li>
             <li class="partners__item">
-              <img class="partners__items-icon" src="images/partners/partner-2.png" alt="logo of partner" />
+              <img class="partners__items-icon" src="/static/images/partners/partner-2.png" alt="logo of partner" />
             </li>
             <li class="partners__item">
-              <img class="partners__items-icon" src="images/partners/partner-3.png" alt="logo of partner" />
+              <img class="partners__items-icon" src="/static/images/partners/partner-3.png" alt="logo of partner" />
             </li>
             <li class="partners__item">
-              <img class="partners__items-icon" src="images/partners/partner-4.png" alt="logo of partner" />
+              <img class="partners__items-icon" src="/static/images/partners/partner-4.png" alt="logo of partner" />
             </li>
             <li class="partners__item">
-              <img class="partners__items-icon" src="images/partners/partner-5.png" alt="logo of partner" />
+              <img class="partners__items-icon" src="/static/images/partners/partner-5.png" alt="logo of partner" />
             </li>
             <li class="partners__item">
-              <img class="partners__items-icon" src="images/partners/partner-6.png" alt="logo of partner" />
+              <img class="partners__items-icon" src="/static/images/partners/partner-6.png" alt="logo of partner" />
             </li>
           </ul>
         </div>
@@ -737,8 +750,8 @@
       <div class="footer-top">
         <div class="footer-top__item">
           <div class='footer-top__item-inner'>
-            <a class="logo footer-top__logo" href="index.html">
-              <img class="logo__img" src="images/logo.png" alt="logo" />
+            <a class="logo footer-top__logo" href="{{ url_for('home') }}">
+              <img class="logo__img" src="/static/images/logo.png" alt="logo" />
             </a>
             <a class="footer-top__address" href="#">
               <span>Адрес:</span> 4772 Wines Lane Houston, TX 77032
@@ -755,23 +768,23 @@
         <div class="footer-top__item social-links">
           <h5 class="footer-top__item-title">О нас</h5>
           <a href="https://instagram.com/ваш_профиль" target="_blank">
-            <img src="images/media/instagram.png" alt="Instagram">
+            <img src="/static/images/media/instagram.png" alt="Instagram">
             <span>Instagram</span>
           </a>
           <a href="https://t.me/ваш_профиль" target="_blank">
-            <img src="images/media/Telegram.png" alt="Telegram">
+            <img src="/static/images/media/Telegram.png" alt="Telegram">
             <span>Telegram</span>
           </a>
           <a href="https://Youtube.com/ваш_профиль" target="_blank">
-            <img src="images/media/Youtube.png" alt="Youtube">
+            <img src="/static/images/media/Youtube.png" alt="Youtube">
             <span>Youtube</span>
           </a>
           <a href="https://VKontakte.com/ваш_профиль" target="_blank">
-            <img src="images/media/VKontakte.png" alt="VKontakte">
+            <img src="/static/images/media/VKontakte.png" alt="VKontakte">
             <span>VKontakte</span>
           </a>
           <a href="https://Dzen.com/ваш_профиль" target="_blank">
-            <img src="images/media/Dzen.png" alt="Dzen">
+            <img src="/static/images/media/Dzen.png" alt="Dzen">
             <span>Dzen</span>
           </a>
         </div>
@@ -779,9 +792,8 @@
         <div class="footer-top__item">
           <h5 class="footer-top__item-title">Услуги</h5>
           <a class="footer-top__item-link" href="catalog.html">Игровые Пк</a>
-          <a class="footer-top__item-link" href="#">Конфигуратор</a>
-          <a class="footer-top__item-link" href="devices.html">Другие продукты</a>
-          <a class="footer-top__item-link" href="#">Услуги</a>
+          <a class="footer-top__item-link" href="{{ url_for('devices') }}">Другие продукты</a>
+          <a class="footer-top__item-link" href="{{ url_for('services') }}">Услуги</a>
         </div>
 
         <div class="footer-top__item">
@@ -799,8 +811,8 @@
       <div class="footer-bottom">
         <p class="footer-bottom__copy">©2024 CopyRight Example. All rights reserved.</p>
         <div class="footer-bottom__links">
-          <a class="footer-bottom__link" href="index.html">Home</a>
-          <a class="footer-bottom__link" href="#">About</a>
+          <a class="footer-bottom__link" href="{{ url_for('home') }}">Home</a>
+          <a class="footer-bottom__link" href="{{ url_for('services') }}">About</a>
         </div>
       </div>
     </div>
@@ -827,7 +839,7 @@
     var mixer1 = mixitup(containerEl1, config);
     var mixer2 = mixitup(containerEl2, config);
   </script>
-  <script src="js/index.js"></script>
+ <script src="/static/js/index.js"></script>
 </body>
 
 </html>

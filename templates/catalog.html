@@ -2,11 +2,11 @@
 <html lang="en">
 
 <head>
-  <link rel="icon" type="image/png" href="images/icon.png">
+  <link rel="icon" type="image/png" href="/static/images/icon.png">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>JoyStick</title>
-  <link rel="stylesheet" href="css/catalog.css" />
+  <link rel="stylesheet" href="/static/css/catalog.css" />
 </head>
 
 <body>
@@ -14,31 +14,28 @@
     <div class="container">
       <div class="header__wrapper">
         <nav class="menu">
-          <a class="logo" href="index.html">
-            <img class="logo__img" width="146" height="39" src="images/logo-2.png" alt="logo" />
+          <a class="logo" href="{{ url_for('home') }}">
+            <img class="logo__img" width="146" height="39" src="/static/images/logo-2.png" alt="logo" />
           </a>
           <ul class="menu__list">
             <li class="menu__list-item">
-              <a class="menu__list-link " href="index.html">Главная +</a>
+              <a class="menu__list-link " href="{{ url_for('home') }}">Главная +</a>
             </li>
             <li class="menu__list-item">
-              <a class="menu__list-link menu__list-link--active" href="catalog.html">Игроовые ПК</a>
+              <a class="menu__list-link menu__list-link--active" href="{{ url_for('catalog') }}">Игровые ПК</a>
             </li>
             <li class="menu__list-item">
-              <a class="menu__list-link" href="#">Конфигуратор</a>
+              <a class="menu__list-link" href="{{ url_for('devices') }}">Другие продукты</a>
             </li>
             <li class="menu__list-item">
-              <a class="menu__list-link" href="devices.html">Другие продукты</a>
-            </li>
-            <li class="menu__list-item">
-              <a class="menu__list-link" href="#">Услуги</a>
+              <a class="menu__list-link" href="{{ url_for('services') }}">Услуги</a>
             </li>
           </ul>
 
           <div class="user-panel">
             <a class="user-panel__link user-panel__link--heart" href="#" id="likeButton">
               <svg class="user-panel__link-img">
-                <use xlink:href="images/sprite.svg#heart"></use>
+                <use xlink:href="/static/images/sprite.svg#heart"></use>
               </svg>
               <span id="likeCount">0</span>
             </a>
@@ -53,7 +50,7 @@
 
             <a class="user-panel__link user-panel__link--basket" href="#" id="basketButton">
               <svg class="user-panel__link-img">
-                <use xlink:href="images/sprite.svg#basket"></use>
+                <use xlink:href="/static/images/sprite.svg#basket"></use>
               </svg>
               <span id="basketCount">0</span>
             </a>
@@ -75,7 +72,7 @@
 
             <a class="user-panel__link user-panel__link--menu" id="profile-button">
               <svg class="user-panel__link-img">
-                <use xlink:href="images/sprite.svg#profile"></use>
+                <use xlink:href="/static/images/sprite.svg#profile"></use>
               </svg>
             </a>
 
@@ -109,12 +106,30 @@
                 </div>
               </div>
             </div>
+            <div class="profile-sidebar hidden" id="profile-panel">
+              <span id="close-profile-panel" class="close-panel">&times;</span>
+              <div class="profile-sidebar__container">
+                <h1 class="profile-sidebar__title">Ваш профиль</h1>
+                <div class="profile-sidebar__photo-section">
+                  <img id="profile-photo" src="/static/icon_users/default.png" alt="Profile Photo" class="profile-sidebar__photo" title="Нажмите, чтобы изменить фото">
+                  <input type="file" id="profile-photo-input" class="profile-sidebar__photo-input" accept="image/*">
+                </div>
+                <p class="profile-sidebar__info">Имя: <span id="user-name"></span></p>
+                <p class="profile-sidebar__info">Email: <span id="user-email"></span></p>
+                <button id="history-button" class="profile-sidebar__history">История заказов</button>
+                <button id="logout-button" class="profile-sidebar__logout">Выйти</button>
+              </div>
+            </div>
+            
+            
           </div>
       </div>
       </nav>
     </div>
     </div>
   </header>
+
+  <div id="notification-container" class="notification-container"></div>
 
   <main class="main">
     <section class="video">
@@ -123,8 +138,8 @@
       </div>
       <div class="video-block">
         <video autoplay muted loop playsinline id="background-video">
-          <source src="images/video/why-hyperpc-alt-2.mp4" type="video/mp4">
-          <source src="images/video/why-hyperpc-alt-2.webm" type="video/webm">
+          <source src="/static/images/video/why-hyperpc-alt-2.mp4" type="video/mp4">
+          <source src="/static/images/video/why-hyperpc-alt-2.webm" type="video/webm">
           Ваш браузер не поддерживает видео.
         </video>
       </div>
@@ -137,7 +152,7 @@
         <ul class="products__cards">
           <li class="mix PC fade-in" id="product-1">
             <article class="products__card">
-              <img class="products__card-img" src="images/PC/product-1.png" alt="photo of furniture" />
+              <img class="products__card-img" src="/static/images/PC/product-1.png" alt="photo of furniture" />
               <h4 class="products__card-title">JoyStick ONE</h4>
               <span class="products__card-price"><span>$</span>919.99</span>
               <div class="fps-card">
@@ -154,25 +169,27 @@
               </div>
               <ul class="products__card-nav">
                 <li class="products__card-item">
-                  <a class="products__card-link" href="product.html?id=1">
+                  <a class="products__card-link" href="/product/1">
                     <svg class="products__card-pic">
-                      <use xlink:href="images/sprite.svg#search"></use>
+                      <use xlink:href="/static/images/sprite.svg#search"></use>
                     </svg>
                   </a>
                 </li>
                 <li class="products__card-item">
                   <button class="products__card-bkn" type="button" data-product-id="product-1"
-                    data-product-name="JoyStick ONE" data-product-price="919.99" onclick="toggleBasketProduct(this)">
-                    <svg class="products__card-pic">
-                      <use xlink:href="images/sprite.svg#basket"></use>
-                    </svg>
-                  </button>
+                  data-product-name="JoyStick ONE" data-product-price="919.99" 
+                  data-product-image="/static/images/PC/product-1.png" onclick="toggleBasketProduct(this)">
+                  <svg class="products__card-pic">
+                    <use xlink:href="/static/images/sprite.svg#basket"></use>
+                  </svg>
+                </button>
+                
                 </li>
                 <li class="products__card-item">
                   <button class="products__card-btn" type="button" data-product-id="product-1"
                     onclick="toggleLikeProduct(this)">
                     <svg class="products__card-pic heart-icon">
-                      <use xlink:href="images/sprite.svg#heart"></use>
+                      <use xlink:href="/static/images/sprite.svg#heart"></use>
                     </svg>
                   </button>
                 </li>
@@ -182,7 +199,7 @@
 
           <li class="mix PC fade-in" id="product-2">
             <article class="products__card">
-              <img class="products__card-img" src="images/PC/product-2.png" alt="photo of furniture" />
+              <img class="products__card-img" src="/static/images/PC/product-2.png" alt="photo of furniture" />
               <h4 class="products__card-title">JoyStick FURY</h4>
               <span class="products__card-price"><span>$</span>1249.99</span>
               <div class="fps-card">
@@ -199,17 +216,17 @@
               </div>
               <ul class="products__card-nav">
                 <li class="products__card-item">
-                  <a class="products__card-link" href="product.html?id=2">
+                  <a class="products__card-link" href="/product/2">
                     <svg class="products__card-pic">
-                      <use xlink:href="images/sprite.svg#search"></use>
+                      <use xlink:href="/static/images/sprite.svg#search"></use>
                     </svg>
                   </a>
                 </li>
                 <li class="products__card-item">
                   <button class="products__card-bkn basket-removed" type="button" data-product-id="product-2"
-                    data-product-name="JoyStick FURY" data-product-price="1249.99" onclick="toggleBasketProduct(this)">
+                    data-product-name="JoyStick FURY" data-product-price="1249.99" data-product-image="/static/images/PC/product-2.png" onclick="toggleBasketProduct(this)">
                     <svg class="products__card-pic">
-                      <use xlink:href="images/sprite.svg#basket"></use>
+                      <use xlink:href="/static/images/sprite.svg#basket"></use>
                     </svg>
                   </button>
                 </li>
@@ -217,7 +234,7 @@
                   <button class="products__card-btn" type="button" data-product-id="product-2"
                     onclick="toggleLikeProduct(this)">
                     <svg class="products__card-pic heart-icon">
-                      <use xlink:href="images/sprite.svg#heart"></use>
+                      <use xlink:href="/static/images/sprite.svg#heart"></use>
                     </svg>
                   </button>
                 </li>
@@ -227,7 +244,7 @@
 
           <li class="mix PC fade-in" id="product-3">
             <article class="products__card">
-              <img class="products__card-img" src="images/PC/product-7.png" alt="photo of furniture" />
+              <img class="products__card-img" src="/static/images/PC/product-7.png" alt="photo of furniture" />
               <h4 class="products__card-title">JoyStick WARRIOR</h4>
               <span class="products__card-price"><span>$</span>1699.99</span>
               <div class="fps-card">
@@ -244,18 +261,18 @@
               </div>
               <ul class="products__card-nav">
                 <li class="products__card-item">
-                  <a class="products__card-link" href="product.html?id=3">
+                  <a class="products__card-link" href="/product/3">
                     <svg class="products__card-pic">
-                      <use xlink:href="images/sprite.svg#search"></use>
+                      <use xlink:href="/static/images/sprite.svg#search"></use>
                     </svg>
                   </a>
                 </li>
                 <li class="products__card-item">
                   <button class="products__card-bkn" type="button" data-product-id="product-3"
-                    data-product-name="JoyStick WARRIOR" data-product-price="1699.99"
+                    data-product-name="JoyStick WARRIOR" data-product-price="1699.99" data-product-image="/static/images/PC/product-3.png"
                     onclick="toggleBasketProduct(this)">
                     <svg class="products__card-pic">
-                      <use xlink:href="images/sprite.svg#basket"></use>
+                      <use xlink:href="/static/images/sprite.svg#basket"></use>
                     </svg>
                   </button>
                 </li>
@@ -263,7 +280,7 @@
                   <button class="products__card-btn" type="button" data-product-id="product-3"
                     onclick="toggleLikeProduct(this)">
                     <svg class="products__card-pic heart-icon">
-                      <use xlink:href="images/sprite.svg#heart"></use>
+                      <use xlink:href="/static/images/sprite.svg#heart"></use>
                     </svg>
                   </button>
                 </li>
@@ -273,7 +290,7 @@
 
           <li class="mix PC fade-in" id="product-4">
             <article class="products__card">
-              <img class="products__card-img" src="images/PC/product-8.png" alt="photo of furniture" />
+              <img class="products__card-img" src="/static/images/PC/product-8.png" alt="photo of furniture" />
               <h4 class="products__card-title">JoyStick CHAMPION</h4>
               <span class="products__card-price"><span>$</span>2179.99</span>
               <div class="fps-card">
@@ -290,18 +307,18 @@
               </div>
               <ul class="products__card-nav">
                 <li class="products__card-item">
-                  <a class="products__card-link" href="product.html?id=4">
+                  <a class="products__card-link" href="/product/4">
                     <svg class="products__card-pic">
-                      <use xlink:href="images/sprite.svg#search"></use>
+                      <use xlink:href="/static/images/sprite.svg#search"></use>
                     </svg>
                   </a>
                 </li>
                 <li class="products__card-item">
                   <button class="products__card-bkn" type="button" data-product-id="product-4"
-                    data-product-name="JoyStick CHAMPION" data-product-price="2179.99"
+                    data-product-name="JoyStick CHAMPION" data-product-price="2179.99" data-product-image="/static/images/PC/product-4.png"
                     onclick="toggleBasketProduct(this)">
                     <svg class="products__card-pic">
-                      <use xlink:href="images/sprite.svg#basket"></use>
+                      <use xlink:href="/static/images/sprite.svg#basket"></use>
                     </svg>
                   </button>
                 </li>
@@ -309,7 +326,7 @@
                   <button class="products__card-btn" type="button" data-product-id="product-4"
                     onclick="toggleLikeProduct(this)">
                     <svg class="products__card-pic heart-icon">
-                      <use xlink:href="images/sprite.svg#heart"></use>
+                      <use xlink:href="/static/images/sprite.svg#heart"></use>
                     </svg>
                   </button>
                 </li>
@@ -324,7 +341,7 @@
         <ul class="products__cards">
           <li class="mix PC fade-in" id="product-5">
             <article class="products__card">
-              <img class="products__card-img" src="images/PC/product-5.png" alt="photo of furniture" />
+              <img class="products__card-img" src="/static/images/PC/product-5.png" alt="photo of furniture" />
               <h4 class="products__card-title">JoyStick DYNAMIC</h4>
               <span class="products__card-price"><span>$</span>7421.34</span>
               <div class="fps-card">
@@ -341,18 +358,18 @@
               </div>
               <ul class="products__card-nav">
                 <li class="products__card-item">
-                  <a class="products__card-link" href="product.html?id=5">
+                  <a class="products__card-link" href="/product/5">
                     <svg class="products__card-pic">
-                      <use xlink:href="images/sprite.svg#search"></use>
+                      <use xlink:href="/static/images/sprite.svg#search"></use>
                     </svg>
                   </a>
                 </li>
                 <li class="products__card-item">
                   <button class="products__card-bkn" type="button" data-product-id="product-5"
-                    data-product-name="JoyStick DYNAMIC" data-product-price="7421.34"
+                    data-product-name="JoyStick DYNAMIC" data-product-price="7421.34" data-product-image="/static/images/PC/product-5.png"
                     onclick="toggleBasketProduct(this)">
                     <svg class="products__card-pic">
-                      <use xlink:href="images/sprite.svg#basket"></use>
+                      <use xlink:href="/static/images/sprite.svg#basket"></use>
                     </svg>
                   </button>
                 </li>
@@ -360,7 +377,7 @@
                   <button class="products__card-btn" type="button" data-product-id="product-5"
                     onclick="toggleLikeProduct(this)">
                     <svg class="products__card-pic heart-icon">
-                      <use xlink:href="images/sprite.svg#heart"></use>
+                      <use xlink:href="/static/images/sprite.svg#heart"></use>
                     </svg>
                   </button>
                 </li>
@@ -371,7 +388,7 @@
           <ul class="products__cards">
             <li class="mix PC fade-in" id="product-6">
               <article class="products__card">
-                <img class="products__card-img" src="images/PC/product-9.png" alt="photo of furniture" />
+                <img class="products__card-img" src="/static/images/PC/product-9.png" alt="photo of furniture" />
                 <h4 class="products__card-title">JoyStick LUMEN</h4>
                 <span class="products__card-price"><span>$</span>4095.41</span>
                 <div class="fps-card">
@@ -388,18 +405,18 @@
                 </div>
                 <ul class="products__card-nav">
                   <li class="products__card-item">
-                    <a class="products__card-link" href="product.html?id=6">
+                    <a class="products__card-link" href="/product/6">
                       <svg class="products__card-pic">
-                        <use xlink:href="images/sprite.svg#search"></use>
+                        <use xlink:href="/static/images/sprite.svg#search"></use>
                       </svg>
                     </a>
                   </li>
                   <li class="products__card-item">
                     <button class="products__card-bkn" type="button" data-product-id="product-6"
-                      data-product-name="JoyStick LUMEN" data-product-price="4095.41"
+                      data-product-name="JoyStick LUMEN" data-product-price="4095.41" data-product-image="/static/images/PC/product-6.png"
                       onclick="toggleBasketProduct(this)">
                       <svg class="products__card-pic">
-                        <use xlink:href="images/sprite.svg#basket"></use>
+                        <use xlink:href="/static/images/sprite.svg#basket"></use>
                       </svg>
                     </button>
                   </li>
@@ -407,7 +424,7 @@
                     <button class="products__card-btn" type="button" data-product-id="product-6"
                       onclick="toggleLikeProduct(this)">
                       <svg class="products__card-pic heart-icon">
-                        <use xlink:href="images/sprite.svg#heart"></use>
+                        <use xlink:href="/static/images/sprite.svg#heart"></use>
                       </svg>
                     </button>
                   </li>
@@ -417,7 +434,7 @@
 
             <li class="mix PC fade-in" id="product-7">
               <article class="products__card">
-                <img class="products__card-img" src="images/PC/product-3.png" alt="photo of furniture" />
+                <img class="products__card-img" src="/static/images/PC/product-3.png" alt="photo of furniture" />
                 <h4 class="products__card-title">JoyStick LEADER</h4>
                 <span class="products__card-price"><span>$</span>3074.99</span>
                 <div class="fps-card">
@@ -435,18 +452,18 @@
                 </div>
                 <ul class="products__card-nav">
                   <li class="products__card-item">
-                    <a class="products__card-link" href="product.html?id=7">
+                    <a class="products__card-link" href="/product/7">
                       <svg class="products__card-pic">
-                        <use xlink:href="images/sprite.svg#search"></use>
+                        <use xlink:href="/static/images/sprite.svg#search"></use>
                       </svg>
                     </a>
                   </li>
                   <li class="products__card-item">
                     <button class="products__card-bkn" type="button" data-product-id="product-7"
-                      data-product-name="JoyStick LEADER" data-product-price="3074.99"
+                      data-product-name="JoyStick LEADER" data-product-price="3074.99" data-product-image="/static/images/PC/product-7.png"
                       onclick="toggleBasketProduct(this)">
                       <svg class="products__card-pic">
-                        <use xlink:href="images/sprite.svg#basket"></use>
+                        <use xlink:href="/static/images/sprite.svg#basket"></use>
                       </svg>
                     </button>
                   </li>
@@ -454,7 +471,7 @@
                     <button class="products__card-btn" type="button" data-product-id="product-7"
                       onclick="toggleLikeProduct(this)">
                       <svg class="products__card-pic heart-icon">
-                        <use xlink:href="images/sprite.svg#heart"></use>
+                        <use xlink:href="/static/images/sprite.svg#heart"></use>
                       </svg>
                     </button>
                   </li>
@@ -464,7 +481,7 @@
 
             <li class="mix PC fade-in" id="product-8">
               <article class="products__card">
-                <img class="products__card-img" src="images/PC/product-4.png" alt="photo of furniture" />
+                <img class="products__card-img" src="/static/images/PC/product-4.png" alt="photo of furniture" />
                 <h4 class="products__card-title">JoyStick CYBER</h4>
                 <span class="products__card-price"><span>$</span>5042.99</span>
                 <div class="fps-card">
@@ -482,27 +499,26 @@
                 </div>
                 <ul class="products__card-nav">
                   <li class="products__card-item">
-                    <a class="products__card-link" href="product.html?id=8">
+                    <a class="products__card-link" href="/product/8">
                       <svg class="products__card-pic">
-                        <use xlink:href="images/sprite.svg#search"></use>
+                        <use xlink:href="/static/images/sprite.svg#search"></use>
                       </svg>
                     </a>
                   </li>
                   <li class="products__card-item">
                     <button class="products__card-bkn" type="button" data-product-id="product-8"
-                      data-product-name="JoyStick CYBER" data-product-price="5042.99"
+                      data-product-name="JoyStick CYBER" data-product-price="5042.99" data-product-image="/static/images/PC/product-8.png"
                       onclick="toggleBasketProduct(this)">
                       <svg class="products__card-pic">
-                        <use xlink:href="images/sprite.svg#basket"></use>
+                        <use xlink:href="/static/images/sprite.svg#basket"></use>
                       </svg>
                     </button>
                   </li>
                   <li class="products__card-item">
-                  <li class="products__card-item">
                     <button class="products__card-btn" type="button" data-product-id="product-8"
                       onclick="toggleLikeProduct(this)">
                       <svg class="products__card-pic heart-icon">
-                        <use xlink:href="images/sprite.svg#heart"></use>
+                        <use xlink:href="/static/images/sprite.svg#heart"></use>
                       </svg>
                     </button>
                   </li>
@@ -517,7 +533,7 @@
           <ul class="products__cards">
             <li class="mix PC fade-in" id="product-9">
               <article class="products__card">
-                <img class="products__card-img" src="images/PC/product-6.png" alt="photo of furniture" />
+                <img class="products__card-img" src="/static/images/PC/product-6.png" alt="photo of furniture" />
                 <h4 class="products__card-title">JoyStick DYNAMIC CONCEPT</h4>
                 <span class="products__card-price"><span>$</span>10262.22</span>
                 <div class="fps-card">
@@ -535,18 +551,18 @@
                 </div>
                 <ul class="products__card-nav">
                   <li class="products__card-item">
-                    <a class="products__card-link" href="product.html?id=9">
+                    <a class="products__card-link" href="/product/9">
                       <svg class="products__card-pic">
-                        <use xlink:href="images/sprite.svg#search"></use>
+                        <use xlink:href="/static/images/sprite.svg#search"></use>
                       </svg>
                     </a>
                   </li>
                   <li class="products__card-item">
                     <button class="products__card-bkn" type="button" data-product-id="product-9"
-                      data-product-name="JoyStick DYNAMIC CONCEPT" data-product-price="10262.22"
+                      data-product-name="JoyStick DYNAMIC CONCEPT" data-product-price="10262.22" data-product-image="/static/images/PC/product-9.png"
                       onclick="toggleBasketProduct(this)">
                       <svg class="products__card-pic">
-                        <use xlink:href="images/sprite.svg#basket"></use>
+                        <use xlink:href="/static/images/sprite.svg#basket"></use>
                       </svg>
                     </button>
                   </li>
@@ -554,7 +570,7 @@
                     <button class="products__card-btn" type="button" data-product-id="product-9"
                       onclick="toggleLikeProduct(this)">
                       <svg class="products__card-pic heart-icon">
-                        <use xlink:href="images/sprite.svg#heart"></use>
+                        <use xlink:href="/static/images/sprite.svg#heart"></use>
                       </svg>
                     </button>
                   </li>
@@ -564,7 +580,7 @@
 
             <li class="mix PC fade-in" id="product-10">
               <article class="products__card">
-                <img class="products__card-img" src="images/PC/product-13.png" alt="photo of furniture" />
+                <img class="products__card-img" src="/static/images/PC/product-13.png" alt="photo of furniture" />
                 <h4 class="products__card-title">JoyStick EVOLVE CONCEPT</h4>
                 <span class="products__card-price"><span>$</span>11130.19</span>
                 <div class="fps-card">
@@ -582,18 +598,18 @@
                 </div>
                 <ul class="products__card-nav">
                   <li class="products__card-item">
-                    <a class="products__card-link" href="product.html?id=10">
+                    <a class="products__card-link" href="/product/10">
                       <svg class="products__card-pic">
-                        <use xlink:href="images/sprite.svg#search"></use>
+                        <use xlink:href="/static/images/sprite.svg#search"></use>
                       </svg>
                     </a>
                   </li>
                   <li class="products__card-item">
                     <button class="products__card-bkn" type="button" data-product-id="product-10"
-                      data-product-name="JoyStick EVOLVE CONCEPT" data-product-price="11130.19"
+                      data-product-name="JoyStick EVOLVE CONCEPT" data-product-price="11130.19" data-product-image="/static/images/PC/product-10.png"
                       onclick="toggleBasketProduct(this)">
                       <svg class="products__card-pic">
-                        <use xlink:href="images/sprite.svg#basket"></use>
+                        <use xlink:href="/static/images/sprite.svg#basket"></use>
                       </svg>
                     </button>
                   </li>
@@ -601,7 +617,7 @@
                     <button class="products__card-btn" type="button" data-product-id="product-10"
                       onclick="toggleLikeProduct(this)">
                       <svg class="products__card-pic heart-icon">
-                        <use xlink:href="images/sprite.svg#heart"></use>
+                        <use xlink:href="/static/images/sprite.svg#heart"></use>
                       </svg>
                     </button>
                   </li>
@@ -611,7 +627,7 @@
 
             <li class="mix PC fade-in" id="product-11">
               <article class="products__card">
-                <img class="products__card-img" src="images/PC/product-15-removebg-preview.png"
+                <img class="products__card-img" src="/static/images/PC/product-15-removebg-preview.png"
                   alt="photo of furniture" />
                 <h4 class="products__card-title">JoyStick TITAN CONCEPT</h4>
                 <span class="products__card-price"><span>$</span>16084.92</span>
@@ -630,18 +646,18 @@
                 </div>
                 <ul class="products__card-nav">
                   <li class="products__card-item">
-                    <a class="products__card-link" href="product.html?id=11">
+                    <a class="products__card-link" href="/product/11">
                       <svg class="products__card-pic">
-                        <use xlink:href="images/sprite.svg#search"></use>
+                        <use xlink:href="/static/images/sprite.svg#search"></use>
                       </svg>
                     </a>
                   </li>
                   <li class="products__card-item">
                     <button class="products__card-bkn" type="button" data-product-id="product-11"
-                      data-product-name="JoyStick TITAN CONCEPT" data-product-price="16084.92"
+                      data-product-name="JoyStick TITAN CONCEPT" data-product-price="16084.92" data-product-image="/static/images/PC/product-11.png"
                       onclick="toggleBasketProduct(this)">
                       <svg class="products__card-pic">
-                        <use xlink:href="images/sprite.svg#basket"></use>
+                        <use xlink:href="/static/images/sprite.svg#basket"></use>
                       </svg>
                     </button>
                   </li>
@@ -649,7 +665,7 @@
                     <button class="products__card-btn" type="button" data-product-id="product-11"
                       onclick="toggleLikeProduct(this)">
                       <svg class="products__card-pic heart-icon">
-                        <use xlink:href="images/sprite.svg#heart"></use>
+                        <use xlink:href="/static/images/sprite.svg#heart"></use>
                       </svg>
                     </button>
                   </li>
@@ -659,7 +675,7 @@
 
             <li class="mix PC fade-in" id="product-12">
               <article class="products__card">
-                <img class="products__card-img" src="images/PC/product-16.png" alt="photo of furniture" />
+                <img class="products__card-img" src="/static/images/PC/product-16.png" alt="photo of furniture" />
                 <h4 class="products__card-title">JoyStick WALL</h4>
                 <span class="products__card-price"><span>$</span>16431.94</span>
                 <div class="fps-card">
@@ -677,27 +693,26 @@
                 </div>
                 <ul class="products__card-nav">
                   <li class="products__card-item">
-                    <a class="products__card-link" href="product.html?id=1">
+                    <a class="products__card-link" href="/product/12">
                       <svg class="products__card-pic">
-                        <use xlink:href="images/sprite.svg#search"></use>
+                        <use xlink:href="/static/images/sprite.svg#search"></use>
                       </svg>
                     </a>
                   </li>
                   <li class="products__card-item">
                     <button class="products__card-bkn" type="button" data-product-id="product-12"
-                      data-product-name="JoyStick WALL" data-product-price="16431.94"
+                      data-product-name="JoyStick WALL" data-product-price="16431.94" data-product-image="/static/images/PC/product-12.png"
                       onclick="toggleBasketProduct(this)">
                       <svg class="products__card-pic">
-                        <use xlink:href="images/sprite.svg#basket"></use>
+                        <use xlink:href="/static/images/sprite.svg#basket"></use>
                       </svg>
                     </button>
                   </li>
                   <li class="products__card-item">
-                  <li class="products__card-item">
                     <button class="products__card-btn" type="button" data-product-id="product-12"
                       onclick="toggleLikeProduct(this)">
                       <svg class="products__card-pic heart-icon">
-                        <use xlink:href="images/sprite.svg#heart"></use>
+                        <use xlink:href="/static/images/sprite.svg#heart"></use>
                       </svg>
                     </button>
                   </li>
@@ -712,7 +727,7 @@
         <ul class="products__cards">
           <li class="mix PC fade-in" id="product-13">
             <article class="products__card">
-              <img class="products__card-img" src="images/PC/product-10.png" alt="photo of furniture" />
+              <img class="products__card-img" src="/static/images/PC/product-10.png" alt="photo of furniture" />
               <h4 class="products__card-title">JoyStick LUMEN X</h4>
               <span class="products__card-price"><span>$</span>1249.99</span>
               <div class="fps-card">
@@ -729,18 +744,18 @@
               </div>
               <ul class="products__card-nav">
                 <li class="products__card-item">
-                  <a class="products__card-link" href="product.html?id=13">
+                  <a class="products__card-link" href="/product/13">
                     <svg class="products__card-pic">
-                      <use xlink:href="images/sprite.svg#search"></use>
+                      <use xlink:href="/static/images/sprite.svg#search"></use>
                     </svg>
                   </a>
                 </li>
                 <li class="products__card-item">
                   <button class="products__card-bkn basket-removed" type="button" data-product-id="product-13"
-                    data-product-name="JoyStick LUMEN X" data-product-price="1249.99"
+                    data-product-name="JoyStick LUMEN X" data-product-price="1249.99" data-product-image="/static/images/PC/product-13.png"
                     onclick="toggleBasketProduct(this)">
                     <svg class="products__card-pic">
-                      <use xlink:href="images/sprite.svg#basket"></use>
+                      <use xlink:href="/static/images/sprite.svg#basket"></use>
                     </svg>
                   </button>
                 </li>
@@ -748,7 +763,7 @@
                   <button class="products__card-btn" type="button" data-product-id="product-13"
                     onclick="toggleLikeProduct(this)">
                     <svg class="products__card-pic heart-icon">
-                      <use xlink:href="images/sprite.svg#heart"></use>
+                      <use xlink:href="/static/images/sprite.svg#heart"></use>
                     </svg>
                   </button>
                 </li>
@@ -758,7 +773,7 @@
 
           <li class="mix PC fade-in" id="product-14">
             <article class="products__card">
-              <img class="products__card-img" src="images/PC/product-14.png" alt="photo of furniture" />
+              <img class="products__card-img" src="/static/images/PC/product-14.png" alt="photo of furniture" />
               <h4 class="products__card-title">JoyStick POWERED BY ASUS</h4>
               <span class="products__card-price"><span>$</span>2249.99</span>
               <div class="fps-card">
@@ -775,18 +790,18 @@
               </div>
               <ul class="products__card-nav">
                 <li class="products__card-item">
-                  <a class="products__card-link" href="product.html?id=14">
+                  <a class="products__card-link" href="/product/14">
                     <svg class="products__card-pic">
-                      <use xlink:href="images/sprite.svg#search"></use>
+                      <use xlink:href="/static/images/sprite.svg#search"></use>
                     </svg>
                   </a>
                 </li>
                 <li class="products__card-item">
                   <button class="products__card-bkn basket-removed" type="button" data-product-id="product-14"
-                    data-product-name="JoyStick POWERED BY ASUS" data-product-price="2249.99"
+                    data-product-name="JoyStick POWERED BY ASUS" data-product-price="2249.99" data-product-image="/static/images/PC/product-14.png"
                     onclick="toggleBasketProduct(this)">
                     <svg class="products__card-pic">
-                      <use xlink:href="images/sprite.svg#basket"></use>
+                      <use xlink:href="/static/images/sprite.svg#basket"></use>
                     </svg>
                   </button>
                 </li>
@@ -794,7 +809,7 @@
                   <button class="products__card-btn" type="button" data-product-id="product-14"
                     onclick="toggleLikeProduct(this)">
                     <svg class="products__card-pic heart-icon">
-                      <use xlink:href="images/sprite.svg#heart"></use>
+                      <use xlink:href="/static/images/sprite.svg#heart"></use>
                     </svg>
                   </button>
                 </li>
@@ -804,7 +819,7 @@
 
           <li class="mix PC fade-in" id="product-15">
             <article class="products__card">
-              <img class="products__card-img" src="images/PC/product-11.png" alt="photo of furniture" />
+              <img class="products__card-img" src="/static/images/PC/product-11.png" alt="photo of furniture" />
               <h4 class="products__card-title">JoyStick AURORA</h4>
               <span class="products__card-price"><span>$</span>9036.80</span>
               <div class="fps-card">
@@ -821,18 +836,18 @@
               </div>
               <ul class="products__card-nav">
                 <li class="products__card-item">
-                  <a class="products__card-link" href="product.html?id=15">
+                  <a class="products__card-link" href="/product/15">
                     <svg class="products__card-pic">
-                      <use xlink:href="images/sprite.svg#search"></use>
+                      <use xlink:href="/static/images/sprite.svg#search"></use>
                     </svg>
                   </a>
                 </li>
                 <li class="products__card-item">
                   <button class="products__card-bkn" type="button" data-product-id="product-15"
-                    data-product-name="JoyStick AURORA" data-product-price="9036.80"
+                    data-product-name="JoyStick AURORA" data-product-price="9036.80" data-product-image="/static/images/PC/product-15.png"
                     onclick="toggleBasketProduct(this)">
                     <svg class="products__card-pic">
-                      <use xlink:href="images/sprite.svg#basket"></use>
+                      <use xlink:href="/static/images/sprite.svg#basket"></use>
                     </svg>
                   </button>
                 </li>
@@ -840,7 +855,7 @@
                   <button class="products__card-btn" type="button" data-product-id="product-15"
                     onclick="toggleLikeProduct(this)">
                     <svg class="products__card-pic heart-icon">
-                      <use xlink:href="images/sprite.svg#heart"></use>
+                      <use xlink:href="/static/images/sprite.svg#heart"></use>
                     </svg>
                   </button>
                 </li>
@@ -851,7 +866,7 @@
 
           <li class="mix PC fade-in" id="product-16">
             <article class="products__card">
-              <img class="products__card-img" src="images/PC/product-12.png" alt="photo of furniture" />
+              <img class="products__card-img" src="/static/images/PC/product-12.png" alt="photo of furniture" />
               <h4 class="products__card-title">JoyStick ATOM</h4>
               <span class="products__card-price"><span>$</span>3228.89</span>
               <div class="fps-card">
@@ -868,26 +883,26 @@
               </div>
               <ul class="products__card-nav">
                 <li class="products__card-item">
-                  <a class="products__card-link" href="product.html?id=16">
+                  <a class="products__card-link" href="/product/16">
                     <svg class="products__card-pic">
-                      <use xlink:href="images/sprite.svg#search"></use>
+                      <use xlink:href="/static/images/sprite.svg#search"></use>
                     </svg>
                   </a>
                 </li>
                 <li class="products__card-item">
                   <button class="products__card-bkn" type="button" data-product-id="product-16"
-                    data-product-name="JoyStick ATOM" data-product-price="3228.89" onclick="toggleBasketProduct(this)">
+                    data-product-name="JoyStick ATOM" data-product-price="3228.89" data-product-image="/static/images/PC/product-16.png" 
+                    onclick="toggleBasketProduct(this)">
                     <svg class="products__card-pic">
-                      <use xlink:href="images/sprite.svg#basket"></use>
+                      <use xlink:href="/static/images/sprite.svg#basket"></use>
                     </svg>
                   </button>
                 </li>
                 <li class="products__card-item">
-                <li class="products__card-item">
                   <button class="products__card-btn" type="button" data-product-id="product-16"
                     onclick="toggleLikeProduct(this)">
                     <svg class="products__card-pic heart-icon">
-                      <use xlink:href="images/sprite.svg#heart"></use>
+                      <use xlink:href="/static/images/sprite.svg#heart"></use>
                     </svg>
                   </button>
                 </li>
@@ -903,8 +918,8 @@
         <div class="footer-top">
           <div class="footer-top__item">
             <div class='footer-top__item-inner'>
-              <a class="logo footer-top__logo" href="index.html">
-                <img class="logo__img" src="images/logo.png" alt="logo" />
+              <a class="logo footer-top__logo" href="{{ url_for('home') }}">
+                <img class="logo__img" src="/static/images/logo.png" alt="logo" />
               </a>
               <a class="footer-top__address" href="#">
                 <span>Адрес:</span> 4772 Wines Lane Houston, TX 77032
@@ -921,33 +936,32 @@
           <div class="footer-top__item social-links">
             <h5 class="footer-top__item-title">О нас</h5>
             <a href="https://instagram.com/ваш_профиль" target="_blank">
-              <img src="images/media/instagram.png" alt="Instagram">
+              <img src="/static/images/media/instagram.png" alt="Instagram">
               <span>Instagram</span>
             </a>
             <a href="https://t.me/ваш_профиль" target="_blank">
-              <img src="images/media/Telegram.png" alt="Telegram">
+              <img src="/static/images/media/Telegram.png" alt="Telegram">
               <span>Telegram</span>
             </a>
             <a href="https://Youtube.com/ваш_профиль" target="_blank">
-              <img src="images/media/Youtube.png" alt="Youtube">
+              <img src="/static/images/media/Youtube.png" alt="Youtube">
               <span>Youtube</span>
             </a>
             <a href="https://VKontakte.com/ваш_профиль" target="_blank">
-              <img src="images/media/VKontakte.png" alt="VKontakte">
+              <img src="/static/images/media/VKontakte.png" alt="VKontakte">
               <span>VKontakte</span>
             </a>
             <a href="https://Dzen.com/ваш_профиль" target="_blank">
-              <img src="images/media/Dzen.png" alt="Dzen">
+              <img src="/static/images/media/Dzen.png" alt="Dzen">
               <span>Dzen</span>
             </a>
           </div>
 
           <div class="footer-top__item">
             <h5 class="footer-top__item-title">Услуги</h5>
-            <a class="footer-top__item-link" href="catalog.html">Игровые Пк</a>
-            <a class="footer-top__item-link" href="#">Конфигуратор</a>
-            <a class="footer-top__item-link" href="devices.html">Другие продукты</a>
-            <a class="footer-top__item-link" href="#">Услуги</a>
+            <a class="footer-top__item-link" href="{{ url_for('catalog') }}">Игровые Пк</a>
+            <a class="footer-top__item-link" href="{{ url_for('devices') }}">Другие продукты</a>
+            <a class="footer-top__item-link" href="{{ url_for('services') }}">Услуги</a>
           </div>
 
           <div class="footer-top__item">
@@ -965,8 +979,8 @@
         <div class="footer-bottom">
           <p class="footer-bottom__copy">©2024 CopyRight Example. All rights reserved.</p>
           <div class="footer-bottom__links">
-            <a class="footer-bottom__link" href="index.htmls">Home</a>
-            <a class="footer-bottom__link" href="#">About</a>
+            <a class="footer-bottom__link" href="{{ url_for('home') }}">Home</a>
+            <a class="footer-bottom__link" href="{{ url_for('services') }}">About</a>
           </div>
         </div>
       </div>
@@ -976,23 +990,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mixitup/3.3.1/mixitup.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
-    <script>
-      var containerEl1 = document.querySelector('[data-ref="products"]');
-      var containerEl2 = document.querySelector('[data-ref="design"]');
-
-      var config = {
-        controls: {
-          scope: 'local',
-        },
-        load: {
-          filter: 'all'
-        }
-      };;
-
-      var mixer1 = mixitup(containerEl1, config);
-      var mixer2 = mixitup(containerEl2, config);
-    </script>
-    <script src="js/index.js"></script>
+    <script src="/static/js/index.js"></script>
 </body>
 
 </html>

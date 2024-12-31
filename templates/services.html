@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/png" href="/static/images/icon.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JoyStick</title>
+    <link rel="stylesheet" href="/static/css/services.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+          <div class="header__wrapper">
+            <nav class="menu">
+              <a class="logo" href="{{ url_for('home') }}">
+                <img class="logo__img" width="146" height="39" src="{{ url_for('static', filename='images/logo-2.png') }}" alt="logo" />
+              </a>
+              <ul class="menu__list">
+                <li class="menu__list-item">
+                  <a class="menu__list-link" href="{{ url_for('home') }}">Главная +</a>
+                </li>
+                <li class="menu__list-item">
+                  <a class="menu__list-link" href="{{ url_for('catalog') }}">Игровые ПК</a>
+                </li>
+                <li class="menu__list-item">
+                  <a class="menu__list-link" href="{{ url_for('devices') }}">Другие продукты</a>
+                </li>
+                <li class="menu__list-item">
+                  <a class="menu__list-link menu__list-link--active" href="{{ url_for('services') }}">Услуги</a>
+                </li>
+              </ul>
+      
+              <div class="user-panel">
+                <a class="user-panel__link user-panel__link--heart" href="#" id="likeButton">
+                  <svg class="user-panel__link-img">
+                    <use xlink:href="/static/images/sprite.svg#heart"></use>
+                  </svg>
+                  <span id="likeCount">0</span>
+                </a>
+                <div id="likeModal" class="like-modal">
+                  <div class="like-modal-content">
+                    <span class="close-btn" id="closeModal">&times;</span>
+                    <h2>Товары, которые вам понравились</h2>
+                    <ul id="likedItemsList">
+                    </ul>
+                  </div>
+                </div>
+      
+                <a class="user-panel__link user-panel__link--basket" href="#" id="basketButton">
+                  <svg class="user-panel__link-img">
+                    <use xlink:href="/static/images/sprite.svg#basket"></use>
+                  </svg>
+                  <span id="basketCount">0</span>
+                </a>
+                <div id="basketModal" class="basket-modal">
+                  <div class="basket-modal-content">
+                    <span class="close-btn" id="closeBasketModal">&times;</span>
+                    <h2>Ваша Корзина</h2>
+                    <ul id="basketItemsList"></ul>
+                    <div class="basket-total">
+                      <strong>Сумма: $<span id="basketTotal">0.00</span></strong>
+                    </div>
+                    <button id="clearBasketButton">Очистить</button>
+                    <button id="payButton" >Оплатить</button>
+                  </div>
+                </div>
+               
+    
+      
+                <a class="user-panel__link user-panel__link--menu" id="profile-button">
+                  <svg class="user-panel__link-img">
+                    <use xlink:href="/static/images/sprite.svg#profile"></use>
+                  </svg>
+                </a>
+      
+                <div class="side-panel hidden" id="login-panel">
+                  <span id="close-panel" class="close-panel">&times;</span>
+                  <div class="login-container">
+                    <div class="block block-left">
+                      <h1>Войти</h1>
+                      <input type="text" placeholder="Почта" id="email">
+                      <input type="password" placeholder="Пароль" id="password">
+                      <div class="checkbox-container">
+                        <input type="checkbox" id="rememberMe">
+                        <label for="rememberMe">Запомнить меня</label>
+                      </div>
+                      <button id="button-login">Войти</button>
+                      <p id="error-message" style="color: red;"></p>
+                      <button id="button-signup" class="signup-link">Зарегистрироваться</button>
+                    </div>
+                  </div>
+                </div>
+      
+                <div class="modal regist hidden" id="registration-modal">
+                  <span id="close-registration-modal" class="close-panel">&times;</span>
+                  <div class="registration-container">
+                    <div class="block block-left">
+                      <h1>Регистрация</h1>
+                      <input type="text" placeholder="Имя" id="name">
+                      <input type="email" placeholder="Электронная почта" id="email-registration">
+                      <input type="password" placeholder="Пароль" id="password-registration">
+                      <p id="error-message-registration" style="color: red;"></p>
+                      <button id="button-submit-registration">Создать аккаунт</button>
+                    </div>
+                  </div>
+                </div>
+      
+                <div class="profile-sidebar hidden" id="profile-panel">
+                  <span id="close-profile-panel" class="close-panel">&times;</span>
+                  <div class="profile-sidebar__container">
+                    <h1 class="profile-sidebar__title">Ваш профиль</h1>
+                    <div class="profile-sidebar__photo-section">
+                      <img id="profile-photo" src="/static/icon_users/default.png" alt="Profile Photo" class="profile-sidebar__photo" title="Нажмите, чтобы изменить фото">
+                      <input type="file" id="profile-photo-input" class="profile-sidebar__photo-input" accept="image/*">
+                    </div>
+                    <p class="profile-sidebar__info">Имя: <span id="user-name"></span></p>
+                    <p class="profile-sidebar__info">Email: <span id="user-email"></span></p>
+                    <button id="history-button" class="profile-sidebar__history">История заказов</button>
+                    <button id="logout-button" class="profile-sidebar__logout">Выйти</button>
+                  </div>
+                </div>
+                
+              </div>
+            </nav>
+          </div>
+        </div>
+      </header>
+    <main class="services-page">
+        <div class="text">
+            <h3 class="title-2">Услуги</h3>
+          </div>
+        <div class="services-container">
+            <div class="service-card">
+                <div class="service-card-image-wrapper">
+                    <img src="/static/images/service/hyperpc-updrade-center-menu-738px.jpg" alt="Апгрейд-центр" class="service-card-image">
+                </div>
+                <div class="service-card-content">
+                    <div class="service-card-info">
+                        <h2 class="service-card-title">Апгрейд-центр</h2>
+                        <p class="service-card-description">Прокачай свой ПК</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-card-image-wrapper">
+                    <img src="/static/images/service/hyperpc-service-title-upd_webp.jpg" alt="Техническое обслуживание" class="service-card-image">
+                </div>
+                <div class="service-card-content">
+                    <div class="service-card-info">
+                        <h2 class="service-card-title">Техническое обслуживание</h2>
+                        <p class="service-card-description">Забота о вашем ПК</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-card-image-wrapper">
+                    <img src="/static/images/service/hyperpc-customisation-title_webp.jpg" alt="Моддинг и кастомизация" class="service-card-image">
+                </div>
+                <div class="service-card-content">
+                    <div class="service-card-info">
+                        <h2 class="service-card-title">Моддинг и кастомизация</h2>
+                        <p class="service-card-description">Персонализация ПК</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-card-image-wrapper">
+                    <img src="/static/images/service/hpc-upgrade-trade-in.jpg" alt="Трейд-ин" class="service-card-image">
+                </div>
+                <div class="service-card-content">
+                    <div class="service-card-info">
+                        <h2 class="service-card-title">Трейд-ин</h2>
+                        <p class="service-card-description">Выгодный обмен ПК</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="container__small">
+          <div class="footer-top">
+            <div class="footer-top__item">
+              <div class='footer-top__item-inner'>
+                <a class="logo footer-top__logo" href="{{ url_for('home') }}">
+                  <img class="logo__img" src="/static/images/logo.png" alt="logo" />
+                </a>
+                <a class="footer-top__address" href="#">
+                  <span>Адрес:</span> 4772 Wines Lane Houston, TX 77032
+                </a>
+                <a class="footer-top__phone" href="tel:+83234758435">
+                  <span>Телефон:</span> +832-347-5843
+                </a>
+                <a class="footer-top__email" href="mailto:contact@Glee.com">
+                  <span>Email:</span> contact@Glee.com
+                </a>
+              </div>
+            </div>
+    
+            <div class="footer-top__item social-links">
+              <h5 class="footer-top__item-title">О нас</h5>
+              <a href="https://instagram.com/ваш_профиль" target="_blank">
+                <img src="/static/images/media/instagram.png" alt="Instagram">
+                <span>Instagram</span>
+              </a>
+              <a href="https://t.me/ваш_профиль" target="_blank">
+                <img src="/static/images/media/Telegram.png" alt="Telegram">
+                <span>Telegram</span>
+              </a>
+              <a href="https://Youtube.com/ваш_профиль" target="_blank">
+                <img src="/static/images/media/Youtube.png" alt="Youtube">
+                <span>Youtube</span>
+              </a>
+              <a href="https://VKontakte.com/ваш_профиль" target="_blank">
+                <img src="/static/images/media/VKontakte.png" alt="VKontakte">
+                <span>VKontakte</span>
+              </a>
+              <a href="https://Dzen.com/ваш_профиль" target="_blank">
+                <img src="/static/images/media/Dzen.png" alt="Dzen">
+                <span>Dzen</span>
+              </a>
+            </div>
+    
+            <div class="footer-top__item">
+              <h5 class="footer-top__item-title">Услуги</h5>
+              <a class="footer-top__item-link" href="catalog.html">Игровые Пк</a>
+              <a class="footer-top__item-link" href="{{ url_for('devices') }}">Другие продукты</a>
+              <a class="footer-top__item-link" href="{{ url_for('services') }}">Услуги</a>
+            </div>
+    
+            <div class="footer-top__item">
+              <h5 class="footer-top__item-title">Новостная рассылка</h5>
+              <p class="footer-top__item-text">
+                Подпишитесь на нашу рассылку и получайте обновления ежедневно.
+              </p>
+              <form class="footer-top__form" action="#">
+                <input class="footer-top__form-input" type="email" placeholder="Email address" required />
+              </form>
+              <button class="footer-top__form-btn btn" type="submit">Subscribe</button>
+            </div>
+          </div>
+    
+          <div class="footer-bottom">
+            <p class="footer-bottom__copy">©2024 CopyRight Example. All rights reserved.</p>
+            <div class="footer-bottom__links">
+              <a class="footer-bottom__link" href="{{ url_for('home') }}">Home</a>
+              <a class="footer-bottom__link" href="{{ url_for('services') }}">About</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mixitup/3.3.1/mixitup.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+     <script src="/static/js/index.js"></script>
+    </body>
+    
+    </html>
